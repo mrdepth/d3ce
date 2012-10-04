@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1247DEE1161DCE44002C4826 /* ModifierPostAssign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1247DEDF161DCE44002C4826 /* ModifierPostAssign.cpp */; };
 		126599B71614250D0036FC30 /* ModifierSub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126599B51614250D0036FC30 /* ModifierSub.cpp */; };
 		127F42991611951C000BD508 /* Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42971611951C000BD508 /* Modifier.cpp */; };
 		127F429C16119623000BD508 /* Range.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F429A16119623000BD508 /* Range.cpp */; };
@@ -60,6 +61,8 @@
 
 /* Begin PBXFileReference section */
 		122B5C6E161490CC006A63CC /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		1247DEDF161DCE44002C4826 /* ModifierPostAssign.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPostAssign.cpp; sourceTree = "<group>"; };
+		1247DEE0161DCE44002C4826 /* ModifierPostAssign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPostAssign.h; sourceTree = "<group>"; };
 		126599B116141F5E0036FC30 /* d3ce.script */ = {isa = PBXFileReference; lastKnownFileType = text; path = d3ce.script; sourceTree = SOURCE_ROOT; };
 		126599B51614250D0036FC30 /* ModifierSub.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierSub.cpp; sourceTree = "<group>"; };
 		126599B61614250D0036FC30 /* ModifierSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierSub.h; sourceTree = "<group>"; };
@@ -169,6 +172,8 @@
 				127F42BB16119B20000BD508 /* ModifierPostBoost.h */,
 				127F42BD16119B39000BD508 /* ModifierPostReduce.cpp */,
 				127F42BE16119B39000BD508 /* ModifierPostReduce.h */,
+				1247DEDF161DCE44002C4826 /* ModifierPostAssign.cpp */,
+				1247DEE0161DCE44002C4826 /* ModifierPostAssign.h */,
 			);
 			name = Modifiers;
 			sourceTree = "<group>";
@@ -386,6 +391,7 @@
 				12AE8DF91615994F00D4025E /* Gear.cpp in Sources */,
 				71B66F111618A1D60098C895 /* SetBonus.cpp in Sources */,
 				71AA5B2B1618C85F0069EDB3 /* ItemSet.cpp in Sources */,
+				1247DEE1161DCE44002C4826 /* ModifierPostAssign.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
