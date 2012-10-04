@@ -921,6 +921,7 @@ namespace d3ce {
 		AttributeAttacksPerSecondPercentTotalID,
 
 		AttributeArmorFromVitalityFactorID,
+		AttributeArmorFromDexterityFactorID,
 
 		AttributeDamagePercentBonusFromSwordsID,
 		AttributeDamagePercentBonusFromDaggersID,
@@ -932,6 +933,13 @@ namespace d3ce {
 		AttributeDamagePercentBonusFromBowID,
 		AttributeCritDamagePercentBonusFromCrossbowID,
 		AttributeCritPercentBonusFromHandXbowID,
+		
+		AttributeDodgeChanceBonusFromDualWieldingID,
+		AttributeDodgeChanceBonusFromCritPercentFactorID,
+
+		AttributeResistanceSubTotalID,
+		
+		AttributeResistanceFlatID
 
 	} AttributeID;
 

@@ -32,6 +32,12 @@ const Hash SkillBrawlerHash = hash("brawler");
 const Hash SkillSteadyAimHash = hash("steady-aim");
 const Hash SkillArcheryHash = hash("archery");
 
+const Hash SkillSeizeTheInitiativeHash = hash("seize-the-initiative");
+const Hash SkillTheGuardiansPathHash = hash("the-guardians-path");
+const Hash SkillSixthSenseHash = hash("sixth-sense");
+const Hash SkillOneWithEverythingHash = hash("one-with-everything");
+
+
 
 Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Entity(engine, parent), skillname_(skillName) {
 	Hash skillNameHash = hash(skillName);
@@ -97,6 +103,7 @@ Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Ent
 	else if (skillNameHash == SkillBrawlerHash) {
 		getAttribute(AttributeDamageBonusSkillPercentID)->setValue(0.30);
 	}
+	//Demon Hunter
 	else if (skillNameHash == SkillSteadyAimHash) {
 		getAttribute(AttributeDamageBonusSkillPercentID)->setValue(0.20);
 	}
@@ -104,6 +111,19 @@ Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Ent
 		getAttribute(AttributeDamagePercentBonusFromBowID, AttributeFireSubID)->setValue(0.15);
 		getAttribute(AttributeCritDamagePercentBonusFromCrossbowID, AttributeLightningSubID)->setValue(0.50);
 		getAttribute(AttributeCritPercentBonusFromHandXbowID, AttributeColdSubID)->setValue(0.10);
+	}
+	//Monk
+	else if (skillNameHash == SkillSeizeTheInitiativeHash) {
+		getAttribute(AttributeArmorFromDexterityFactorID)->setValue(1);
+	}
+	else if (skillNameHash == SkillTheGuardiansPathHash) {
+		getAttribute(AttributeDodgeChanceBonusFromDualWieldingID)->setValue(1);
+	}
+	else if (skillNameHash == SkillSixthSenseHash) {
+		getAttribute(AttributeDodgeChanceBonusFromCritPercentFactorID)->setValue(0.30);
+	}
+	else if (skillNameHash == SkillOneWithEverythingHash) {
+		getAttribute(AttributeResistanceFlatID)->setValue(0.30);
 	}
 }
 

@@ -11,6 +11,7 @@
 #include "Party.h"
 
 #include "ModifierPreAssign.h"
+#include "ModifierPostAssign.h"
 #include "ModifierAdd.h"
 #include "ModifierSub.h"
 #include "ModifierPostMul.h"
@@ -520,33 +521,36 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 		//Resistances
 		case AttributeResistanceFromIntelligenceID:
 			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeResistanceFromIntelligenceID, ptr(V(0.1))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributePhysicalSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributeFireSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributeLightningSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributeColdSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributePoisonSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributeArcaneSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributePhysicalSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeFireSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeLightningSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeColdSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributePoisonSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeArcaneSubID, ptr(V(*this))));
 			break;
 		case AttributeResistanceAllID:
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributePhysicalSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributeFireSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributeLightningSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributeColdSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributePoisonSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, AttributeArcaneSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributePhysicalSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeFireSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeLightningSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeColdSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributePoisonSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeArcaneSubID, ptr(V(*this))));
 			break;
 		case AttributeResistancePercentAllID:
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistancePercentID, AttributeFireSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistancePercentID, AttributeLightningSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistancePercentID, AttributeColdSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistancePercentID, AttributePoisonSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistancePercentID, AttributeArcaneSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeFireSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeLightningSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeColdSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributePoisonSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, AttributeArcaneSubID, ptr(V(*this))));
 			break;
 		case AttributeResistancePercentID:
-			modifiers_.push_back(new ModifierPostBoost(environment.hero, AttributeResistanceTotalID, attributeSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierPostBoost(environment.hero, AttributeResistanceSubTotalID, attributeSubID, ptr(V(*this))));
+			break;
+		case AttributeResistanceSubTotalID:
+			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeResistanceTotalID, attributeSubID, ptr(V(*this))));
 			break;
 		case AttributeResistanceID:
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceTotalID, attributeSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResistanceSubTotalID, attributeSubID, ptr(V(*this))));
 			break;
 			
 		//Dodge
@@ -654,7 +658,9 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 		case AttributeArmorFromVitalityFactorID:
 			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeArmorTotalID, ptr(V(*(*environment.hero)[AttributeVitalityTotalID]) * V(*this))));
 			break;
-
+		case AttributeArmorFromDexterityFactorID:
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeArmorTotalID, ptr(V(*(*environment.hero)[AttributeDexterityTotalID]) * V(*this))));
+			break;
 		case AttributeDamagePercentBonusFromSwordsID:
 		{
 			Hero* hero = dynamic_cast<Hero*>(environment_.hero);
@@ -717,6 +723,29 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeCritPercentBonusCappedID,
 				ptr(If(conforms(hero, Item::SlotMainHand, V(hash("HandXbow"))), V(*this), V(0)))));
 			break;
+		}
+		case AttributeDodgeChanceBonusFromDualWieldingID:
+			modifiers_.push_back(new ModifierPostMul(environment.hero, AttributePierceChanceID,
+													 ptr(If(V(*(*environment.hero)[AttributeHeldWeaponsInHandsID]) == V(2), V(1.0) - V(*this), V(1.0)))));
+			break;
+		case AttributeDodgeChanceBonusFromCritPercentFactorID:
+			modifiers_.push_back(new ModifierPostMul(environment.hero, AttributePierceChanceID,
+													 ptr(V(1) - V(*(*environment.hero)[AttributeCritPercentBonusTotalID]) * V(*this))));
+			break;
+		case AttributeResistanceFlatID:
+		{
+			Entity& hero = *environment.hero;
+			
+			for (AttributeSubID i = AttributePhysicalSubID; i <= AttributeHolySubID; i++) {
+				modifiers_.push_back(new ModifierPostAssign(environment.hero, AttributeResistanceTotalID, i,
+															ptr(
+																max(max(max(V(*hero[AttributeResistanceSubTotalID][AttributePhysicalSubID]), V(*hero[AttributeResistanceSubTotalID][AttributeFireSubID])),
+																		max(V(*hero[AttributeResistanceSubTotalID][AttributeLightningSubID]), V(*hero[AttributeResistanceSubTotalID][AttributeColdSubID]))),
+																	max(V(*hero[AttributeResistanceSubTotalID][AttributeHolySubID]),
+																		max(V(*hero[AttributeResistanceSubTotalID][AttributePoisonSubID]), V(*hero[AttributeResistanceSubTotalID][AttributeArcaneSubID]))))
+																)));
+			}
+
 		}
 		default:
 			break;
