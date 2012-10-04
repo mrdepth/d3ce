@@ -24,7 +24,6 @@ namespace d3ce {
 	public:
 		class SlotIsAlreadyFilledException : public std::exception {};
 
-		Hero(Engine* engine, Party* party);
 		virtual ~Hero();
 		
 		Gear* addItem(Hash itemHash);
@@ -78,6 +77,7 @@ namespace d3ce {
 	protected:
 		virtual Environment environment();
 		Hero(const Hero& other, Party* party);
+		Hero(Engine* engine, Party* party);
 
 	private:
 		std::vector<Gear*> items_;
