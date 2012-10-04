@@ -1,0 +1,198 @@
+Armor_Bonus_Item:		add(self.Armor_Item_Total, $value)
+Armor_Item:				add(self.Armor_Item_Total, $value)
+Armor_Item_Percent:		postBoost(self.Armor_Item_Total, $value)
+Armor:					add(hero.Armor_Total, $value)
+Armor_Item_Total:		add(hero.Armor_Total, $value)
+Armor_Bonus_Percent:	postBoost(hero.Armor_Total, $value)
+
+Core_Attributes_From_Item_Bonus_Multiplier: preMul(self.Strength_Item, $value), preMul(self.Dexterity_Item, $value), preMul(self.Intelligence_Item, $value), preMul(self.Vitality_Item, $value)
+Stats_All_Bonus:		add(hero.Strength_Total, $value), add(hero.Dexterity_Total, $value), add(hero.Intelligence_Total, $value), add(hero.Vitality_Total, $value), add(hero.Attack_Total, $value), add(hero.Precision_Total, $value), add(hero.Defense_Total, $value)
+
+Strength:				add(hero.Strength_Total, $value)
+Strength_Total:			add(hero.Armor_Total, $value)
+Strength_Bonus:			add(hero.Strength_Total, $value)
+Strength_Item:			add(hero.Strength_Total, $value)
+Strength_Bonus_Percent:	postBoost(hero.Strength_Total, $value)
+Strength_Reduction_Percent:	postReduce(hero.Strength_Total, $value)
+
+Dexterity:				add(hero.Dexterity_Total, $value)
+Dexterity_Bonus:		add(hero.Dexterity_Total, $value)
+Dexterity_Item:			add(hero.Dexterity_Total, $value)
+Dexterity_Bonus_Percent:	postBoost(hero.Dexterity_Total, $value)
+Dexterity_Reduction_Percent:	postReduce(hero.Dexterity_Total, $value)
+
+Resistance_From_Intelligence: preAssign(hero.Resistance_From_Intelligence, 0.1)
+Intelligence:			add(hero.Intelligence_Total, $value)
+Intelligence_Total:		postMul(hero.Resistance_From_Intelligence, $value)
+Intelligence_Bonus:		add(hero.Intelligence_Total, $value)
+Intelligence_Item:		add(hero.Intelligence_Total, $value)
+Intelligence_Bonus_Percent:	postBoost(hero.Intelligence_Total, $value)
+Intelligence_Reduction_Percent:	postReduce(hero.Intelligence_Total, $value)
+
+Vitality:				add(hero.Vitality_Total, $value)
+Vitality_Total:			postMul(hero.Hitpoints_Total_From_Vitality, $value)
+Vitality_Bonus:			add(hero.Vitality_Total, $value)
+Vitality_Item:			add(hero.Vitality_Total, $value)
+Vitality_Bonus_Percent:	postBoost(hero.Vitality_Total, $value)
+Vitality_Reduction_Percent:	postReduce(hero.Vitality_Total, $value)
+
+Level:						postMul(hero.Hitpoints_Total_From_Level, $value - 1), preAssign(hero.Hitpoints_Factor_Vitality, max(10, $value-25)), add(hero.Level_Total)
+Alt_Level:					add(hero.Level_Total)
+Level_Total:				postMul(hero.Strength_Total_From_Level, $value), postMul(hero.Dexterity_Total_From_Level, $value), postMul(hero.Intelligence_Total_From_Level, $value), postMul(hero.Vitality_Total_From_Level, $value)
+
+Hitpoints_Factor_Vitality:		preAssign(hero.Hitpoints_Total_From_Vitality, $value)
+Hitpoints_Total_From_Vitality:	add(hero.Hitpoints_Max_Total, $value)
+Hitpoints_Total_From_Level:		preAssign(hero.Hitpoints_Total_From_Level, 4), add(hero.Hitpoints_Max_Total, $value)
+Hitpoints_Max_Bonus:			add(hero.Hitpoints_Max_Total, $value)
+Hitpoints_Max_Percent_Bonus_Item:	add(hero.Hitpoints_Max_Percent_Bonus, $value)
+Hitpoints_Max_Percent_Bonus:	postBoost(hero.Hitpoints_Max_Total, $value)
+
+Strength_Total_From_Level:		add(hero.Strength, $value)
+Dexterity_Total_From_Level:		add(hero.Dexterity, $value)
+Intelligence_Total_From_Level:	add(hero.Intelligence, $value)
+Vitality_Total_From_Level:		add(hero.Vitality, $value)
+
+Class_Wizard:			preAssign(hero.Strength_Total_From_Level, 1), preAssign(hero.Dexterity_Total_From_Level, 1), preAssign(hero.Intelligence_Total_From_Level, 3), preAssign(hero.Vitality_Total_From_Level, 2), preAssign(hero.Strength, 8), preAssign(hero.Dexterity, 8), preAssign(hero.Intelligence, 10), preAssign(hero.Vitality, 9)
+Class_WitchDoctor:		preAssign(hero.Strength_Total_From_Level, 1), preAssign(hero.Dexterity_Total_From_Level, 1), preAssign(hero.Intelligence_Total_From_Level, 3), preAssign(hero.Vitality_Total_From_Level, 2), preAssign(hero.Strength, 8), preAssign(hero.Dexterity, 8), preAssign(hero.Intelligence, 10), preAssign(hero.Vitality, 9)
+Class_Monk:				preAssign(hero.Strength_Total_From_Level, 1), preAssign(hero.Dexterity_Total_From_Level, 3), preAssign(hero.Intelligence_Total_From_Level, 1), preAssign(hero.Vitality_Total_From_Level, 2), preAssign(hero.Strength, 8), preAssign(hero.Dexterity, 10), preAssign(hero.Intelligence, 8), preAssign(hero.Vitality, 9)
+Class_DemonHunter:		preAssign(hero.Strength_Total_From_Level, 1), preAssign(hero.Dexterity_Total_From_Level, 3), preAssign(hero.Intelligence_Total_From_Level, 1), preAssign(hero.Vitality_Total_From_Level, 2), preAssign(hero.Strength, 8), preAssign(hero.Dexterity, 10), preAssign(hero.Intelligence, 8), preAssign(hero.Vitality, 9)
+Class_Barbarian:		preAssign(hero.Strength_Total_From_Level, 3), preAssign(hero.Dexterity_Total_From_Level, 1), preAssign(hero.Intelligence_Total_From_Level, 1), preAssign(hero.Vitality_Total_From_Level, 2), preAssign(hero.Strength, 10), preAssign(hero.Dexterity, 8), preAssign(hero.Intelligence, 8), preAssign(hero.Vitality, 9)
+
+Damage_Weapon_Min: add(self.Damage_Weapon_Max, $value), add(self.Damage_Weapon_Min_Total, $value), add(self.Damage_Weapon_Average, $value)
+Damage_Weapon_Delta: preAssign(self.Damage_Weapon_Delta_SubTotal, min($value, max($value - self.Damage_Weapon_Bonus_Min, 1)), add(self.Damage_Weapon_Max, $value), add(self.Damage_Weapon_Average, $value / 2))
+Damage_Weapon_Bonus_Min: add(self.Damage_Weapon_Min_Total, $value)
+Damage_Weapon_Percent_Bonus: add(self.Damage_Weapon_Percent_Total, $value)
+Damage_Weapon_Percent_All: add(self.Damage_Weapon_Percent_Total{0,1,2,3,4}, $value)
+Damage_Weapon_Bonus_Delta: add(self.Damage_Weapon_Delta_Total, $value)
+
+Damage_Weapon_Delta_SubTotal: add(self.Damage_Weapon_Delta_Total, $value)
+Damage_Weapon_Max
+Damage_Weapon_Max_Total: add(self.Damage_Weapon_Max_Total_All, $value{0,1,2,3,4})
+Damage_Weapon_Max_Total_All
+Damage_Weapon_Delta_Total: add(self.Damage_Weapon_Max_Total, $value), add(self.Damage_Weapon_Average_Total, $value / 2)
+Damage_Weapon_Delta_Total_All: add(self.Damage_Weapon_Average_Total_All, $value / 2)
+Damage_Weapon_Min_Total_All add(self.Damage_Weapon_Average_Total_All, $value)
+Damage_Weapon_Average
+Damage_Weapon_Average_Total
+Damage_Weapon_Average_Total_All
+Damage_Weapon_Percent_Total: postBoost(self.Damage_Weapon_Delta_Total, $value), postBoost(self.Damage_Weapon_Min_Total, $value)
+
+Damage_Weapon_Min_Total: add(hero.Damage_Min_Total, $value), add(self.Damage_Weapon_Max_Total, $value), add(self.Damage_Weapon_Min_Total_All, $value), add(self.Damage_Weapon_Average_Total, $value)
+
+Damage_Min: add(hero.Damage_Min_Subtotal, $value)
+Damage_Bonus_Min: add(hero.Damage_Min_Subtotal, $value)
+Damage_Min_Subtotal: add(hero.Damage_Min_Total, $value)
+Damage_Type_Percent_Bonus: postBoost(hero.Damage_Min_Total, $value)
+
+			 
+AttributeDamageDeltaTotalID = Damage_Delta - Damage_Bonus_Min + Damage_Weapon_Delta_Total_CurrentHand
+Damage_Delta_Total = Max(Damage_Delta - Damage_Bonus_Min + Damage_Weapon_Delta_Total_CurrentHand, 0)
+Damage_Min_Total = Damage_Min_Subtotal + Damage_Type_Percent_Bonus * Damage_Min_Subtotal
+Damage_Delta_Total_All=(Damage_Delta_Total#Physical + Damage_Delta_Total#Fire + Damage_Delta_Total#Cold + Damage_Delta_Total#Lightning + Damage_Delta_Total#Poison + Damage_Delta_Total#Arcane + Damage_Delta_Total#Holy)
+Damage_Min_Total_All=(Damage_Min_Total#Physical + Damage_Min_Total#Fire + Damage_Min_Total#Cold + Damage_Min_Total#Lightning + Damage_Min_Total#Poison + Damage_Min_Total#Arcane + Damage_Min_Total#Holy)
+Damage_Average_Total_All=(Damage_Min_Total_All + (Damage_Delta_Total_All/2))
+Damage_Min_Subtotal=Damage_Min + Damage_Bonus_Min + Damage_Weapon_Min_Total_CurrentHand
+
+Damage_Weapon_Delta_SubTotal=(Damage_Weapon_Delta > 0.0) ? (Max(1, Damage_Weapon_Delta - Damage_Weapon_Bonus_Min)) : Damage_Weapon_Delta
+Damage_Weapon_Max=(Damage_Weapon_Min + Damage_Weapon_Delta)
+Damage_Weapon_Max_Total=(Damage_Weapon_Min_Total + Damage_Weapon_Delta_Total)
+Damage_Weapon_Max_Total_All=(Damage_Weapon_Max_Total#Physical + Damage_Weapon_Max_Total#Fire + Damage_Weapon_Max_Total#Cold + Damage_Weapon_Max_Total#Lightning + Damage_Weapon_Max_Total#Poison + Damage_Weapon_Max_Total#Arcane + Damage_Weapon_Max_Total#Holy)
+Damage_Weapon_Delta_Total=Max((Damage_Weapon_Delta_SubTotal + Damage_Weapon_Bonus_Delta) * (1 + Damage_Weapon_Percent_Total), 0)
+Damage_Weapon_Delta_Total_All=(Damage_Weapon_Delta_Total#Physical + Damage_Weapon_Delta_Total#Fire + Damage_Weapon_Delta_Total#Cold + Damage_Weapon_Delta_Total#Lightning + Damage_Weapon_Delta_Total#Poison + Damage_Weapon_Delta_Total#Arcane + Damage_Weapon_Delta_Total#Holy)
+Damage_Weapon_Min_Total=(Damage_Weapon_Min + Damage_Weapon_Bonus_Min) * (1 + Damage_Weapon_Percent_Total)
+Damage_Weapon_Min_Total_All=(Damage_Weapon_Min_Total#Physical + Damage_Weapon_Min_Total#Fire + Damage_Weapon_Min_Total#Cold + Damage_Weapon_Min_Total#Lightning + Damage_Weapon_Min_Total#Poison + Damage_Weapon_Min_Total#Arcane + Damage_Weapon_Min_Total#Holy)
+Damage_Weapon_Average=(Damage_Weapon_Min + (Damage_Weapon_Delta/2))
+Damage_Weapon_Average_Total==Damage_Weapon_Min_Total + (Damage_Weapon_Delta_Total/2))
+Damage_Weapon_Average_Total_All=(Damage_Weapon_Min_Total_All + (Damage_Weapon_Delta_Total_All/2))
+Damage_Weapon_Percent_Total=Damage_Weapon_Percent_Bonus + Damage_Weapon_Percent_All#NONE
+Damage_Weapon_Min_Total_MainHand=(Held_In_OffHand#NONE ? 0 : Damage_Weapon_Min_Total )
+Damage_Weapon_Min_Total_OffHand=(Held_In_OffHand#NONE ? Damage_Weapon_Min_Total : 0)
+Damage_Weapon_Delta_Total_MainHand=(Held_In_OffHand#NONE ? 0 : Damage_Weapon_Delta_Total )
+Damage_Weapon_Delta_Total_OffHand=(Held_In_OffHand#NONE ? Damage_Weapon_Delta_Total : 0)
+Damage_Weapon_Min_Total_CurrentHand=(DualWield_Hand#NONE ? Damage_Weapon_Min_Total_OffHand : Damage_Weapon_Min_Total_MainHand)
+Damage_Weapon_Delta_Total_CurrentHand=(DualWield_Hand#NONE ? Damage_Weapon_Delta_Total_OffHand : Damage_Weapon_Delta_Total_MainHand)
+
+
+Attacks_Per_Second_SubTotal = 1 / Attacks_Per_Second_Item_Total
+DualWieldHandFactor = 2
+Attacks_Per_Second_Total = (DualWieldHandFactor / Attacks_Per_Second_SubTotal + Attacks_Per_Second_Bonus + Attacks_Per_Second_Item_Bonus) * Attacks_Per_Second_Percent
+
+Attacks_Per_Second_SubTotal = (2/(1/1,45 + 1/1,2) + 0,25 + 0) * (1 + 0,15 + 0,08 + 0,09)
+
+Attacks_Per_Second_Item
+Attacks_Per_Second_Item_Percent
+Attacks_Per_Second_Item_Bonus
+Attacks_Per_Second
+Attacks_Per_Second_Percent
+
+Attacks_Per_Second_Total=Max(0.01,
+							(
+							  ((Attacks_Per_Second_Item_CurrentHand > 0.0) ? Attacks_Per_Second_Item_CurrentHand : Attacks_Per_Second)
+							      + Attacks_Per_Second_Bonus + Attacks_Per_Second_Item_Bonus) * Max(0.1, (1 + Attacks_Per_Second_Percent)))
+
+Attacks_Per_Second_Item_Subtotal=Attacks_Per_Second_Item * (1 + Attacks_Per_Second_Item_Percent)
+Attacks_Per_Second_Item_Total=(Attacks_Per_Second_Item_Subtotal + Attacks_Per_Second_Item_Bonus)
+
+Attacks_Per_Second_Item_MainHand=(Held_In_OffHand ? 0 : Attacks_Per_Second_Item_Subtotal )
+Attacks_Per_Second_Item_OffHand=(Held_In_OffHand ? Attacks_Per_Second_Item_Subtotal : 0)
+Attacks_Per_Second_Item_Total_MainHand=Attacks_Per_Second_Item_MainHand + Attacks_Per_Second_Item_Bonus
+Attacks_Per_Second_Item_Total_OffHand=Attacks_Per_Second_Item_OffHand + Attacks_Per_Second_Item_Bonus
+Attacks_Per_Second_Item_CurrentHand=(DualWield_Hand ? Attacks_Per_Second_Item_OffHand : Attacks_Per_Second_Item_MainHand)
+
+
+Crit_Percent_Bonus_Capped
+Crit_Damage_Percent
+
+Crit_Percent_Bonus_Total = 0.05 + Crit_Percent_Bonus_Capped
+Crit_Damage_Percent_Total = 0.5 + Crit_Damage_Percent
+Crit_Damage_Factor = Crit_Percent_Bonus_Capped*Crit_Damage_Percent
+
+dps = dps * (1 + Crit_Damage_Factor)
+
+
+
+Weapon_Crit_Chance_MainHand=(Held_In_OffHand ? 0 : Weapon_Crit_Chance )
+Weapon_Crit_Chance_OffHand=(Held_In_OffHand ? Weapon_Crit_Chance : 0)
+Weapon_Crit_Chance_CurrentHand=(DualWield_Hand ? Weapon_Crit_Chance_OffHand : Weapon_Crit_Chance_MainHand)
+
+Block_Chance_Total=Block_Chance + Block_Chance_Item_Total
+Block_Amount_Total_Min=(Block_Amount + Block_Amount_Item_Min + Block_Amount_Item_Bonus) * (1 + Block_Amount_Bonus_Percent)
+Block_Amount_Total_Max=(Block_Amount + Block_Amount_Item_Min + Block_Amount_Item_Delta + Block_Amount_Item_Bonus) * (1 + Block_Amount_Bonus_Percent)
+
+
+
+Skills:
+
+Wizard:
+energy-armor armor+65%, energy-20
+energy-armor-a armor+65%, allResist +40%
+energy-armor-e armor+65%, critChance + 5%
+
+magic-weapon damage+10%
+magic-weapon-c damage+15%
+
+glass-cannon damage+15%, allResist-10%
+
+galvanizing-ward hpRegen+310
+
+familiar-a damage+12%
+
+
+Barbarian:
+ruthless critChance + 5%, critDamage + 50%
+
+nerves-of-steel armor += vitality
+
+weapons-master: 
+Gain a bonus based on the weapon type of your main hand weapon:
+Swords/Daggers: 15% increased damage
+Maces/Axes: 10% Critical Hit Chance
+Polearms/Spears: 10% attack speed
+Mighty Weapons: 3 Fury per hit
+
+war-cry: armor+20%
+war-cry-a: armor+40%
+war-cry-b: armor+20%, dodge+15%
+war-cry-c: armor+20%, allResist+50%
+war-cry-e: armor+20%, hp+=10%, hpRegen+310
+

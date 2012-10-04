@@ -1,0 +1,191 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <ClCompile Include="d3ce\Affix.cpp" />
+    <ClCompile Include="d3ce\Attribute.cpp" />
+    <ClCompile Include="d3ce\Engine.cpp" />
+    <ClCompile Include="d3ce\Entity.cpp" />
+    <ClCompile Include="d3ce\Environment.cpp" />
+    <ClCompile Include="d3ce\Follower.cpp" />
+    <ClCompile Include="d3ce\main.cpp" />
+    <ClCompile Include="d3ce\Party.cpp" />
+    <ClCompile Include="d3ce\Range.cpp" />
+    <ClCompile Include="d3ce\Skill.cpp" />
+    <ClCompile Include="d3ce\ThirdParty\sqlite3.c" />
+    <ClCompile Include="d3ce\Modifier.cpp">
+      <Filter>Modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\ModifierAdd.cpp">
+      <Filter>Modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\ModifierPostBoost.cpp">
+      <Filter>Modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\ModifierPostDiv.cpp">
+      <Filter>Modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\ModifierPostMul.cpp">
+      <Filter>Modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\ModifierPostReduce.cpp">
+      <Filter>Modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\ModifierPreAssign.cpp">
+      <Filter>Modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\ModifierPreMul.cpp">
+      <Filter>Modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\Expression.cpp">
+      <Filter>Expressions</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\Hero.cpp">
+      <Filter>Heroes</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\Barbarian.cpp">
+      <Filter>Heroes</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\DemonHunter.cpp">
+      <Filter>Heroes</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\Monk.cpp">
+      <Filter>Heroes</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\WitchDoctor.cpp">
+      <Filter>Heroes</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\Wizard.cpp">
+      <Filter>Heroes</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\ModifierSub.cpp">
+      <Filter>Modifiers</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\Item.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\Armor.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\Gear.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\Gem.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\OffHand.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\Weapon.cpp">
+      <Filter>Items</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\ItemSet.cpp">
+      <Filter>Set</Filter>
+    </ClCompile>
+    <ClCompile Include="d3ce\SetBonus.cpp">
+      <Filter>Set</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="d3ce\Affix.h" />
+    <ClInclude Include="d3ce\Attribute.h" />
+    <ClInclude Include="d3ce\AttributeIDs.h" />
+    <ClInclude Include="d3ce\Engine.h" />
+    <ClInclude Include="d3ce\Entity.h" />
+    <ClInclude Include="d3ce\Environment.h" />
+    <ClInclude Include="d3ce\Follower.h" />
+    <ClInclude Include="d3ce\Party.h" />
+    <ClInclude Include="d3ce\Range.h" />
+    <ClInclude Include="d3ce\Skill.h" />
+    <ClInclude Include="d3ce\ThirdParty\sqlite3.h" />
+    <ClInclude Include="d3ce\ThirdParty\sqlite3ext.h" />
+    <ClInclude Include="d3ce\Modifier.h">
+      <Filter>Modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\ModifierAdd.h">
+      <Filter>Modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\ModifierPostBoost.h">
+      <Filter>Modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\ModifierPostDiv.h">
+      <Filter>Modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\ModifierPostMul.h">
+      <Filter>Modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\ModifierPostReduce.h">
+      <Filter>Modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\ModifierPreAssign.h">
+      <Filter>Modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\ModifierPreMul.h">
+      <Filter>Modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\Expression.h">
+      <Filter>Expressions</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\Hero.h">
+      <Filter>Heroes</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\Barbarian.h">
+      <Filter>Heroes</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\DemonHunter.h">
+      <Filter>Heroes</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\Monk.h">
+      <Filter>Heroes</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\WitchDoctor.h">
+      <Filter>Heroes</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\Wizard.h">
+      <Filter>Heroes</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\ModifierSub.h">
+      <Filter>Modifiers</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\Item.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\Armor.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\Gear.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\Gem.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\OffHand.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\Weapon.h">
+      <Filter>Items</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\ItemSet.h">
+      <Filter>Set</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\SetBonus.h">
+      <Filter>Set</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Modifiers">
+      <UniqueIdentifier>{06d74905-fbb5-4a70-a1b6-cfb474781a5e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Heroes">
+      <UniqueIdentifier>{a17ad9e4-64ab-4e06-b834-4636194545e0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Items">
+      <UniqueIdentifier>{fbd52392-e16a-48f1-9cfc-2322987c6e30}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Set">
+      <UniqueIdentifier>{691dcbd9-8bd1-4fb4-bdfe-675517134fb3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Expressions">
+      <UniqueIdentifier>{774b3eaa-d51c-4bfb-a2c4-1a4b0c984fbf}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+</Project>

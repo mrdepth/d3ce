@@ -1,0 +1,484 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		126599B71614250D0036FC30 /* ModifierSub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126599B51614250D0036FC30 /* ModifierSub.cpp */; };
+		127F42991611951C000BD508 /* Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42971611951C000BD508 /* Modifier.cpp */; };
+		127F429C16119623000BD508 /* Range.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F429A16119623000BD508 /* Range.cpp */; };
+		127F42A0161198BB000BD508 /* Expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F429E161198BB000BD508 /* Expression.cpp */; };
+		127F42AD16119A6E000BD508 /* ModifierPreAssign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42AB16119A6E000BD508 /* ModifierPreAssign.cpp */; };
+		127F42B316119ADB000BD508 /* ModifierAdd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42B116119ADA000BD508 /* ModifierAdd.cpp */; };
+		127F42B616119AF2000BD508 /* ModifierPostMul.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42B416119AF2000BD508 /* ModifierPostMul.cpp */; };
+		127F42B916119B09000BD508 /* ModifierPostDiv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42B716119B09000BD508 /* ModifierPostDiv.cpp */; };
+		127F42BC16119B21000BD508 /* ModifierPostBoost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42BA16119B20000BD508 /* ModifierPostBoost.cpp */; };
+		127F42BF16119B39000BD508 /* ModifierPostReduce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42BD16119B39000BD508 /* ModifierPostReduce.cpp */; };
+		127F42C71611B72D000BD508 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42C51611B72D000BD508 /* Environment.cpp */; };
+		127F42CA1611C4B9000BD508 /* ModifierPreMul.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42C81611C4B7000BD508 /* ModifierPreMul.cpp */; };
+		127F42CE1611EE53000BD508 /* Wizard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42CC1611EE53000BD508 /* Wizard.cpp */; };
+		127F42D11611EE5C000BD508 /* Monk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42CF1611EE5C000BD508 /* Monk.cpp */; };
+		127F42D41611EE67000BD508 /* Barbarian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42D21611EE67000BD508 /* Barbarian.cpp */; };
+		127F42D71611EE72000BD508 /* DemonHunter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42D51611EE72000BD508 /* DemonHunter.cpp */; };
+		127F42DA1611EE85000BD508 /* WitchDoctor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42D81611EE85000BD508 /* WitchDoctor.cpp */; };
+		1282000016104EAB005F23E3 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFFE16104EAA005F23E3 /* Entity.cpp */; };
+		1282FFDB16104A34005F23E3 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFDA16104A34005F23E3 /* main.cpp */; };
+		1282FFDD16104A34005F23E3 /* d3ce.1 in CopyFiles */ = {isa = PBXBuildFile; fileRef = 1282FFDC16104A34005F23E3 /* d3ce.1 */; };
+		1282FFE916104A5D005F23E3 /* Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFE716104A5D005F23E3 /* Engine.cpp */; };
+		1282FFEB16104BA2005F23E3 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 1282FFEA16104BA2005F23E3 /* libsqlite3.dylib */; };
+		1282FFEE16104BCD005F23E3 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFEC16104BCD005F23E3 /* Hero.cpp */; };
+		1282FFF116104C0B005F23E3 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFEF16104C0B005F23E3 /* Item.cpp */; };
+		1282FFF416104C8D005F23E3 /* Skill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFF216104C8D005F23E3 /* Skill.cpp */; };
+		1282FFF716104CF3005F23E3 /* Follower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFF516104CF3005F23E3 /* Follower.cpp */; };
+		1282FFFA16104D37005F23E3 /* Attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFF816104D36005F23E3 /* Attribute.cpp */; };
+		1282FFFD16104E88005F23E3 /* Party.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFFB16104E88005F23E3 /* Party.cpp */; };
+		12AE8DD916156E9400D4025E /* Gem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12AE8DD716156E9400D4025E /* Gem.cpp */; };
+		12AE8DDF16157AA500D4025E /* Armor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12AE8DDD16157AA500D4025E /* Armor.cpp */; };
+		12AE8DE216157AAF00D4025E /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12AE8DE016157AAE00D4025E /* Weapon.cpp */; };
+		12AE8DF61615886700D4025E /* OffHand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12AE8DF41615886700D4025E /* OffHand.cpp */; };
+		12AE8DF91615994F00D4025E /* Gear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12AE8DF71615994E00D4025E /* Gear.cpp */; };
+		12FD7DC9161091FA00CFB179 /* Affix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12FD7DC7161091FA00CFB179 /* Affix.cpp */; };
+		71AA5B2B1618C85F0069EDB3 /* ItemSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71AA5B291618C85F0069EDB3 /* ItemSet.cpp */; };
+		71B66F111618A1D60098C895 /* SetBonus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71B66F0F1618A1D60098C895 /* SetBonus.cpp */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		1282FFD416104A34005F23E3 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = /usr/share/man/man1/;
+			dstSubfolderSpec = 0;
+			files = (
+				1282FFDD16104A34005F23E3 /* d3ce.1 in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		122B5C6E161490CC006A63CC /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		126599B116141F5E0036FC30 /* d3ce.script */ = {isa = PBXFileReference; lastKnownFileType = text; path = d3ce.script; sourceTree = SOURCE_ROOT; };
+		126599B51614250D0036FC30 /* ModifierSub.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierSub.cpp; sourceTree = "<group>"; };
+		126599B61614250D0036FC30 /* ModifierSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierSub.h; sourceTree = "<group>"; };
+		127F42971611951C000BD508 /* Modifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Modifier.cpp; sourceTree = "<group>"; };
+		127F42981611951C000BD508 /* Modifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Modifier.h; sourceTree = "<group>"; };
+		127F429A16119623000BD508 /* Range.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Range.cpp; sourceTree = "<group>"; };
+		127F429B16119623000BD508 /* Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Range.h; sourceTree = "<group>"; };
+		127F429E161198BB000BD508 /* Expression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Expression.cpp; sourceTree = "<group>"; };
+		127F429F161198BB000BD508 /* Expression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expression.h; sourceTree = "<group>"; };
+		127F42AB16119A6E000BD508 /* ModifierPreAssign.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPreAssign.cpp; sourceTree = "<group>"; };
+		127F42AC16119A6E000BD508 /* ModifierPreAssign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPreAssign.h; sourceTree = "<group>"; };
+		127F42B116119ADA000BD508 /* ModifierAdd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierAdd.cpp; sourceTree = "<group>"; };
+		127F42B216119ADA000BD508 /* ModifierAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierAdd.h; sourceTree = "<group>"; };
+		127F42B416119AF2000BD508 /* ModifierPostMul.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPostMul.cpp; sourceTree = "<group>"; };
+		127F42B516119AF2000BD508 /* ModifierPostMul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPostMul.h; sourceTree = "<group>"; };
+		127F42B716119B09000BD508 /* ModifierPostDiv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPostDiv.cpp; sourceTree = "<group>"; };
+		127F42B816119B09000BD508 /* ModifierPostDiv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPostDiv.h; sourceTree = "<group>"; };
+		127F42BA16119B20000BD508 /* ModifierPostBoost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPostBoost.cpp; sourceTree = "<group>"; };
+		127F42BB16119B20000BD508 /* ModifierPostBoost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPostBoost.h; sourceTree = "<group>"; };
+		127F42BD16119B39000BD508 /* ModifierPostReduce.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPostReduce.cpp; sourceTree = "<group>"; };
+		127F42BE16119B39000BD508 /* ModifierPostReduce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPostReduce.h; sourceTree = "<group>"; };
+		127F42C41611A668000BD508 /* AttributeIDs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttributeIDs.h; sourceTree = "<group>"; };
+		127F42C51611B72D000BD508 /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
+		127F42C61611B72D000BD508 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
+		127F42C81611C4B7000BD508 /* ModifierPreMul.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPreMul.cpp; sourceTree = "<group>"; };
+		127F42C91611C4B8000BD508 /* ModifierPreMul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPreMul.h; sourceTree = "<group>"; };
+		127F42CC1611EE53000BD508 /* Wizard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wizard.cpp; sourceTree = "<group>"; };
+		127F42CD1611EE53000BD508 /* Wizard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wizard.h; sourceTree = "<group>"; };
+		127F42CF1611EE5C000BD508 /* Monk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Monk.cpp; sourceTree = "<group>"; };
+		127F42D01611EE5C000BD508 /* Monk.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Monk.h; sourceTree = "<group>"; };
+		127F42D21611EE67000BD508 /* Barbarian.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Barbarian.cpp; sourceTree = "<group>"; };
+		127F42D31611EE67000BD508 /* Barbarian.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Barbarian.h; sourceTree = "<group>"; };
+		127F42D51611EE72000BD508 /* DemonHunter.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemonHunter.cpp; sourceTree = "<group>"; };
+		127F42D61611EE72000BD508 /* DemonHunter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemonHunter.h; sourceTree = "<group>"; };
+		127F42D81611EE85000BD508 /* WitchDoctor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WitchDoctor.cpp; sourceTree = "<group>"; };
+		127F42D91611EE85000BD508 /* WitchDoctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WitchDoctor.h; sourceTree = "<group>"; };
+		1282FFD616104A34005F23E3 /* d3ce */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = d3ce; sourceTree = BUILT_PRODUCTS_DIR; };
+		1282FFDA16104A34005F23E3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
+		1282FFDC16104A34005F23E3 /* d3ce.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = d3ce.1; sourceTree = "<group>"; };
+		1282FFE716104A5D005F23E3 /* Engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Engine.cpp; sourceTree = "<group>"; };
+		1282FFE816104A5D005F23E3 /* Engine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Engine.h; sourceTree = "<group>"; };
+		1282FFEA16104BA2005F23E3 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
+		1282FFEC16104BCD005F23E3 /* Hero.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Hero.cpp; sourceTree = "<group>"; };
+		1282FFED16104BCD005F23E3 /* Hero.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Hero.h; sourceTree = "<group>"; };
+		1282FFEF16104C0B005F23E3 /* Item.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Item.cpp; sourceTree = "<group>"; };
+		1282FFF016104C0B005F23E3 /* Item.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Item.h; sourceTree = "<group>"; };
+		1282FFF216104C8D005F23E3 /* Skill.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Skill.cpp; sourceTree = "<group>"; };
+		1282FFF316104C8D005F23E3 /* Skill.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Skill.h; sourceTree = "<group>"; };
+		1282FFF516104CF3005F23E3 /* Follower.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Follower.cpp; sourceTree = "<group>"; };
+		1282FFF616104CF3005F23E3 /* Follower.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Follower.h; sourceTree = "<group>"; };
+		1282FFF816104D36005F23E3 /* Attribute.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Attribute.cpp; sourceTree = "<group>"; };
+		1282FFF916104D36005F23E3 /* Attribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Attribute.h; sourceTree = "<group>"; };
+		1282FFFB16104E88005F23E3 /* Party.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Party.cpp; sourceTree = "<group>"; };
+		1282FFFC16104E88005F23E3 /* Party.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Party.h; sourceTree = "<group>"; };
+		1282FFFE16104EAA005F23E3 /* Entity.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Entity.cpp; sourceTree = "<group>"; };
+		1282FFFF16104EAB005F23E3 /* Entity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Entity.h; sourceTree = "<group>"; };
+		12AE8DD716156E9400D4025E /* Gem.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gem.cpp; sourceTree = "<group>"; };
+		12AE8DD816156E9400D4025E /* Gem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gem.h; sourceTree = "<group>"; };
+		12AE8DDC1615715000D4025E /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
+		12AE8DDD16157AA500D4025E /* Armor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Armor.cpp; sourceTree = "<group>"; };
+		12AE8DDE16157AA500D4025E /* Armor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Armor.h; sourceTree = "<group>"; };
+		12AE8DE016157AAE00D4025E /* Weapon.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Weapon.cpp; sourceTree = "<group>"; };
+		12AE8DE116157AAF00D4025E /* Weapon.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Weapon.h; sourceTree = "<group>"; };
+		12AE8DF41615886700D4025E /* OffHand.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = OffHand.cpp; sourceTree = "<group>"; };
+		12AE8DF51615886700D4025E /* OffHand.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OffHand.h; sourceTree = "<group>"; };
+		12AE8DF71615994E00D4025E /* Gear.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Gear.cpp; sourceTree = "<group>"; };
+		12AE8DF81615994E00D4025E /* Gear.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gear.h; sourceTree = "<group>"; };
+		12FD7DC7161091FA00CFB179 /* Affix.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Affix.cpp; sourceTree = "<group>"; };
+		12FD7DC8161091FA00CFB179 /* Affix.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Affix.h; sourceTree = "<group>"; };
+		71AA5B291618C85F0069EDB3 /* ItemSet.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ItemSet.cpp; sourceTree = "<group>"; };
+		71AA5B2A1618C85F0069EDB3 /* ItemSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ItemSet.h; sourceTree = "<group>"; };
+		71B66F0B1618A18F0098C895 /* d3ce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = d3ce.h; sourceTree = "<group>"; };
+		71B66F0F1618A1D60098C895 /* SetBonus.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SetBonus.cpp; sourceTree = "<group>"; };
+		71B66F101618A1D60098C895 /* SetBonus.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetBonus.h; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		1282FFD316104A34005F23E3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1282FFEB16104BA2005F23E3 /* libsqlite3.dylib in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		127F429D16119867000BD508 /* Modifiers */ = {
+			isa = PBXGroup;
+			children = (
+				127F42971611951C000BD508 /* Modifier.cpp */,
+				127F42981611951C000BD508 /* Modifier.h */,
+				127F42AB16119A6E000BD508 /* ModifierPreAssign.cpp */,
+				127F42AC16119A6E000BD508 /* ModifierPreAssign.h */,
+				127F42B116119ADA000BD508 /* ModifierAdd.cpp */,
+				127F42B216119ADA000BD508 /* ModifierAdd.h */,
+				126599B51614250D0036FC30 /* ModifierSub.cpp */,
+				126599B61614250D0036FC30 /* ModifierSub.h */,
+				127F42B416119AF2000BD508 /* ModifierPostMul.cpp */,
+				127F42B516119AF2000BD508 /* ModifierPostMul.h */,
+				127F42B716119B09000BD508 /* ModifierPostDiv.cpp */,
+				127F42B816119B09000BD508 /* ModifierPostDiv.h */,
+				127F42C81611C4B7000BD508 /* ModifierPreMul.cpp */,
+				127F42C91611C4B8000BD508 /* ModifierPreMul.h */,
+				127F42BA16119B20000BD508 /* ModifierPostBoost.cpp */,
+				127F42BB16119B20000BD508 /* ModifierPostBoost.h */,
+				127F42BD16119B39000BD508 /* ModifierPostReduce.cpp */,
+				127F42BE16119B39000BD508 /* ModifierPostReduce.h */,
+			);
+			name = Modifiers;
+			sourceTree = "<group>";
+		};
+		127F42AA16119A55000BD508 /* Expressions */ = {
+			isa = PBXGroup;
+			children = (
+				127F429E161198BB000BD508 /* Expression.cpp */,
+				127F429F161198BB000BD508 /* Expression.h */,
+			);
+			name = Expressions;
+			sourceTree = "<group>";
+		};
+		127F42C016119B54000BD508 /* Attributes */ = {
+			isa = PBXGroup;
+			children = (
+				1282FFF816104D36005F23E3 /* Attribute.cpp */,
+				1282FFF916104D36005F23E3 /* Attribute.h */,
+				127F42C41611A668000BD508 /* AttributeIDs.h */,
+				127F42C51611B72D000BD508 /* Environment.cpp */,
+				127F42C61611B72D000BD508 /* Environment.h */,
+			);
+			name = Attributes;
+			sourceTree = "<group>";
+		};
+		127F42CB1611EE39000BD508 /* Heroes */ = {
+			isa = PBXGroup;
+			children = (
+				1282FFEC16104BCD005F23E3 /* Hero.cpp */,
+				1282FFED16104BCD005F23E3 /* Hero.h */,
+				127F42CC1611EE53000BD508 /* Wizard.cpp */,
+				127F42CD1611EE53000BD508 /* Wizard.h */,
+				127F42CF1611EE5C000BD508 /* Monk.cpp */,
+				127F42D01611EE5C000BD508 /* Monk.h */,
+				127F42D21611EE67000BD508 /* Barbarian.cpp */,
+				127F42D31611EE67000BD508 /* Barbarian.h */,
+				127F42D51611EE72000BD508 /* DemonHunter.cpp */,
+				127F42D61611EE72000BD508 /* DemonHunter.h */,
+				127F42D81611EE85000BD508 /* WitchDoctor.cpp */,
+				127F42D91611EE85000BD508 /* WitchDoctor.h */,
+			);
+			name = Heroes;
+			sourceTree = "<group>";
+		};
+		1282FFCB16104A34005F23E3 = {
+			isa = PBXGroup;
+			children = (
+				1282FFEA16104BA2005F23E3 /* libsqlite3.dylib */,
+				1282FFD916104A34005F23E3 /* d3ce */,
+				1282FFD716104A34005F23E3 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		1282FFD716104A34005F23E3 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				1282FFD616104A34005F23E3 /* d3ce */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		1282FFD916104A34005F23E3 /* d3ce */ = {
+			isa = PBXGroup;
+			children = (
+				127F42AA16119A55000BD508 /* Expressions */,
+				127F429D16119867000BD508 /* Modifiers */,
+				127F42C016119B54000BD508 /* Attributes */,
+				127F42CB1611EE39000BD508 /* Heroes */,
+				12AE8DDB16156ED200D4025E /* Items */,
+				12AE8F161615D9D000D4025E /* Skills */,
+				71AA5B271618C84E0069EDB3 /* SetBonus */,
+				71B66F0B1618A18F0098C895 /* d3ce.h */,
+				122B5C6E161490CC006A63CC /* types.h */,
+				1282FFE716104A5D005F23E3 /* Engine.cpp */,
+				1282FFE816104A5D005F23E3 /* Engine.h */,
+				1282FFFE16104EAA005F23E3 /* Entity.cpp */,
+				1282FFFF16104EAB005F23E3 /* Entity.h */,
+				1282FFFB16104E88005F23E3 /* Party.cpp */,
+				1282FFFC16104E88005F23E3 /* Party.h */,
+				1282FFF516104CF3005F23E3 /* Follower.cpp */,
+				1282FFF616104CF3005F23E3 /* Follower.h */,
+				12FD7DC7161091FA00CFB179 /* Affix.cpp */,
+				12FD7DC8161091FA00CFB179 /* Affix.h */,
+				127F429A16119623000BD508 /* Range.cpp */,
+				127F429B16119623000BD508 /* Range.h */,
+				1282FFDA16104A34005F23E3 /* main.cpp */,
+				12AE8DDC1615715000D4025E /* types.h */,
+				1282FFDC16104A34005F23E3 /* d3ce.1 */,
+				126599B116141F5E0036FC30 /* d3ce.script */,
+			);
+			path = d3ce;
+			sourceTree = "<group>";
+		};
+		12AE8DDB16156ED200D4025E /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				1282FFEF16104C0B005F23E3 /* Item.cpp */,
+				1282FFF016104C0B005F23E3 /* Item.h */,
+				12AE8DF71615994E00D4025E /* Gear.cpp */,
+				12AE8DF81615994E00D4025E /* Gear.h */,
+				12AE8DDD16157AA500D4025E /* Armor.cpp */,
+				12AE8DDE16157AA500D4025E /* Armor.h */,
+				12AE8DF41615886700D4025E /* OffHand.cpp */,
+				12AE8DF51615886700D4025E /* OffHand.h */,
+				12AE8DE016157AAE00D4025E /* Weapon.cpp */,
+				12AE8DE116157AAF00D4025E /* Weapon.h */,
+				12AE8DD716156E9400D4025E /* Gem.cpp */,
+				12AE8DD816156E9400D4025E /* Gem.h */,
+			);
+			name = Items;
+			sourceTree = "<group>";
+		};
+		12AE8F161615D9D000D4025E /* Skills */ = {
+			isa = PBXGroup;
+			children = (
+				1282FFF216104C8D005F23E3 /* Skill.cpp */,
+				1282FFF316104C8D005F23E3 /* Skill.h */,
+			);
+			name = Skills;
+			sourceTree = "<group>";
+		};
+		71AA5B271618C84E0069EDB3 /* SetBonus */ = {
+			isa = PBXGroup;
+			children = (
+				71AA5B291618C85F0069EDB3 /* ItemSet.cpp */,
+				71AA5B2A1618C85F0069EDB3 /* ItemSet.h */,
+				71B66F0F1618A1D60098C895 /* SetBonus.cpp */,
+				71B66F101618A1D60098C895 /* SetBonus.h */,
+			);
+			name = SetBonus;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		1282FFD516104A34005F23E3 /* d3ce */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1282FFE016104A34005F23E3 /* Build configuration list for PBXNativeTarget "d3ce" */;
+			buildPhases = (
+				1282FFD216104A34005F23E3 /* Sources */,
+				1282FFD316104A34005F23E3 /* Frameworks */,
+				1282FFD416104A34005F23E3 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = d3ce;
+			productName = d3ce;
+			productReference = 1282FFD616104A34005F23E3 /* d3ce */;
+			productType = "com.apple.product-type.tool";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		1282FFCD16104A34005F23E3 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0450;
+				ORGANIZATIONNAME = "Artem Shimanski";
+			};
+			buildConfigurationList = 1282FFD016104A34005F23E3 /* Build configuration list for PBXProject "d3ce" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = 1282FFCB16104A34005F23E3;
+			productRefGroup = 1282FFD716104A34005F23E3 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				1282FFD516104A34005F23E3 /* d3ce */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXSourcesBuildPhase section */
+		1282FFD216104A34005F23E3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1282FFDB16104A34005F23E3 /* main.cpp in Sources */,
+				1282FFE916104A5D005F23E3 /* Engine.cpp in Sources */,
+				1282FFEE16104BCD005F23E3 /* Hero.cpp in Sources */,
+				1282FFF116104C0B005F23E3 /* Item.cpp in Sources */,
+				1282FFF416104C8D005F23E3 /* Skill.cpp in Sources */,
+				1282FFF716104CF3005F23E3 /* Follower.cpp in Sources */,
+				1282FFFA16104D37005F23E3 /* Attribute.cpp in Sources */,
+				1282FFFD16104E88005F23E3 /* Party.cpp in Sources */,
+				1282000016104EAB005F23E3 /* Entity.cpp in Sources */,
+				12FD7DC9161091FA00CFB179 /* Affix.cpp in Sources */,
+				127F42991611951C000BD508 /* Modifier.cpp in Sources */,
+				127F429C16119623000BD508 /* Range.cpp in Sources */,
+				127F42A0161198BB000BD508 /* Expression.cpp in Sources */,
+				127F42AD16119A6E000BD508 /* ModifierPreAssign.cpp in Sources */,
+				127F42B316119ADB000BD508 /* ModifierAdd.cpp in Sources */,
+				127F42B616119AF2000BD508 /* ModifierPostMul.cpp in Sources */,
+				127F42B916119B09000BD508 /* ModifierPostDiv.cpp in Sources */,
+				127F42BC16119B21000BD508 /* ModifierPostBoost.cpp in Sources */,
+				127F42BF16119B39000BD508 /* ModifierPostReduce.cpp in Sources */,
+				127F42C71611B72D000BD508 /* Environment.cpp in Sources */,
+				127F42CA1611C4B9000BD508 /* ModifierPreMul.cpp in Sources */,
+				127F42CE1611EE53000BD508 /* Wizard.cpp in Sources */,
+				127F42D11611EE5C000BD508 /* Monk.cpp in Sources */,
+				127F42D41611EE67000BD508 /* Barbarian.cpp in Sources */,
+				127F42D71611EE72000BD508 /* DemonHunter.cpp in Sources */,
+				127F42DA1611EE85000BD508 /* WitchDoctor.cpp in Sources */,
+				126599B71614250D0036FC30 /* ModifierSub.cpp in Sources */,
+				12AE8DD916156E9400D4025E /* Gem.cpp in Sources */,
+				12AE8DDF16157AA500D4025E /* Armor.cpp in Sources */,
+				12AE8DE216157AAF00D4025E /* Weapon.cpp in Sources */,
+				12AE8DF61615886700D4025E /* OffHand.cpp in Sources */,
+				12AE8DF91615994F00D4025E /* Gear.cpp in Sources */,
+				71B66F111618A1D60098C895 /* SetBonus.cpp in Sources */,
+				71AA5B2B1618C85F0069EDB3 /* ItemSet.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		1282FFDE16104A34005F23E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		1282FFDF16104A34005F23E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		1282FFE116104A34005F23E3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		1282FFE216104A34005F23E3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		1282FFD016104A34005F23E3 /* Build configuration list for PBXProject "d3ce" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1282FFDE16104A34005F23E3 /* Debug */,
+				1282FFDF16104A34005F23E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		1282FFE016104A34005F23E3 /* Build configuration list for PBXNativeTarget "d3ce" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				1282FFE116104A34005F23E3 /* Debug */,
+				1282FFE216104A34005F23E3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 1282FFCD16104A34005F23E3 /* Project object */;
+}

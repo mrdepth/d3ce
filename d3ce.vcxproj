@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
+  </PropertyGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{D1D75B70-FCDE-4D73-BEC7-9AE8A435243F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>d3ce</RootNamespace>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v110</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <WarningLevel>Level3</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <PrecompiledHeader>
+      </PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="d3ce\Affix.cpp" />
+    <ClCompile Include="d3ce\Armor.cpp" />
+    <ClCompile Include="d3ce\Attribute.cpp" />
+    <ClCompile Include="d3ce\Barbarian.cpp" />
+    <ClCompile Include="d3ce\DemonHunter.cpp" />
+    <ClCompile Include="d3ce\Engine.cpp" />
+    <ClCompile Include="d3ce\Entity.cpp" />
+    <ClCompile Include="d3ce\Environment.cpp" />
+    <ClCompile Include="d3ce\Expression.cpp" />
+    <ClCompile Include="d3ce\Follower.cpp" />
+    <ClCompile Include="d3ce\Gear.cpp" />
+    <ClCompile Include="d3ce\Gem.cpp" />
+    <ClCompile Include="d3ce\Hero.cpp" />
+    <ClCompile Include="d3ce\Item.cpp" />
+    <ClCompile Include="d3ce\ItemSet.cpp" />
+    <ClCompile Include="d3ce\main.cpp" />
+    <ClCompile Include="d3ce\Modifier.cpp" />
+    <ClCompile Include="d3ce\ModifierAdd.cpp" />
+    <ClCompile Include="d3ce\ModifierPostBoost.cpp" />
+    <ClCompile Include="d3ce\ModifierPostDiv.cpp" />
+    <ClCompile Include="d3ce\ModifierPostMul.cpp" />
+    <ClCompile Include="d3ce\ModifierPostReduce.cpp" />
+    <ClCompile Include="d3ce\ModifierPreAssign.cpp" />
+    <ClCompile Include="d3ce\ModifierPreMul.cpp" />
+    <ClCompile Include="d3ce\ModifierSub.cpp" />
+    <ClCompile Include="d3ce\Monk.cpp" />
+    <ClCompile Include="d3ce\OffHand.cpp" />
+    <ClCompile Include="d3ce\Party.cpp" />
+    <ClCompile Include="d3ce\Range.cpp" />
+    <ClCompile Include="d3ce\SetBonus.cpp" />
+    <ClCompile Include="d3ce\Skill.cpp" />
+    <ClCompile Include="d3ce\ThirdParty\sqlite3.c" />
+    <ClCompile Include="d3ce\Weapon.cpp" />
+    <ClCompile Include="d3ce\WitchDoctor.cpp" />
+    <ClCompile Include="d3ce\Wizard.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="d3ce\Affix.h" />
+    <ClInclude Include="d3ce\Armor.h" />
+    <ClInclude Include="d3ce\Attribute.h" />
+    <ClInclude Include="d3ce\AttributeIDs.h" />
+    <ClInclude Include="d3ce\Barbarian.h" />
+    <ClInclude Include="d3ce\DemonHunter.h" />
+    <ClInclude Include="d3ce\Engine.h" />
+    <ClInclude Include="d3ce\Entity.h" />
+    <ClInclude Include="d3ce\Environment.h" />
+    <ClInclude Include="d3ce\Expression.h" />
+    <ClInclude Include="d3ce\Follower.h" />
+    <ClInclude Include="d3ce\Gear.h" />
+    <ClInclude Include="d3ce\Gem.h" />
+    <ClInclude Include="d3ce\Hero.h" />
+    <ClInclude Include="d3ce\Item.h" />
+    <ClInclude Include="d3ce\ItemSet.h" />
+    <ClInclude Include="d3ce\Modifier.h" />
+    <ClInclude Include="d3ce\ModifierAdd.h" />
+    <ClInclude Include="d3ce\ModifierPostBoost.h" />
+    <ClInclude Include="d3ce\ModifierPostDiv.h" />
+    <ClInclude Include="d3ce\ModifierPostMul.h" />
+    <ClInclude Include="d3ce\ModifierPostReduce.h" />
+    <ClInclude Include="d3ce\ModifierPreAssign.h" />
+    <ClInclude Include="d3ce\ModifierPreMul.h" />
+    <ClInclude Include="d3ce\ModifierSub.h" />
+    <ClInclude Include="d3ce\Monk.h" />
+    <ClInclude Include="d3ce\OffHand.h" />
+    <ClInclude Include="d3ce\Party.h" />
+    <ClInclude Include="d3ce\Range.h" />
+    <ClInclude Include="d3ce\SetBonus.h" />
+    <ClInclude Include="d3ce\Skill.h" />
+    <ClInclude Include="d3ce\ThirdParty\sqlite3.h" />
+    <ClInclude Include="d3ce\ThirdParty\sqlite3ext.h" />
+    <ClInclude Include="d3ce\Weapon.h" />
+    <ClInclude Include="d3ce\WitchDoctor.h" />
+    <ClInclude Include="d3ce\Wizard.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
