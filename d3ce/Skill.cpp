@@ -17,26 +17,36 @@ const Hash SkillEnergyArmorEHash = hash("energy-armor-e");
 const Hash SkillMagicWeaponHash = hash("magic-weapon");
 const Hash SkillMagicWeaponCHash = hash("magic-weapon-c");
 
+const Hash SkillFamiliarAHash = hash("familiar-a");
+
 const Hash SkillGlassCannonHash = hash("glass-cannon");
 const Hash SkillGalvanizingWardHash = hash("galvanizing-ward");
-const Hash SkillFamiliarAHash = hash("familiar-a");
+const Hash SkillAstralPresenceHash = hash("astral-presence");
 
 const Hash SkillRuthlessHash = hash("ruthless");
 const Hash SkillNervesOfSteelHash = hash("nerves-of-steel");
 const Hash SkillWeaponsMasterHash = hash("weapons-master");
 const Hash SkillBerserkerRageHash = hash("berserker-rage");
+const Hash SkillAnimosityHash = hash("animosity");
 const Hash SkillSuperstitionHash = hash("superstition");
 const Hash SkillToughAsNailsHash = hash("tough-as-nails");
 const Hash SkillBrawlerHash = hash("brawler");
+const Hash SkillUnforgivingHash = hash("unforgiving");
 
+const Hash SkillVengeanceHash = hash("vengeance");
 const Hash SkillSteadyAimHash = hash("steady-aim");
 const Hash SkillArcheryHash = hash("archery");
+const Hash SkillBroodingHash = hash("brooding");
 
+const Hash SkillExaltedSoulHash = hash("exalted-soul");
 const Hash SkillSeizeTheInitiativeHash = hash("seize-the-initiative");
 const Hash SkillTheGuardiansPathHash = hash("the-guardians-path");
 const Hash SkillSixthSenseHash = hash("sixth-sense");
 const Hash SkillOneWithEverythingHash = hash("one-with-everything");
 
+const Hash SkillSpiritualAttunementHash = hash("spiritual-attunement");
+const Hash SkillBloodRitualHash = hash("blood-ritual");
+const Hash SkillPierceTheVeilHash = hash("pierce-the-veil");
 
 
 Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Entity(engine, parent), skillname_(skillName) {
@@ -44,6 +54,7 @@ Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Ent
 	//Wizard
 	if (skillNameHash == SkillEnergyArmorHash) {
 		getAttribute(AttributeArmorBonusSkillPercentID)->setValue(0.65);
+		getAttribute(AttributeResourceCapacityUsedID, AttributeArcanumSubID)->setValue(20);
 	}
 	else if (skillNameHash == SkillEnergyArmorAHash) {
 		getAttribute(AttributeArmorBonusSkillPercentID)->setValue(0.65);
@@ -59,6 +70,9 @@ Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Ent
 	else if (skillNameHash == SkillMagicWeaponCHash) {
 		getAttribute(AttributeDamageBonusSkillPercentID)->setValue(0.15);
 	}
+	else if (skillNameHash == SkillFamiliarAHash) {
+		getAttribute(AttributeDamageBonusSkillPercentID)->setValue(0.12);
+	}
 	else if (skillNameHash == SkillGlassCannonHash) {
 		getAttribute(AttributeDamageBonusSkillPercentID)->setValue(0.15);
 		getAttribute(AttributeResistancePercentAllID)->setValue(-0.10);
@@ -66,8 +80,9 @@ Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Ent
 	else if (skillNameHash == SkillGalvanizingWardHash) {
 		getAttribute(AttributeHitpointsRegenPerSecondID)->setValue(310);
 	}
-	else if (skillNameHash == SkillFamiliarAHash) {
-		getAttribute(AttributeDamageBonusSkillPercentID)->setValue(0.12);
+	else if (skillNameHash == SkillAstralPresenceHash) {
+		getAttribute(AttributeResourceMaxBonusID, AttributeArcanumSubID)->setValue(20);
+		getAttribute(AttributeResourceRegenPerSecondID, AttributeArcanumSubID)->setValue(2);
 	}
 	//Barbarian
 	else if (skillNameHash == SkillRuthlessHash) {
@@ -88,6 +103,10 @@ Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Ent
 	else if (skillNameHash == SkillBerserkerRageHash) {
 		getAttribute(AttributeDamageBonusSkillPercentID)->setValue(0.25);
 	}
+	else if (skillNameHash == SkillAnimosityHash) {
+		getAttribute(AttributeResourceMaxBonusID, AttributeFurySubID)->setValue(20);
+		getAttribute(AttributeResourceRegenBonusPercentID, AttributeFurySubID)->setValue(0.1);
+	}
 	else if (skillNameHash == SkillSuperstitionHash) {
 		getAttribute(AttributeDamageReductionTotalID, AttributeFireSubID)->setValue(0.20);
 		getAttribute(AttributeDamageReductionTotalID, AttributeLightningSubID)->setValue(0.20);
@@ -103,7 +122,13 @@ Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Ent
 	else if (skillNameHash == SkillBrawlerHash) {
 		getAttribute(AttributeDamageBonusSkillPercentID)->setValue(0.30);
 	}
+	else if (skillNameHash == SkillUnforgivingHash) {
+		getAttribute(AttributeResourceRegenPerSecondID, AttributeFurySubID)->setValue(2.5);
+	}
 	//Demon Hunter
+	else if (skillNameHash == SkillVengeanceHash) {
+		getAttribute(AttributeResourceMaxBonusID, AttributeHatredSubID)->setValue(25);
+	}
 	else if (skillNameHash == SkillSteadyAimHash) {
 		getAttribute(AttributeDamageBonusSkillPercentID)->setValue(0.20);
 	}
@@ -112,18 +137,37 @@ Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Ent
 		getAttribute(AttributeCritDamagePercentBonusFromCrossbowID, AttributeLightningSubID)->setValue(0.50);
 		getAttribute(AttributeCritPercentBonusFromHandXbowID, AttributeColdSubID)->setValue(0.10);
 	}
+	else if (skillNameHash == SkillBroodingHash) {
+		getAttribute(AttributeHitpointsRegenPercentPerSecondID)->setValue(0.01);
+	}
 	//Monk
+	else if (skillNameHash == SkillExaltedSoulHash) {
+		getAttribute(AttributeResourceMaxBonusID, AttributeSpiritSubID)->setValue(100);
+		getAttribute(AttributeResourceRegenPerSecondID, AttributeSpiritSubID)->setValue(1);
+	}
 	else if (skillNameHash == SkillSeizeTheInitiativeHash) {
 		getAttribute(AttributeArmorFromDexterityFactorID)->setValue(1);
 	}
 	else if (skillNameHash == SkillTheGuardiansPathHash) {
 		getAttribute(AttributeDodgeChanceBonusFromDualWieldingID)->setValue(1);
+		getAttribute(AttributeResourceRegenBonusPercentFrom2HandedWeaponID)->setValue(0.35);
 	}
 	else if (skillNameHash == SkillSixthSenseHash) {
 		getAttribute(AttributeDodgeChanceBonusFromCritPercentFactorID)->setValue(0.30);
 	}
 	else if (skillNameHash == SkillOneWithEverythingHash) {
 		getAttribute(AttributeResistanceFlatID)->setValue(0.30);
+	}
+	//Witch Doctor
+	else if (skillNameHash == SkillSpiritualAttunementHash) {
+		getAttribute(AttributeResourceMaxPercentBonusID, AttributeManaSubID)->setValue(0.20);
+		getAttribute(AttributeResourceRegenBonusPercentID, AttributeManaSubID)->setValue(0.01);
+	}
+	else if (skillNameHash == SkillBloodRitualHash) {
+		getAttribute(AttributeHitpointsRegenPercentPerSecondID)->setValue(0.01);
+	}
+	else if (skillNameHash == SkillPierceTheVeilHash) {
+		getAttribute(AttributeDamageBonusSkillPercentID)->setValue(0.20);
 	}
 }
 

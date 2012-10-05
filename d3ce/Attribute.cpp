@@ -314,8 +314,9 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 			modifiers_.push_back(new ModifierPostDiv(environment.self, AttributeAttacksPerSecondSubTotalID, ptr(max(V(*this), V(1)))));
 			break;
 		}
-		case AttributeWeapon1HID:
 		case AttributeWeapon2HID:
+			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeWeapon2HID, ptr(V(1))));
+		case AttributeWeapon1HID:
 			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeHeldWeaponsInHandsID, ptr(V(1))));
 			break;
 
@@ -675,6 +676,10 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 			modifiers_.push_back(new ModifierPostMul(environment.hero, AttributePierceChanceID,
 													 ptr(If(V(*(*environment.hero)[AttributeHeldWeaponsInHandsID]) == V(2), V(1.0) - V(*this), V(1.0)))));
 			break;
+		case AttributeResourceRegenBonusPercentFrom2HandedWeaponID:
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResourceRegenBonusPercentID, AttributeSpiritSubID,
+													 ptr(If(V(*(*environment.hero)[AttributeWeapon2HID]), V(*this), V(0)))));
+			break;
 		case AttributeDodgeChanceBonusFromCritPercentFactorID:
 			modifiers_.push_back(new ModifierPostMul(environment.hero, AttributePierceChanceID,
 													 ptr(V(1) - V(*(*environment.hero)[AttributeCritPercentBonusTotalID]) * V(*this))));
@@ -694,6 +699,9 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 			}
 
 		}
+		case AttributeHitpointsRegenPercentPerSecondID:
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeHitpointsRegenPerSecondTotalID, ptr(V(*this) * V(*(*environment.hero)[AttributeHitpointsMaxTotalID]))));
+			break;
 		default:
 			break;
 	};

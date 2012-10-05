@@ -935,13 +935,16 @@ namespace d3ce {
 		AttributeCritPercentBonusFromHandXbowID,
 		
 		AttributeDodgeChanceBonusFromDualWieldingID,
+		AttributeResourceRegenBonusPercentFrom2HandedWeaponID,
 		AttributeDodgeChanceBonusFromCritPercentFactorID,
-
+		
 		AttributeResistanceSubTotalID,
 		
 		AttributeResistanceFlatID,
 		
-		AttributeResourceRegenSubTotalID
+		AttributeResourceRegenSubTotalID,
+		
+		AttributeHitpointsRegenPercentPerSecondID,
 
 	} AttributeID;
 
