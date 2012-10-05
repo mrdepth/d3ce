@@ -13,6 +13,9 @@
 using namespace d3ce;
 
 Hero::Hero(Engine* engine, Party* party) : Entity(engine, party) {
+	getAttribute(AttributeCritDamagePercentTotalID)->setValue(0.5);
+	getAttribute(AttributeCritPercentBonusTotalID)->setValue(0.05);
+	getAttribute(AttributeAttacksPerSecondID)->setValue(1);
 }
 
 Hero::~Hero() {
@@ -159,6 +162,22 @@ int Hero::getParagonLevel() {
 	return getAttribute(AttributeAltLevelID)->value().max;
 }
 
+AttributeSubID Hero::getResourceTypePrimary() {
+	AttributesMap::iterator i = attributes_.find(std::make_pair(AttributeResourceTypePrimaryID, AttributeNoneSubID));
+	if (i != attributes_.end())
+		return static_cast<AttributeSubID>(i->second->value().min);
+	else
+		return AttributeNoneSubID;
+}
+
+AttributeSubID Hero::getResourceTypeSecondary() {
+	AttributesMap::iterator i = attributes_.find(std::make_pair(AttributeResourceTypeSecondaryID, AttributeNoneSubID));
+	if (i != attributes_.end())
+		return static_cast<AttributeSubID>(i->second->value().min);
+	else
+		return AttributeNoneSubID;
+}
+
 //Stats
 Range Hero::getStrength() {
 	return getAttribute(AttributeStrengthTotalID)->value();
@@ -283,4 +302,36 @@ Range Hero::getMagicFind() {
 
 Range Hero::getGoldFind() {
 	return getAttribute(AttributeGoldFindTotalID)->value();
+}
+
+Range Hero::getPrimaryResourceEffectiveMax() {
+	AttributeSubID resourceType = getResourceTypePrimary();
+	if (resourceType != AttributeNoneSubID)
+		return getAttribute(AttributeResourceEffectiveMaxID, resourceType)->value();
+	else
+		return 0;
+}
+
+Range Hero::getSecondaryResourceEffectiveMax() {
+	AttributeSubID resourceType = getResourceTypeSecondary();
+	if (resourceType != AttributeNoneSubID)
+		return getAttribute(AttributeResourceEffectiveMaxID, resourceType)->value();
+	else
+		return 0;
+}
+
+Range Hero::getPrimaryResourceRegen() {
+	AttributeSubID resourceType = getResourceTypePrimary();
+	if (resourceType != AttributeNoneSubID)
+		return getAttribute(AttributeResourceRegenTotalID, resourceType)->value();
+	else
+		return 0;
+}
+
+Range Hero::getSecondaryResourceRegen() {
+	AttributeSubID resourceType = getResourceTypeSecondary();
+	if (resourceType != AttributeNoneSubID)
+		return getAttribute(AttributeResourceRegenTotalID, resourceType)->value();
+	else
+		return 0;
 }

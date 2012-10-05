@@ -45,6 +45,9 @@ namespace d3ce {
 		int getLevel();
 		int getParagonLevel();
 		
+		AttributeSubID getResourceTypePrimary();
+		AttributeSubID getResourceTypeSecondary();
+		
 		//Stats
 		Range getStrength();
 		Range getDexterity();
@@ -74,6 +77,12 @@ namespace d3ce {
 		
 		Range getMagicFind();
 		Range getGoldFind();
+		
+		Range getPrimaryResourceEffectiveMax();
+		Range getSecondaryResourceEffectiveMax();
+		
+		Range getPrimaryResourceRegen();
+		Range getSecondaryResourceRegen();
 	protected:
 		virtual Environment environment();
 		Hero(const Hero& other, Party* party);

@@ -12,6 +12,7 @@
 #include "Engine.h"
 #include "Party.h"
 #include "Wizard.h"
+#include "WitchDoctor.h"
 
 using namespace d3ce;
 
@@ -24,11 +25,13 @@ int main(int argc, const char * argv[])
 	//Engine engine("/Users/mr_depth/Work/My/git/D3Parser/Data/d3.sqlite"); // Home
 	
 	Party* p = new Party(&engine);
-	Hero* wizard = p->addHero(ClassMaskWizard);
+	Hero* wizard = p->addHero(ClassMaskWitchDoctor);
 	wizard->getAttribute(AttributeLevelID)->setValue(60);
 	wizard->getAttribute(AttributeAltLevelID)->setValue(28);
 	
 	auto dodge = wizard->getDodgeChance();
+	auto max = wizard->getPrimaryResourceEffectiveMax();
+	auto regen = wizard->getPrimaryResourceRegen();
 	
 	Item& mainHand = *wizard->addItem("Unique_Axe_1H_007_104");
 //	mainHand["Damage_Weapon_Min#Physical"]->setValue(129);

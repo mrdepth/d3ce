@@ -939,7 +939,9 @@ namespace d3ce {
 
 		AttributeResistanceSubTotalID,
 		
-		AttributeResistanceFlatID
+		AttributeResistanceFlatID,
+		
+		AttributeResourceRegenSubTotalID
 
 	} AttributeID;
 

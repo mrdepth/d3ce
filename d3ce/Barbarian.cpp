@@ -12,8 +12,22 @@
 using namespace d3ce;
 
 Barbarian::Barbarian(Engine* engine, Party* party) : Hero(engine, party) {
-	getAttribute(AttributeClassBarbarianID)->setValue(1);
+	getAttribute(AttributeStrengthTotalFromLevelID)->setValue(3);
+	getAttribute(AttributeDexterityTotalFromLevelID)->setValue(1);
+	getAttribute(AttributeIntelligenceTotalFromLevelID)->setValue(1);
+	getAttribute(AttributeVitalityTotalFromLevelID)->setValue(2);
+	
+	getAttribute(AttributeStrengthID)->setValue(10);
+	getAttribute(AttributeDexterityID)->setValue(8);
+	getAttribute(AttributeIntelligenceID)->setValue(8);
+	getAttribute(AttributeVitalityID)->setValue(9);
+	
 	getAttribute(AttributePrimaryDamageAttributeID)->setValue(PrimaryDamageAttributeStrength);
+	getAttribute(AttributeClassDamageReductionPercentID)->setValue(0.3);
+	
+	getAttribute(AttributeResourceTypePrimaryID)->setValue(AttributeFurySubID);
+	getAttribute(AttributeResourceMaxID, AttributeFurySubID)->setValue(100);
+	getAttribute(AttributeResourceRegenPerSecondID, AttributeFurySubID)->setValue(-2);
 }
 
 Barbarian::Barbarian(const Barbarian& other, Party* party) : Hero(other, party) {

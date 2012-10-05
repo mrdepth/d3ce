@@ -243,93 +243,6 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 			modifiers_.push_back(new ModifierPostBoost(environment.hero, AttributeHitpointsMaxTotalID, ptr(V(*this))));
 			break;
 
-		//Classes
-
-		case AttributeClassWizardID:
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeStrengthTotalFromLevelID, ptr(V(1))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeDexterityTotalFromLevelID, ptr(V(1))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeIntelligenceTotalFromLevelID, ptr(V(3))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeVitalityTotalFromLevelID, ptr(V(2))));
-
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeStrengthID, ptr(V(8))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeDexterityID, ptr(V(8))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeIntelligenceID, ptr(V(10))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeVitalityID, ptr(V(9))));
-
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributePrimaryDamageAttributeID, ptr(V(PrimaryDamageAttributeIntelligence))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeCritDamagePercentTotalID, ptr(V(0.5))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeCritPercentBonusTotalID, ptr(V(0.05))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeAttacksPerSecondID, ptr(V(1))));
-			break;
-		case AttributeClassWitchDoctorID:
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeStrengthTotalFromLevelID, ptr(V(1))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeDexterityTotalFromLevelID, ptr(V(1))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeIntelligenceTotalFromLevelID, ptr(V(3))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeVitalityTotalFromLevelID, ptr(V(2))));
-
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeStrengthID, ptr(V(8))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeDexterityID, ptr(V(8))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeIntelligenceID, ptr(V(10))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeVitalityID, ptr(V(9))));
-
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributePrimaryDamageAttributeID, ptr(V(PrimaryDamageAttributeIntelligence))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeCritDamagePercentTotalID, ptr(V(0.5))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeCritPercentBonusTotalID, ptr(V(0.05))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeAttacksPerSecondID, ptr(V(1))));
-			break;
-		case AttributeClassMonkID:
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeStrengthTotalFromLevelID, ptr(V(1))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeDexterityTotalFromLevelID, ptr(V(3))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeIntelligenceTotalFromLevelID, ptr(V(1))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeVitalityTotalFromLevelID, ptr(V(2))));
-
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeStrengthID, ptr(V(8))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeDexterityID, ptr(V(10))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeIntelligenceID, ptr(V(8))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeVitalityID, ptr(V(9))));
-
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributePrimaryDamageAttributeID, ptr(V(PrimaryDamageAttributeIntelligence))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeCritDamagePercentTotalID, ptr(V(0.5))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeCritPercentBonusTotalID, ptr(V(0.05))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeAttacksPerSecondID, ptr(V(1))));
-			
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeClassDamageReductionPercentID, ptr(V(0.3))));
-			break;
-		case AttributeClassDemonHunterID:
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeStrengthTotalFromLevelID, ptr(V(1))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeDexterityTotalFromLevelID, ptr(V(3))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeIntelligenceTotalFromLevelID, ptr(V(1))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeVitalityTotalFromLevelID, ptr(V(2))));
-
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeStrengthID, ptr(V(8))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeDexterityID, ptr(V(10))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeIntelligenceID, ptr(V(8))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeVitalityID, ptr(V(9))));
-
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributePrimaryDamageAttributeID, ptr(V(PrimaryDamageAttributeIntelligence))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeCritDamagePercentTotalID, ptr(V(0.5))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeCritPercentBonusTotalID, ptr(V(0.05))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeAttacksPerSecondID, ptr(V(1))));
-			break;
-		case AttributeClassBarbarianID:
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeStrengthTotalFromLevelID, ptr(V(3))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeDexterityTotalFromLevelID, ptr(V(1))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeIntelligenceTotalFromLevelID, ptr(V(1))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeVitalityTotalFromLevelID, ptr(V(2))));
-
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeStrengthID, ptr(V(10))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeDexterityID, ptr(V(8))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeIntelligenceID, ptr(V(8))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeVitalityID, ptr(V(9))));
-
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributePrimaryDamageAttributeID, ptr(V(PrimaryDamageAttributeIntelligence))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeCritDamagePercentTotalID, ptr(V(0.5))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeCritPercentBonusTotalID, ptr(V(0.05))));
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeAttacksPerSecondID, ptr(V(1))));
-			
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeClassDamageReductionPercentID, ptr(V(0.3))));
-			break;
-
 		//Weapon Damage
 
 		case AttributeDamageWeaponMinID:
@@ -631,6 +544,40 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 			modifiers_.push_back(new ModifierPostBoost(environment.hero, AttributeBlockAmountTotalMaxID, ptr(V(*this))));
 			break;
 			
+		//Resource
+		case AttributeResourceMaxID:
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResourceMaxTotalID, attributeSubID, ptr(V(*this))));
+			break;
+		case AttributeResourceMaxBonusID:
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResourceMaxTotalID, attributeSubID, ptr(V(*this))));
+			break;
+		case AttributeResourceFactorLevelID:
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResourceMaxTotalID, attributeSubID,
+												 ptr((V(*(*environment.hero)[AttributeLevelID]) - V(1)) * V(*this))));
+			break;
+		case AttributeResourceMaxPercentBonusID:
+			modifiers_.push_back(new ModifierPostBoost(environment.hero, AttributeResourceMaxTotalID, attributeSubID, ptr(V(*this))));
+			break;
+		case AttributeResourceRegenPerSecondID:
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResourceRegenSubTotalID, attributeSubID, ptr(V(*this))));
+			break;
+		case AttributeResourceRegenSubTotalID:
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResourceRegenTotalID, attributeSubID, ptr(V(*this))));
+			break;
+		case AttributeResourceRegenBonusPercentID:
+			modifiers_.push_back(new ModifierPostBoost(environment.hero, AttributeResourceRegenSubTotalID, attributeSubID, ptr(V(*this))));
+			break;
+		case AttributeResourceRegenPercentPerSecondID:
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResourceRegenTotalID, attributeSubID,
+												 ptr(V(*this) * V(*(*environment.hero)[AttributeResourceMaxTotalID][attributeSubID]) )));
+			break;
+		case AttributeResourceMaxTotalID:
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResourceEffectiveMaxID, attributeSubID, ptr(V(*this))));
+			break;
+		case AttributeResourceCapacityUsedID:
+			modifiers_.push_back(new ModifierSub(environment.hero, AttributeResourceEffectiveMaxID, attributeSubID, ptr(V(*this))));
+			break;
+
 		//Skills
 		case AttributeArmorBonusSkillPercentID:
 			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeArmorBonusPercentID, ptr(V(*this))));
