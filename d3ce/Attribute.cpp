@@ -283,13 +283,13 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 		case AttributeDamageWeaponDeltaTotalID:
 			modifiers_.push_back(new ModifierAdd(environment.self, AttributeDamageWeaponMaxTotalID, attributeSubID, ptr(V(*this))));
 			modifiers_.push_back(new ModifierAdd(environment.self, AttributeDamageWeaponDeltaTotalAllID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeDamageDeltaSubTotalID, attributeSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeDamageDeltaSubTotalID, attributeSubID, ptr(V(*this) / V(*(*environment.hero)[AttributeHeldWeaponsInHandsID]))));
 			break;
 		case AttributeDamageWeaponMinTotalID:
 			modifiers_.push_back(new ModifierAdd(environment.self, AttributeDamageWeaponMaxTotalID, attributeSubID, ptr(V(*this))));
 			modifiers_.push_back(new ModifierAdd(environment.self, AttributeDamageWeaponMinTotalAllID, ptr(V(*this))));
 			modifiers_.push_back(new ModifierAdd(environment.self, AttributeDamageWeaponAverageTotalID, attributeSubID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeDamageMinSubtotalID, attributeSubID, ptr(V(*this))));
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeDamageMinSubtotalID, attributeSubID, ptr(V(*this) / V(*(*environment.hero)[AttributeHeldWeaponsInHandsID]))));
 			break;
 		case AttributeDamageWeaponMaxTotalID:
 			modifiers_.push_back(new ModifierAdd(environment.self, AttributeDamageWeaponMaxTotalAllID, ptr(V(*this))));
@@ -323,15 +323,36 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 		//Hero Damage
 		case AttributePrimaryDamageAttributeID:
 		{
-			modifiers_.push_back(new ModifierPostBoost(environment.hero, AttributeDPSID, attributeSubID,
-				ptr(
-					If(V(*this) == V(PrimaryDamageAttributeDexterity),
-						V(*(*environment.hero)[AttributeDexterityTotalID]),
-						If(V(*this) == V(PrimaryDamageAttributeStrength),
-							V(*(*environment.hero)[AttributeStrengthTotalID]),
-							V(*(*environment.hero)[AttributeIntelligenceTotalID])
-						  )
-					  ) / V(100))));
+			/*modifiers_.push_back(new ModifierPostBoost(environment.hero, AttributeDPSID,
+													   ptr(
+														   If(V(*this) == V(PrimaryDamageAttributeDexterity),
+															  V(*(*environment.hero)[AttributeDexterityTotalID]),
+															  If(V(*this) == V(PrimaryDamageAttributeStrength),
+																 V(*(*environment.hero)[AttributeStrengthTotalID]),
+																 V(*(*environment.hero)[AttributeIntelligenceTotalID])
+																 )
+															  ) / V(100))));*/
+			for (AttributeSubID i = AttributePhysicalSubID; i <= AttributeHolySubID; i++) {
+				modifiers_.push_back(new ModifierPostBoost(environment.hero, AttributeDamageMinTotalID, i,
+														   ptr(
+															   If(V(*this) == V(PrimaryDamageAttributeDexterity),
+																  V(*(*environment.hero)[AttributeDexterityTotalID]),
+																  If(V(*this) == V(PrimaryDamageAttributeStrength),
+																	 V(*(*environment.hero)[AttributeStrengthTotalID]),
+																	 V(*(*environment.hero)[AttributeIntelligenceTotalID])
+																	 )
+																  ) / V(100))));
+				modifiers_.push_back(new ModifierPostBoost(environment.hero, AttributeDamageDeltaTotalID, i,
+														   ptr(
+															   If(V(*this) == V(PrimaryDamageAttributeDexterity),
+																  V(*(*environment.hero)[AttributeDexterityTotalID]),
+																  If(V(*this) == V(PrimaryDamageAttributeStrength),
+																	 V(*(*environment.hero)[AttributeStrengthTotalID]),
+																	 V(*(*environment.hero)[AttributeIntelligenceTotalID])
+																	 )
+																  ) / V(100))));
+			}
+
 			break;
 		}
 		case AttributeDamageMinID:
@@ -489,7 +510,10 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 		case AttributeHitpointsOnKillID:
 			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeHitpointsOnKillTotalID, ptr(V(*this))));
 			break;
-
+		case AttributeStealHealthPercentID:
+			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeStealHealthPercentTotalID, ptr(V(*this))));
+			break;
+			
 		//Magic&Golf find
 		case AttributeMagicFindID:
 			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeMagicFindCappedSubtotalID, ptr(V(*this))));
@@ -578,7 +602,7 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 		case AttributeResourceCapacityUsedID:
 			modifiers_.push_back(new ModifierSub(environment.hero, AttributeResourceEffectiveMaxID, attributeSubID, ptr(V(*this))));
 			break;
-
+			
 		//Skills
 		case AttributeArmorBonusSkillPercentID:
 			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeArmorBonusPercentID, ptr(V(*this))));

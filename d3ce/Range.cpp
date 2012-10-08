@@ -65,3 +65,12 @@ bool Range::operator!=(const Range& other) const {
 Range Range::operator()(double from) {
 	return Range(from);
 }
+
+std::string Range::toString(int precision) {
+	char format[16];
+	sprintf(format, "%%.%df", precision);
+	
+	char string[16];
+	sprintf(string, format, max);
+	return string;
+}

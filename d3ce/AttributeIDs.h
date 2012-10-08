@@ -945,6 +945,7 @@ namespace d3ce {
 		AttributeResourceRegenSubTotalID,
 		
 		AttributeHitpointsRegenPercentPerSecondID,
+		AttributeStealHealthPercentTotalID
 
 	} AttributeID;
 

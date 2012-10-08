@@ -57,6 +57,7 @@ namespace d3ce {
 		Resistance getResistances();
 		Range getArmor();
 		Range getDamageReductionFromArmor(int againstMosterLevel = -1);
+		Resistance getDamageReductionFromResistances(int againstMosterLevel = -1);
 		Range getAverageDamageReduction(int againstMosterLevel = -1);
 		Range getBlockChance();
 		Range getBlockAmmountMin();
@@ -67,6 +68,7 @@ namespace d3ce {
 		Range getLifeRegen();
 		Range getLifePerHit();
 		Range getLifePerKill();
+		Range getLifeSteal();
 		
 		Range getDPS();
 		Range getCritChance();

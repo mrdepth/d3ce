@@ -219,6 +219,21 @@ Range Hero::getDamageReductionFromArmor(int againstMosterLevel) {
 	return armor / (armor + 50.0 * againstMosterLevel);
 }
 
+Resistance Hero::getDamageReductionFromResistances(int againstMosterLevel) {
+	if (againstMosterLevel < 0)
+		againstMosterLevel = getLevel();
+
+	Resistance resistances = getResistances();
+	resistances.physical = resistances.physical / (resistances.physical + 5 * againstMosterLevel);
+	resistances.fire = resistances.fire / (resistances.fire + 5 * againstMosterLevel);
+	resistances.lightning = resistances.lightning / (resistances.lightning + 5 * againstMosterLevel);
+	resistances.cold = resistances.cold / (resistances.cold + 5 * againstMosterLevel);
+	resistances.poison = resistances.poison / (resistances.poison + 5 * againstMosterLevel);
+	resistances.arcane = resistances.arcane / (resistances.arcane + 5 * againstMosterLevel);
+	resistances.holy = resistances.holy / (resistances.holy + 5 * againstMosterLevel);
+	return resistances;
+}
+
 Range Hero::getAverageDamageReduction(int againstMosterLevel) {
 	if (againstMosterLevel < 0)
 		againstMosterLevel = getLevel();
@@ -270,6 +285,10 @@ Range Hero::getLifePerHit() {
 
 Range Hero::getLifePerKill() {
 	return getAttribute(AttributeHitpointsOnKillTotalID)->value();
+}
+
+Range Hero::getLifeSteal() {
+	return getAttribute(AttributeStealHealthPercentTotalID)->value();
 }
 
 Range Hero::getDPS() {
