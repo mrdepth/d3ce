@@ -45,6 +45,9 @@ Item* Item::CreateItemFromRequest(Engine* engine, Entity* parent, const std::str
 		Hash itemSetBonusHash = sqlite3_column_int(stmt, 3);
 		sqlite3_finalize(stmt);
 		
+		std::vector<Hash> itemTypesTree;
+		itemTypesTree.push_back(itemTypeHash);
+		
 		
 		std::stringstream sql;
 		sql << "SELECT nonNlsKey, parentItemTypeHash, flags, slot1, slot2, slot3, slot4, bitMask1 FROM itemType where itemTypeHash = " << itemTypeHash;
@@ -60,7 +63,6 @@ Item* Item::CreateItemFromRequest(Engine* engine, Entity* parent, const std::str
 			int slots[] = {sqlite3_column_int(stmt, 3), sqlite3_column_int(stmt, 4), sqlite3_column_int(stmt, 5), sqlite3_column_int(stmt, 6)};
 			int bitMask = sqlite3_column_int(stmt, 7);
 			
-			std::vector<Hash> itemTypesTree;
 			itemTypesTree.push_back(parentItemTypeHash);
 			
 			if (flags & ItemTypeGemFlag) {

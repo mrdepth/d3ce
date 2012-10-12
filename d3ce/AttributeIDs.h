@@ -902,6 +902,7 @@ namespace d3ce {
 
 		AttributeDamageDeltaSubTotalID,
 		AttributeHeldWeaponsInHandsID,
+		AttributeHeld2HandedWeaponID,
 		AttributeAttacksPerSecondSubTotalID,
 		
 		AttributeCritPercentBonusTotalID,

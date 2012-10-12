@@ -52,23 +52,36 @@ Gear* Hero::addItem(Gear* item) {
 	if (!item)
 		return item;
 	
-	if (item->twoHanded() && (!slotIsEmpty(Item::SlotMainHand) || !(slotIsEmpty(Item::SlotOffHand)))) {
-		throw SlotIsAlreadyFilledException();
+	Hash quiverHash = hash("Quiver");
+	Hash offhandHash = hash("Offhand");
+	if (item->twoHanded()) {
+		Item* offHand = getItem(Item::SlotOffHand);
+		if (offHand && !offHand->conforms(quiverHash)) {
+			delete item;
+			throw SlotIsAlreadyFilledException(Item::SlotOffHand);
+		}
+	}
+	else if (!item->conforms(quiverHash) && item->conforms(offhandHash) && !slotIsEmpty(Item::SlotOffHand)) {
+		delete item;
+		throw SlotIsAlreadyFilledException(Item::SlotOffHand);
 	}
 	
 	std::vector<Item::Slot>::const_iterator i, end = item->possibleSlots().end();
 	
+	Item::Slot slot;
+	
 	for (i = item->possibleSlots().begin(); i != end; i++) {
+		slot = *i;
 		std::vector<Gear*>::iterator j, endj = items_.end();
 		bool isEmpty = true;
 		for (j = items_.begin(); j != endj; j++) {
-			if ((*j)->getSlot() == *i) {
+			if ((*j)->getSlot() == slot) {
 				isEmpty = false;
 				break;
 			}
 		}
 		if (isEmpty) {
-			item->setSlot(*i);
+			item->setSlot(slot);
 			items_.push_back(item);
 			
 			Hash itemSetBonusHash = item->itemSetBonusHash();
@@ -89,7 +102,7 @@ Gear* Hero::addItem(Gear* item) {
 		}
 	}
 	delete item;
-	throw SlotIsAlreadyFilledException();
+	throw SlotIsAlreadyFilledException(slot);
 }
 
 void Hero::removeItem(Gear* item) {
@@ -119,9 +132,11 @@ void Hero::removeSkill(Skill* skill) {
 
 Gear* Hero::getItem(Item::Slot slot) {
 	std::vector<Gear*>::iterator i, end = items_.end();
-	for (i = items_.begin(); i != end; i++)
-		if ((*i)->getSlot() == slot)
+	for (i = items_.begin(); i != end; i++) {
+		Item::Slot itemSlot = (*i)->getSlot();
+		if ((slot == itemSlot) || (slot == Item::SlotOffHand && itemSlot == Item::SlotMainHand && (*i)->twoHanded()))
 			return *i;
+	}
 	return NULL;
 }
 

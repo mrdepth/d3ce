@@ -22,7 +22,11 @@ namespace d3ce {
 	
 	class Hero: public Entity {
 	public:
-		class SlotIsAlreadyFilledException : public std::exception {};
+		class SlotIsAlreadyFilledException : public std::exception {
+		public:
+			SlotIsAlreadyFilledException(Item::Slot slot) : slot(slot) {};
+			Item::Slot slot;
+		};
 
 		virtual ~Hero();
 		

@@ -315,7 +315,7 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 			break;
 		}
 		case AttributeWeapon2HID:
-			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeWeapon2HID, ptr(V(1))));
+			modifiers_.push_back(new ModifierPreAssign(environment.hero, AttributeHeld2HandedWeaponID, ptr(V(1))));
 		case AttributeWeapon1HID:
 			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeHeldWeaponsInHandsID, ptr(V(1))));
 			break;
@@ -702,7 +702,7 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 			break;
 		case AttributeResourceRegenBonusPercentFrom2HandedWeaponID:
 			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeResourceRegenBonusPercentID, AttributeSpiritSubID,
-													 ptr(If(V(*(*environment.hero)[AttributeWeapon2HID]), V(*this), V(0)))));
+													 ptr(If(V(*(*environment.hero)[AttributeHeld2HandedWeaponID]), V(*this), V(0)))));
 			break;
 		case AttributeDodgeChanceBonusFromCritPercentFactorID:
 			modifiers_.push_back(new ModifierPostMul(environment.hero, AttributePierceChanceID,
