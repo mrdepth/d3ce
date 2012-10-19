@@ -40,6 +40,8 @@ namespace d3ce {
 			SlotSocket = 0x100
 		};
 		
+		const int LegendaryFlag = 0x01;
+		
 		class UnknownItemHashException : public std::exception {};
 		class UnknownItemTypeHashException : public std::exception {};
 
@@ -54,14 +56,18 @@ namespace d3ce {
 
 		bool conforms(Hash hash);
 		
+		const std::map<AttributeKey, Range> possibleModifiers();
+		
 	protected:
 		Hash itemHash_;
 		std::vector<Hash> itemTypesTree_;
 		int flags_;
 		int bitMask_;
+		int itemLevel_;
 		
 		std::vector<Slot> possibleSlots_;
 		Slot slot_;
+		std::map<AttributeKey, Range> possibleModifiers_;
 		
 		Item(const Item& other, Entity* parent);
 		Item(Engine* engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, const std::vector<Slot>& possibleSlots);

@@ -25,6 +25,7 @@ namespace d3ce {
 		const std::vector<Gem*>& getGems();
 		virtual bool twoHanded();
 		Hash itemSetBonusHash();
+		float perfection();
 	private:
 		std::vector<Gem*> gems_;
 		Hash itemSetBonusHash_;

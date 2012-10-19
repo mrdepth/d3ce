@@ -8,6 +8,8 @@
 
 #include "Gear.h"
 #include <algorithm>
+#include <sstream>
+#include <math.h>
 
 using namespace d3ce;
 
@@ -59,3 +61,32 @@ const std::vector<Gem*>& Gear::getGems() {
 Hash Gear::itemSetBonusHash() {
 	return itemSetBonusHash_;
 }
+
+float Gear::perfection() {
+	const std::map<AttributeKey, Range>& modifiers = possibleModifiers();
+	float perfection = 0;
+	int n = 0;
+	AttributesMap::iterator i, end = attributes_.end();
+
+	for (i = attributes_.begin(); i != end; i++) {
+		std::map<AttributeKey, Range>::const_iterator j = modifiers.find(i->first);
+		if (j != modifiers.end()) {
+			AttributeID attributeID = i->first.first;
+			Range value = i->second->value();
+			Range perfect = j->second;
+			float v = 0;
+			if ((perfect.max - perfect.min) != 0)
+				v = fabs((fabs(value.max) - fabs(perfect.min)) / (fabs(perfect.max) - fabs(perfect.min)));
+			if (v <= 1.0) {
+				perfection += v;
+				n++;
+			}
+		}
+	}
+	return n > 0 ? perfection / n : 0;
+}
+
+
+
+
+

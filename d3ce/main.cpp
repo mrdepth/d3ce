@@ -33,7 +33,7 @@ int main(int argc, const char * argv[])
 	auto max = wizard->getPrimaryResourceEffectiveMax();
 	auto regen = wizard->getPrimaryResourceRegen();
 	
-	Item& mainHand = *wizard->addItem("Unique_Axe_1H_007_104");
+	Gear& mainHand = *wizard->addItem("Unique_Axe_1H_007_104");
 //	mainHand["Damage_Weapon_Min#Physical"]->setValue(129);
 	mainHand["Damage_Dealt_Percent_Bonus#Fire"]->setValue(0.16);
 	mainHand["Damage_Weapon_Delta#Fire"]->setValue(386);
@@ -44,6 +44,8 @@ int main(int argc, const char * argv[])
 	//mainHand["Attacks_Per_Second_Item"]->setValue(1.2999999523162842);
 	mainHand[AttributeDamageWeaponMinID][AttributePhysicalSubID]->setValue(129);
 	mainHand[AttributeAttacksPerSecondItemID]->setValue(1.2999999523162842);
+	
+	float perfection = mainHand.perfection();
 	
 	auto maxDamage = mainHand[AttributeDamageWeaponMaxTotalAllID]->value();
 	auto minDamage = mainHand[AttributeDamageWeaponMinTotalAllID]->value();
