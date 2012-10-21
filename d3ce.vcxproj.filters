@@ -84,6 +84,9 @@
     <ClCompile Include="d3ce\SetBonus.cpp">
       <Filter>Set</Filter>
     </ClCompile>
+    <ClCompile Include="d3ce\ModifierPostAssign.cpp">
+      <Filter>Modifiers</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3ce\Affix.h" />
@@ -169,6 +172,9 @@
     </ClInclude>
     <ClInclude Include="d3ce\SetBonus.h">
       <Filter>Set</Filter>
+    </ClInclude>
+    <ClInclude Include="d3ce\ModifierPostAssign.h">
+      <Filter>Modifiers</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

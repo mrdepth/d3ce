@@ -19,8 +19,8 @@ using namespace d3ce;
 
 int main(int argc, const char * argv[])
 {
-	//Engine engine("j:\\Users\\mr_depth\\Work\\My\\git\\D3Assistant\\D3Assistant\\Resources\\d3.sqlite ");
-	Engine engine("/Users/shimanski/Documents/git/D3Parser/Data/d3.sqlite"); //Work
+	Engine engine("j:\\Users\\mr_depth\\Work\\My\\git\\D3Parser\\Data\\d3.sqlite");
+	//Engine engine("/Users/shimanski/Documents/git/D3Parser/Data/d3.sqlite"); //Work
 	
 	//Engine engine("/Users/mr_depth/Work/My/git/D3Parser/Data/d3.sqlite"); // Home
 	

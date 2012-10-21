@@ -97,6 +97,7 @@
     <ClCompile Include="d3ce\main.cpp" />
     <ClCompile Include="d3ce\Modifier.cpp" />
     <ClCompile Include="d3ce\ModifierAdd.cpp" />
+    <ClCompile Include="d3ce\ModifierPostAssign.cpp" />
     <ClCompile Include="d3ce\ModifierPostBoost.cpp" />
     <ClCompile Include="d3ce\ModifierPostDiv.cpp" />
     <ClCompile Include="d3ce\ModifierPostMul.cpp" />
@@ -134,6 +135,7 @@
     <ClInclude Include="d3ce\ItemSet.h" />
     <ClInclude Include="d3ce\Modifier.h" />
     <ClInclude Include="d3ce\ModifierAdd.h" />
+    <ClInclude Include="d3ce\ModifierPostAssign.h" />
     <ClInclude Include="d3ce\ModifierPostBoost.h" />
     <ClInclude Include="d3ce\ModifierPostDiv.h" />
     <ClInclude Include="d3ce\ModifierPostMul.h" />

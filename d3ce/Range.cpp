@@ -62,6 +62,30 @@ bool Range::operator!=(const Range& other) const {
 	return min != other.min || max != other.max;
 }
 
+Range& Range::operator+=(const Range& other) {
+	min += other.min;
+	max += other.max;
+	return *this;
+}
+
+Range& Range::operator-=(const Range& other) {
+	min -= other.min;
+	max -= other.max;
+	return *this;
+}
+
+Range& Range::operator*=(const Range& other) {
+	min *= other.min;
+	max *= other.max;
+	return *this;
+}
+
+Range& Range::operator/=(const Range& other) {
+	min /= other.min;
+	max /= other.max;
+	return *this;
+}
+
 Range Range::operator()(double from) {
 	return Range(from);
 }

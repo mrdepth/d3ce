@@ -69,6 +69,7 @@ namespace d3ce {
 		Range getDodgeChance();
 		
 		Range getHitPoints();
+		Range getEffectiveHitPoints();
 		Range getLifeRegen();
 		Range getLifePerHit();
 		Range getLifePerKill();

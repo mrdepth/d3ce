@@ -290,6 +290,12 @@ Range Hero::getHitPoints() {
 	return getAttribute(AttributeHitpointsMaxTotalID)->value();
 }
 
+Range Hero::getEffectiveHitPoints() {
+	Range hp = getHitPoints();
+	Range damageReduction = getAverageDamageReduction();
+	return hp / (Range(1) - damageReduction);
+}
+
 Range Hero::getLifeRegen() {
 	return getAttribute(AttributeHitpointsRegenPerSecondTotalID)->value();
 }

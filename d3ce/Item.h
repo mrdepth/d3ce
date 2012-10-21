@@ -40,7 +40,7 @@ namespace d3ce {
 			SlotSocket = 0x100
 		};
 		
-		const int LegendaryFlag = 0x01;
+		static const int LegendaryFlag = 0x01;
 		
 		class UnknownItemHashException : public std::exception {};
 		class UnknownItemTypeHashException : public std::exception {};

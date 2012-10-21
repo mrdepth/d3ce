@@ -15,6 +15,7 @@
 #include "Gem.h"
 #include <sstream>
 #include <math.h>
+#include <iostream>
 
 using namespace d3ce;
 
@@ -51,6 +52,8 @@ Item* Item::CreateItemFromRequest(Engine* engine, Entity* parent, const std::str
 		std::vector<Hash> itemTypesTree;
 		itemTypesTree.push_back(itemTypeHash);
 		
+//		if (flags & LegendaryFlag)
+//			itemTypesTree.push_back(hash("LegendaryOnly"));
 		
 		std::stringstream sql;
 		sql << "SELECT nonNlsKey, parentItemTypeHash, flags, slot1, slot2, slot3, slot4, bitMask1 FROM itemType where itemTypeHash = " << itemTypeHash;
@@ -192,54 +195,117 @@ const std::map<AttributeKey, Range> Item::possibleModifiers() {
 		std::vector<std::string> requests;
 		
 		std::stringstream sql;
-		sql << "SELECT modCode, modParam1, min, max FROM itemModifier WHERE itemHash = " << itemHash_;
-		requests.push_back(sql.str());
 		
-		sql.str(std::string());
-		sql << "SELECT modCode, modParam1, min, max FROM affixModifier as a, affix as b, affixGroupAssociation as c, itemAffix as d, itemTypeAffix as e where a.affixHash=c.affixHash and c.affixGroupHash=d.affixGroupHash and b.affixHash=c.affixHash and b.affixLevel=d.affixLevel and e.affixHash=c.affixHash and e.itemTypeHash in ("
-			<< itemTypes << ") and d.itemHash = " << itemHash_;
-//		sql << "SELECT modCode, modParam1, min, max FROM affixModifier as a, affix as b, affixGroupAssociation as c, itemAffix as d where a.affixHash=c.affixHash and c.affixGroupHash=d.affixGroupHash and b.affixHash=c.affixHash and b.affixLevel=d.affixLevel and d.itemHash=" << itemHash_;
-		requests.push_back(sql.str());
-
-		if (flags_ & LegendaryFlag) {
-			sql.str(std::string());
-			sql << "SELECT modCode, modParam1, min, max FROM affixModifier as a, affix as b, affixGroupAssociation as c, itemAffix as d, legendaryItemTypeAffix as e where a.affixHash=c.affixHash and c.affixGroupHash=d.affixGroupHash and b.affixHash=c.affixHash and b.affixLevel=d.affixLevel and e.affixHash=c.affixHash and e.itemTypeHash in ("
-			<< itemTypes << ") and d.itemHash = " << itemHash_;
-			requests.push_back(sql.str());
-		}
-
-		sql.str(std::string());
-		sql << "SELECT modCode, modParam1, min, max FROM affixModifier as a, affixGroupAssociation as b, itemType as c, affix as d where a.affixHash=b.affixHash and b.affixGroupHash=c.inherentAffixGroupHash and d.affixHash = b.affixHash and d.affixLevel <= "
-		<< itemLevel_ << " and c.itemTypeHash in (" << itemTypes << ");";
-		requests.push_back(sql.str());
+		Hash itemHash = itemHash_;
 		
-		sql.str(std::string());
-		sql << "SELECT modCode, modParam1, min, max FROM affixModifier as a, itemTypeAffix as b, affix as c where a.affixHash=b.affixHash and c.affixHash = b.affixHash and c.affixLevel <= "
-		<< itemLevel_ << " and b.itemTypeHash in (" << itemTypes << ");";
-		requests.push_back(sql.str());
-		
-		if (flags_ & LegendaryFlag) {
-			sql.str(std::string());
-			sql << "SELECT modCode, modParam1, min, max FROM affixModifier as a, legendaryItemTypeAffix as b, affix as c where a.affixHash=b.affixHash and c.affixHash = b.affixHash and c.affixLevel <= "
-			<< itemLevel_ << " and b.itemTypeHash in (" << itemTypes << ");";
-			requests.push_back(sql.str());
-		}
-		
-		std::vector<std::string>::iterator j, endj = requests.end();
-		for (j = requests.begin(); j != endj; j++) {
-			sqlite3_stmt* stmt = NULL;
-			sqlite3_prepare_v2(db, j->c_str(), -1, &stmt, NULL);
+		sqlite3_stmt* stmt = NULL;
+		while (isValidHash(itemHash)) {
+			sql << "SELECT baseItemHash, durabilityMin, durabilityDelta, damageWeaponMinMin, damageWeaponMinDelta, damageWeaponDeltaMin, damageWeaponDeltaDelta, armorMin, armorDelta FROM item WHERE itemHash = " << itemHash;
+			sqlite3_prepare_v2(db, sql.str().c_str(), -1, &stmt, NULL);
 			
-			while (sqlite3_step(stmt) == SQLITE_ROW) {
-				AttributeID modCode = static_cast<AttributeID>(sqlite3_column_int(stmt, 0));
-				AttributeSubID modParam = static_cast<AttributeSubID>(sqlite3_column_int(stmt, 1));
-				Range value = Range(sqlite3_column_double(stmt, 2), sqlite3_column_double(stmt, 3));
-				AttributeKey key = std::make_pair(modCode, modParam);
-				Range& range = possibleModifiers_[key];
-				range.max = fabs(value.max) > fabs(range.max) ? value.max : range.max;
-				range.min = fabs(value.min) < fabs(range.min) ? value.min : range.min;
+			if (sqlite3_step(stmt) == SQLITE_ROW) {
+				itemHash = sqlite3_column_int(stmt, 0);
+				Range durability;
+				Range damageMin;
+				Range damageDelta;
+				Range armor;
+				durability.min = sqlite3_column_double(stmt, 1);
+				durability.max = durability.min + sqlite3_column_double(stmt, 2);
+				damageMin.min = sqlite3_column_double(stmt, 3);
+				damageMin.max = damageMin.min + sqlite3_column_double(stmt, 4);
+				damageDelta.min = sqlite3_column_double(stmt, 5);
+				damageDelta.max = damageDelta.min + sqlite3_column_double(stmt, 6);
+				armor.min = sqlite3_column_double(stmt, 7);
+				armor.max = armor.min + sqlite3_column_double(stmt, 8);
+				if (durability.max != 0)
+					affixModifiers[std::make_pair(AttributeDurabilityMaxID, AttributeNoneSubID)][0] = durability;
+				if (damageMin.max != 0)
+					affixModifiers[std::make_pair(AttributeDamageWeaponMinID, AttributePhysicalSubID)][0] = damageMin;
+				if (damageDelta.max != 0)
+					affixModifiers[std::make_pair(AttributeDamageWeaponDeltaID, AttributePhysicalSubID)][0] = damageDelta;
+				if (armor.max != 0)
+					affixModifiers[std::make_pair(AttributeArmorItemID, AttributeNoneSubID)][0] = armor;
 			}
+			else
+				itemHash = -1;
+			
 			sqlite3_finalize(stmt);
+			sql.str(std::string());
+			stmt = NULL;
+		}
+		
+		sql << "SELECT modCode, modParam1, min, max FROM itemModifier WHERE itemHash = " << itemHash_;
+
+		sqlite3_prepare_v2(db, sql.str().c_str(), -1, &stmt, NULL);
+			
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			AttributeID modCode = static_cast<AttributeID>(sqlite3_column_int(stmt, 0));
+			AttributeSubID modParam = static_cast<AttributeSubID>(sqlite3_column_int(stmt, 1));
+			Range value = Range(sqlite3_column_double(stmt, 2), sqlite3_column_double(stmt, 3));
+			if (value.min > value.max)
+				std::swap(value.min, value.max);
+			AttributeKey key = std::make_pair(modCode, modParam);
+			itemModifiers[key] = value;
+		}
+		sqlite3_finalize(stmt);
+
+		sql.str(std::string());
+		sql << "SELECT modCode, modParam1, min, max, propertyType FROM affixModifier as a, affix as b, itemTypeAffix as c WHERE a.affixHash=b.affixHash and b.affixHash=c.affixHash and b.affixLevel <= "
+			<< 63 << " and c.itemTypeHash in (" << itemTypes << ")";
+
+		if (flags_ & LegendaryFlag) {
+			sql << " UNION SELECT modCode, modParam1, min, max, propertyType FROM affixModifier as a, affix as b, legendaryItemTypeAffix  as c WHERE a.affixHash=b.affixHash and b.affixHash=c.affixHash and b.affixLevel <= "
+				<< 63 << " and c.itemTypeHash in (" << itemTypes << ")";
+		}
+
+		stmt = NULL;
+		sqlite3_prepare_v2(db, sql.str().c_str(), -1, &stmt, NULL);
+		std::cout << sql.str();
+			
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			AttributeID modCode = static_cast<AttributeID>(sqlite3_column_int(stmt, 0));
+			AttributeSubID modParam = static_cast<AttributeSubID>(sqlite3_column_int(stmt, 1));
+			Range value = Range(sqlite3_column_double(stmt, 2), sqlite3_column_double(stmt, 3));
+			if (value.min > value.max)
+				std::swap(value.min, value.max);
+			
+			int propertyType = sqlite3_column_int(stmt, 4);
+			AttributeKey key = std::make_pair(modCode, modParam);
+			if (affixModifiers[key].find(propertyType) == affixModifiers[key].end())
+				affixModifiers[key][propertyType] = value;
+			else {
+				Range& range = affixModifiers[key][propertyType];
+				range.max = std::max(range.max, value.max);
+				range.min = std::min(range.min, value.min);
+			}
+		}
+		sqlite3_finalize(stmt);
+
+		{
+			std::map<AttributeKey, Range>::iterator i, end= itemModifiers.end();
+			for (i = itemModifiers.begin(); i != end; i++) {
+				possibleModifiers_[i->first] = i->second;
+			}
+		}
+
+		{
+			std::map<AttributeKey, std::map<int, Range> >::iterator i, end= affixModifiers.end();
+			for (i = affixModifiers.begin(); i != end; i++) {
+				std::map<int, Range>::iterator j, endj = i->second.end();
+				for (j = i->second.begin(); j != endj; j++) {
+					Range& value = j->second;
+					if (possibleModifiers_.find(i->first) != possibleModifiers_.end()) {
+						Range& range = possibleModifiers_[i->first];
+						range.min = std::min(range.min, value.min);
+						if (value.max > 0)
+							range.max += value.max;
+						if (value.min < 0)
+							range.min += value.min;
+					}
+					else
+						possibleModifiers_[i->first] = value;
+				}
+			}
 		}
 	}
 	return possibleModifiers_;

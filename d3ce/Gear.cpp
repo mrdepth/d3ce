@@ -69,14 +69,21 @@ float Gear::perfection() {
 	AttributesMap::iterator i, end = attributes_.end();
 
 	for (i = attributes_.begin(); i != end; i++) {
+		AttributeID attributeID = i->first.first;
+		int size = modifiers.size();
+		auto a = i->first.first;
+		auto b = i->first.second;
 		std::map<AttributeKey, Range>::const_iterator j = modifiers.find(i->first);
 		if (j != modifiers.end()) {
-			AttributeID attributeID = i->first.first;
 			Range value = i->second->value();
+			if (value.max == 0.0)
+				continue;
 			Range perfect = j->second;
 			float v = 0;
 			if ((perfect.max - perfect.min) != 0)
-				v = fabs((fabs(value.max) - fabs(perfect.min)) / (fabs(perfect.max) - fabs(perfect.min)));
+				v = fabs(value.max - perfect.min) / (perfect.max - perfect.min);
+			else if (perfect.max != 0)
+				v = 1;
 			if (v <= 1.0) {
 				perfection += v;
 				n++;

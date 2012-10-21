@@ -27,7 +27,12 @@ namespace d3ce {
 		bool operator<=(const Range& other) const;
 		bool operator==(const Range& other) const;
 		bool operator!=(const Range& other) const;
-		
+
+		Range& operator+=(const Range& other);
+		Range& operator-=(const Range& other);
+		Range& operator*=(const Range& other);
+		Range& operator/=(const Range& other);
+
 		double min;
 		double max;
 		
