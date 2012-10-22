@@ -69,10 +69,6 @@ float Gear::perfection() {
 	AttributesMap::iterator i, end = attributes_.end();
 
 	for (i = attributes_.begin(); i != end; i++) {
-		AttributeID attributeID = i->first.first;
-		int size = modifiers.size();
-		auto a = i->first.first;
-		auto b = i->first.second;
 		std::map<AttributeKey, Range>::const_iterator j = modifiers.find(i->first);
 		if (j != modifiers.end()) {
 			Range value = i->second->value();

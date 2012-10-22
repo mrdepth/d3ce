@@ -115,7 +115,7 @@ Attribute* Entity::getAttribute(const std::string& nonNlsKey) {
 		else if (attributeSubKey == "Human")
 			attributeSubID = 3;
 		else {
-			std::cout<< "Unknown " << attributeSubKey;
+//			std::cout<< "Unknown " << attributeSubKey;
 		}
 	}
 	

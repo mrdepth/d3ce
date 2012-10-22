@@ -260,7 +260,6 @@ const std::map<AttributeKey, Range> Item::possibleModifiers() {
 
 		stmt = NULL;
 		sqlite3_prepare_v2(db, sql.str().c_str(), -1, &stmt, NULL);
-		std::cout << sql.str();
 			
 		while (sqlite3_step(stmt) == SQLITE_ROW) {
 			AttributeID modCode = static_cast<AttributeID>(sqlite3_column_int(stmt, 0));
