@@ -19,8 +19,8 @@ using namespace d3ce;
 
 int main(int argc, const char * argv[])
 {
-	Engine engine("j:\\Users\\mr_depth\\Work\\My\\git\\D3Parser\\Data\\d3.sqlite");
-	//Engine engine("/Users/shimanski/Documents/git/D3Parser/Data/d3.sqlite"); //Work
+	//Engine engine("j:\\Users\\mr_depth\\Work\\My\\git\\D3Parser\\Data\\d3.sqlite");
+	Engine engine("/Users/shimanski/Documents/git/D3Assistant/D3Assistant/Resources/d3.sqlite"); //Work
 	
 	//Engine engine("/Users/mr_depth/Work/My/git/D3Parser/Data/d3.sqlite"); // Home
 	
@@ -33,7 +33,7 @@ int main(int argc, const char * argv[])
 	auto max = wizard->getPrimaryResourceEffectiveMax();
 	auto regen = wizard->getPrimaryResourceRegen();
 	
-	Gear& mainHand = *wizard->addItem("Unique_Axe_1H_007_104");
+	Gear& mainHand = *wizard->addItem("Unique_Mace_1H_001_104");
 //	mainHand["Damage_Weapon_Min#Physical"]->setValue(129);
 	mainHand["Damage_Dealt_Percent_Bonus#Fire"]->setValue(0.16);
 	mainHand["Damage_Weapon_Delta#Fire"]->setValue(386);
