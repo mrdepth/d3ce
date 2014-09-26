@@ -10,18 +10,18 @@
 
 using namespace d3ce;
 
-Weapon::Weapon(Engine* engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, const std::vector<Slot>& possibleSlots) : Gear(engine, parent, itemHash, itemTypesTree, itemSetBonusHash, flags, bitMask, possibleSlots) {
+Weapon::Weapon(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, const std::vector<Slot>& possibleSlots) : Gear(engine, parent, itemHash, itemTypesTree, itemSetBonusHash, flags, bitMask, possibleSlots) {
 	if (bitMask & Weapon2HandedMask)
-		this->getAttribute(AttributeWeapon2HID)->setValue(1);
+		setAttribute(AttributeWeapon2HID, AttributeNoneSubID, 1);
 	else
-		this->getAttribute(AttributeWeapon1HID)->setValue(1);
+		setAttribute(AttributeWeapon1HID, AttributeNoneSubID, 1);
 }
 
 Weapon::Weapon(const Weapon& other, Entity* parent) : Gear(other, parent) {
 	if (bitMask_ & Weapon2HandedMask)
-		this->getAttribute(AttributeWeapon2HID)->setValue(1);
+		setAttribute(AttributeWeapon2HID, AttributeNoneSubID, 1);
 	else
-		this->getAttribute(AttributeWeapon1HID)->setValue(1);
+		setAttribute(AttributeWeapon1HID, AttributeNoneSubID, 1);
 }
 
 Entity* Weapon::cloneIn(Entity* parent) {

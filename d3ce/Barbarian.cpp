@@ -11,23 +11,23 @@
 
 using namespace d3ce;
 
-Barbarian::Barbarian(Engine* engine, Party* party) : Hero(engine, party) {
-	getAttribute(AttributeStrengthTotalFromLevelID)->setValue(3);
-	getAttribute(AttributeDexterityTotalFromLevelID)->setValue(1);
-	getAttribute(AttributeIntelligenceTotalFromLevelID)->setValue(1);
-	getAttribute(AttributeVitalityTotalFromLevelID)->setValue(2);
-	
-	getAttribute(AttributeStrengthID)->setValue(10);
-	getAttribute(AttributeDexterityID)->setValue(8);
-	getAttribute(AttributeIntelligenceID)->setValue(8);
-	getAttribute(AttributeVitalityID)->setValue(9);
-	
-	getAttribute(AttributePrimaryDamageAttributeID)->setValue(PrimaryDamageAttributeStrength);
-	getAttribute(AttributeClassDamageReductionPercentID)->setValue(0.3);
-	
-	getAttribute(AttributeResourceTypePrimaryID)->setValue(AttributeFurySubID);
-	getAttribute(AttributeResourceMaxID, AttributeFurySubID)->setValue(100);
-	getAttribute(AttributeResourceRegenPerSecondID, AttributeFurySubID)->setValue(-2);
+Barbarian::Barbarian(std::shared_ptr<Engine> engine, Party* party) : Hero(engine, party) {
+	setAttribute(AttributeStrengthFactorLevelID, AttributeNoneSubID, 3);
+	setAttribute(AttributeDexterityFactorLevelID, AttributeNoneSubID, 1);
+	setAttribute(AttributeIntelligenceFactorLevelID, AttributeNoneSubID, 1);
+	setAttribute(AttributeVitalityFactorLevelID, AttributeNoneSubID, 2);
+
+	setAttribute(AttributeStrengthID, AttributeNoneSubID, 10);
+	setAttribute(AttributeDexterityID, AttributeNoneSubID, 8);
+	setAttribute(AttributeIntelligenceID, AttributeNoneSubID, 8);
+	setAttribute(AttributeVitalityID, AttributeNoneSubID, 9);
+
+	setAttribute(AttributePrimaryDamageAttributeID, AttributeNoneSubID, PrimaryDamageAttributeStrength);
+	setAttribute(AttributeClassDamageReductionPercentID, AttributeNoneSubID, 0.3);
+
+	setAttribute(AttributeResourceTypePrimaryID, AttributeNoneSubID, AttributeFurySubID);
+	setAttribute(AttributeResourceMaxID, AttributeFurySubID, 100);
+	setAttribute(AttributeResourceRegenPerSecondID, AttributeFurySubID, -2);
 }
 
 Barbarian::Barbarian(const Barbarian& other, Party* party) : Hero(other, party) {
@@ -38,6 +38,6 @@ Entity* Barbarian::cloneIn(Entity* parent) {
 	return new Barbarian(*this, dynamic_cast<Party*>(parent));
 }
 
-ClassMask Barbarian::getClass() {
+ClassMask Barbarian::getClass() const {
 	return ClassMaskBarbarian;
 }

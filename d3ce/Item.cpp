@@ -16,22 +16,23 @@
 #include <sstream>
 #include <math.h>
 #include <iostream>
+#include <algorithm>
 
 using namespace d3ce;
 
-Item* Item::CreateItem(Engine* engine, Entity* parent, Hash itemHash) {
+std::shared_ptr<Item> Item::CreateItem(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash) {
 	std::stringstream sql;
 	sql << "SELECT itemHash, nonNlsKey, itemTypeHash, itemSetBonusHash, itemLevel, flags FROM item where itemHash =  " << itemHash;
 	return CreateItemFromRequest(engine, parent, sql.str());
 }
 
-Item* Item::CreateItem(Engine* engine, Entity* parent, const std::string& nonNlsKey) {
+std::shared_ptr<Item> Item::CreateItem(std::shared_ptr<Engine> engine, Entity* parent, const std::string& nonNlsKey) {
 	std::stringstream sql;
 	sql << "SELECT itemHash, nonNlsKey, itemTypeHash, itemSetBonusHash, itemLevel, flags FROM item where nonNlsKey =  \"" << nonNlsKey << "\"";
 	return CreateItemFromRequest(engine, parent, sql.str());
 }
 
-Item* Item::CreateItemFromRequest(Engine* engine, Entity* parent, const std::string& sqlRequest) {
+std::shared_ptr<Item> Item::CreateItemFromRequest(std::shared_ptr<Engine> engine, Entity* parent, const std::string& sqlRequest) {
 	sqlite3* db = engine->getDb();
 	
 	sqlite3_stmt* stmt = NULL;
@@ -117,7 +118,7 @@ Item* Item::CreateItemFromRequest(Engine* engine, Entity* parent, const std::str
 					throw UnknownItemTypeHashException();
 			};
 			item->itemLevel_ = itemLevel;
-			return item;
+			return std::shared_ptr<Item>(item);
 		}
 		else {
 			sqlite3_finalize(stmt);
@@ -132,7 +133,7 @@ Item* Item::CreateItemFromRequest(Engine* engine, Entity* parent, const std::str
 	return NULL;
 }
 
-Item::Item(Engine* engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, const std::vector<Slot>& possibleSlots) : Entity(engine, parent), itemTypesTree_(itemTypesTree), possibleSlots_(possibleSlots){
+Item::Item(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, const std::vector<Slot>& possibleSlots) : Entity(engine, parent), itemTypesTree_(itemTypesTree), possibleSlots_(possibleSlots){
 	itemHash_ = itemHash;
 	flags_ = flags;
 	bitMask_ = bitMask;
@@ -172,7 +173,7 @@ bool Item::conforms(Hash hash) {
 	return false;
 }
 
-const std::map<AttributeKey, Range> Item::possibleModifiers() {
+const std::map<AttributeKey, Range> Item::possibleModifiers() const {
 	if (possibleModifiers_.size() == 0) {
 		std::map<AttributeKey, Range> itemModifiers;
 		std::map<AttributeKey, std::map<int, Range> > affixModifiers;
@@ -181,7 +182,7 @@ const std::map<AttributeKey, Range> Item::possibleModifiers() {
 		
 		std::stringstream itemTypesStream;
 		
-		std::vector<Hash>::iterator i, end = itemTypesTree_.end();
+		std::vector<Hash>::const_iterator i, end = itemTypesTree_.end();
 		bool first = true;
 		for (i = itemTypesTree_.begin(); i != end; i++) {
 			if (!first)

@@ -46,8 +46,8 @@ namespace d3ce {
 		class UnknownItemTypeHashException : public std::exception {};
 
 		
-		static Item* CreateItem(Engine* engine, Entity* parent, Hash itemHash);
-		static Item* CreateItem(Engine* engine, Entity* parent, const std::string& nonNlsKey);
+		static std::shared_ptr<Item> CreateItem(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash);
+		static std::shared_ptr<Item> CreateItem(std::shared_ptr<Engine> engine, Entity* parent, const std::string& nonNlsKey);
 		Slot getSlot();
 		void setSlot(Slot slot);
 		
@@ -56,7 +56,7 @@ namespace d3ce {
 
 		bool conforms(Hash hash);
 		
-		const std::map<AttributeKey, Range> possibleModifiers();
+		const std::map<AttributeKey, Range> possibleModifiers() const;
 		
 	protected:
 		Hash itemHash_;
@@ -67,14 +67,14 @@ namespace d3ce {
 		
 		std::vector<Slot> possibleSlots_;
 		Slot slot_;
-		std::map<AttributeKey, Range> possibleModifiers_;
+		mutable std::map<AttributeKey, Range> possibleModifiers_;
 		
 		Item(const Item& other, Entity* parent);
-		Item(Engine* engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, const std::vector<Slot>& possibleSlots);
+		Item(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, const std::vector<Slot>& possibleSlots);
 		virtual Environment environment();
 		
 	private:
-		static Item* CreateItemFromRequest(Engine* engine, Entity* parent, const std::string& sqlRequest);
+		static std::shared_ptr<Item> CreateItemFromRequest(std::shared_ptr<Engine> engine, Entity* parent, const std::string& sqlRequest);
 	};
 	
 }

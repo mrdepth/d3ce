@@ -17,6 +17,7 @@
 #include <exception>
 #include "types.h"
 #include <string>
+#include <memory>
 
 namespace d3ce {
 	class Party;
@@ -27,15 +28,14 @@ namespace d3ce {
 	class Engine {
 	public:
 		class SqliteException : public std::exception {};
-		
-		Engine(const char* databasePath);
+		static std::shared_ptr<Engine> Create(const char* databasePath);
 		~Engine(void);
 		
 		sqlite3* getDb();
 		
 	private:
 		sqlite3* db_;
-		Party* party_;
+		Engine(const char* databasePath);
 	};
 	
 };

@@ -11,7 +11,7 @@
 
 using namespace d3ce;
 
-Gem::Gem(Engine* engine, Item* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, const std::vector<Slot>& possibleSlots) : Item(engine, parent, itemHash, itemTypesTree, flags, bitMask, possibleSlots) {
+Gem::Gem(std::shared_ptr<Engine> engine, Item* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, const std::vector<Slot>& possibleSlots) : Item(engine, parent, itemHash, itemTypesTree, flags, bitMask, possibleSlots) {
 	const std::vector<Hash>& parentItemTypesTree = parent->itemTypesTree();
 	std::vector<Hash>::const_iterator i, end = parentItemTypesTree.end();
 	
@@ -40,7 +40,7 @@ Gem::Gem(Engine* engine, Item* parent, Hash itemHash, const std::vector<Hash>& i
 					Range value;
 					value.min = sqlite3_column_double(stmt, 2);
 					value.max = sqlite3_column_double(stmt, 3);
-					getAttribute(modCode, param)->setValue(value);
+					setAttribute(modCode, param, value);
 				}
 				
 				sqlite3_finalize(stmt);
@@ -71,7 +71,7 @@ Gem::Gem(Engine* engine, Item* parent, Hash itemHash, const std::vector<Hash>& i
 				Range value;
 				value.min = sqlite3_column_double(stmt, 2);
 				value.max = sqlite3_column_double(stmt, 3);
-				getAttribute(modCode, param)->setValue(value);
+				setAttribute(modCode, param, value);
 			}
 			
 			sqlite3_finalize(stmt);
@@ -82,7 +82,7 @@ Gem::Gem(Engine* engine, Item* parent, Hash itemHash, const std::vector<Hash>& i
 }
 
 Gem::Gem(const Gem& other, Entity* parent) : Item(other, parent) {
-	copyAttributes(other);
+	//copyAttributes(other);
 }
 
 Entity* Gem::cloneIn(Entity* parent) {

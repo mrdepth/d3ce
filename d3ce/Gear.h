@@ -16,18 +16,21 @@ namespace d3ce {
 	
 	class Gear: public Item {
 	public:
-		Gear(Engine* engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, const std::vector<Slot>& possibleSlots);
+		Gear(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, const std::vector<Slot>& possibleSlots);
 		virtual ~Gear();
 		Gear(const Gear& other, Entity* parent);
-		Gem* addGem(Hash itemHash);
-		Gem* addGem(const std::string& nonNlsKey);
-		void removeGem(Gem* gem);
-		const std::vector<Gem*>& getGems();
-		virtual bool twoHanded();
-		Hash itemSetBonusHash();
-		float perfection();
+		std::shared_ptr<Gem> addGem(Hash itemHash);
+		std::shared_ptr<Gem> addGem(const std::string& nonNlsKey);
+		void removeGem(std::shared_ptr<Gem> gem);
+		const std::vector<std::shared_ptr<Gem>>& getGems() const;
+		virtual bool twoHanded() const;
+		Hash itemSetBonusHash() const;
+		float perfection() const;
+		virtual bool isWeapon() const;
+
+		virtual Attribute getAttribute(AttributeID attributeID, AttributeSubID attributeSubID = AttributeNoneSubID) const;
 	private:
-		std::vector<Gem*> gems_;
+		std::vector<std::shared_ptr<Gem>> gems_;
 		Hash itemSetBonusHash_;
 	};
 }

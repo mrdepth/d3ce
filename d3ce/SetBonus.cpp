@@ -11,7 +11,7 @@
 
 using namespace d3ce;
 
-SetBonus::SetBonus(Engine* engine, Entity* parent, Hash setBonusHash, Hash parentHash, int numOfSet) : Entity(engine, parent), setBonusHash_(setBonusHash), parentHash_(parentHash), numOfSet_(numOfSet){
+SetBonus::SetBonus(std::shared_ptr<Engine> engine, Entity* parent, Hash setBonusHash, Hash parentHash, int numOfSet) : Entity(engine, parent), setBonusHash_(setBonusHash), parentHash_(parentHash), numOfSet_(numOfSet){
 	sqlite3* db = engine->getDb();
 	std::stringstream sql;
 	sql << "SELECT modCode, modParam1, min, max FROM itemSetBonusModifier WHERE itemSetBonusHash=" << setBonusHash;
@@ -25,7 +25,7 @@ SetBonus::SetBonus(Engine* engine, Entity* parent, Hash setBonusHash, Hash paren
 		Range value;
 		value.min = sqlite3_column_double(stmt, 2);
 		value.max = sqlite3_column_double(stmt, 3);
-		getAttribute(modCode, param)->setValue(value);
+		setAttribute(modCode, param, value);
 	}
 	sqlite3_finalize(stmt);
 }

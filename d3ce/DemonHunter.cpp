@@ -11,25 +11,25 @@
 
 using namespace d3ce;
 
-DemonHunter::DemonHunter(Engine* engine, Party* party) : Hero(engine, party) {
-	getAttribute(AttributeStrengthTotalFromLevelID)->setValue(1);
-	getAttribute(AttributeDexterityTotalFromLevelID)->setValue(3);
-	getAttribute(AttributeIntelligenceTotalFromLevelID)->setValue(1);
-	getAttribute(AttributeVitalityTotalFromLevelID)->setValue(2);
-	
-	getAttribute(AttributeStrengthID)->setValue(8);
-	getAttribute(AttributeDexterityID)->setValue(10);
-	getAttribute(AttributeIntelligenceID)->setValue(8);
-	getAttribute(AttributeVitalityID)->setValue(9);
-	
-	getAttribute(AttributePrimaryDamageAttributeID)->setValue(PrimaryDamageAttributeDexterity);
-	
-	getAttribute(AttributeResourceTypePrimaryID)->setValue(AttributeHatredSubID);
-	getAttribute(AttributeResourceTypeSecondaryID)->setValue(AttributeDisciplineSubID);
-	getAttribute(AttributeResourceMaxID, AttributeHatredSubID)->setValue(125);
-	getAttribute(AttributeResourceRegenPerSecondID, AttributeHatredSubID)->setValue(4);
-	getAttribute(AttributeResourceMaxID, AttributeDisciplineSubID)->setValue(30);
-	getAttribute(AttributeResourceRegenPerSecondID, AttributeDisciplineSubID)->setValue(1);
+DemonHunter::DemonHunter(std::shared_ptr<Engine> engine, Party* party) : Hero(engine, party) {
+	setAttribute(AttributeStrengthFactorLevelID, AttributeNoneSubID, 1);
+	setAttribute(AttributeDexterityFactorLevelID, AttributeNoneSubID, 3);
+	setAttribute(AttributeIntelligenceFactorLevelID, AttributeNoneSubID, 1);
+	setAttribute(AttributeVitalityFactorLevelID, AttributeNoneSubID, 2);
+
+	setAttribute(AttributeStrengthID, AttributeNoneSubID, 8);
+	setAttribute(AttributeDexterityID, AttributeNoneSubID, 10);
+	setAttribute(AttributeIntelligenceID, AttributeNoneSubID, 8);
+	setAttribute(AttributeVitalityID, AttributeNoneSubID, 9);
+
+	setAttribute(AttributePrimaryDamageAttributeID, AttributeNoneSubID, PrimaryDamageAttributeDexterity);
+
+	setAttribute(AttributeResourceTypePrimaryID, AttributeNoneSubID, AttributeHatredSubID);
+	setAttribute(AttributeResourceTypeSecondaryID, AttributeNoneSubID, AttributeDisciplineSubID);
+	setAttribute(AttributeResourceMaxID, AttributeHatredSubID, 125);
+	setAttribute(AttributeResourceRegenPerSecondID, AttributeHatredSubID, 4);
+	setAttribute(AttributeResourceMaxID, AttributeDisciplineSubID, 30);
+	setAttribute(AttributeResourceRegenPerSecondID, AttributeDisciplineSubID, 1);
 }
 
 DemonHunter::DemonHunter(const DemonHunter& other, Party* party) : Hero(other, party) {
@@ -40,6 +40,6 @@ Entity* DemonHunter::cloneIn(Entity* parent) {
 	return new DemonHunter(*this, dynamic_cast<Party*>(parent));
 }
 
-ClassMask DemonHunter::getClass() {
+ClassMask DemonHunter::getClass() const {
 	return ClassMaskDemonHunter;
 }

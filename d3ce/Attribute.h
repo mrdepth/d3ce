@@ -12,33 +12,23 @@
 #include <vector>
 #include "Range.h"
 #include "AttributeIDs.h"
-#include "Environment.h"
 
 namespace d3ce {
 
-	class Modifier;
 	class Entity;
 	class Attribute {
 	public:
-		Attribute(AttributeID attributeID, AttributeSubID attributeSubID, const Environment& environment, const Range& value);
-		~Attribute();
-		Range value();
-		Range getInitialValue();
-		void setValue(const Range& value);
-		
-		AttributeID getAttributeID() {return attributeID_;};
-		AttributeSubID getAttributeSubID() {return attributeSubID_;};
-
-		void applyModifiers();
-		void removeModifiers();
-
+		Attribute(const Entity* entity, AttributeID attributeID, AttributeSubID attributeSubID, const Range& value);
+		AttributeID getAttributeID() const {return attributeID_;};
+		AttributeSubID getAttributeSubID() const {return attributeSubID_;};
+		const Entity* getEntity() const { return entity_; };
+		Range value() const { return value_;};
+		operator Range() const {return value();};
 	private:
 		AttributeID attributeID_;
 		AttributeSubID attributeSubID_;
-		Range initialValue_;
-		Environment environment_;
-		
-		std::vector<Modifier*> modifiers_;
+		const Entity* entity_;
+		Range value_;
 	};
 }
 

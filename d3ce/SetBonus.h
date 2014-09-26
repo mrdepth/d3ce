@@ -15,7 +15,7 @@ namespace d3ce {
 	
 	class SetBonus: public Entity {
 	public:
-		SetBonus(Engine* engine, Entity* parent, Hash setBonusHash, Hash parentHash, int numOfSet);
+		SetBonus(std::shared_ptr<Engine> engine, Entity* parent, Hash setBonusHash, Hash parentHash, int numOfSet);
 		virtual Entity* cloneIn(Entity* parent);
 		int numOfSet();
 		Hash setBonusHash();

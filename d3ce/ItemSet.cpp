@@ -12,7 +12,7 @@
 
 using namespace d3ce;
 
-ItemSet::ItemSet(Engine* engine, Entity* parent, Hash setBonusHash) : Entity(engine, parent) {
+ItemSet::ItemSet(std::shared_ptr<Engine> engine, Entity* parent, Hash setBonusHash) : Entity(engine, parent), setBonusHash_(setBonusHash){
 	sqlite3* db = engine->getDb();
 	std::stringstream sql;
 	sql << "SELECT itemSetBonusHash, numOfSet FROM itemSetBonus WHERE parentHash=" << setBonusHash;
@@ -26,6 +26,8 @@ ItemSet::ItemSet(Engine* engine, Entity* parent, Hash setBonusHash) : Entity(eng
 		bonus.numOfSet = sqlite3_column_int(stmt, 1);
 		if (bonus.numOfSet > 0)
 			bonuses_.push_back(bonus);
+
+		setBonuses_.push_back(new SetBonus(engine_, parent_, bonus.setBonusHash, setBonusHash_, bonus.numOfSet));
 	}
 	sqlite3_finalize(stmt);
 }
@@ -44,12 +46,12 @@ Entity* ItemSet::cloneIn(Entity* parent) {
 	return new ItemSet(*this, parent);
 }
 
-void ItemSet::addItem(Gear* item) {
+void ItemSet::addItem(std::shared_ptr<Gear> item) {
 	items_.push_back(item);
 	update();
 }
 
-void ItemSet::removeItem(Gear* item) {
+void ItemSet::removeItem(std::shared_ptr<Gear> item) {
 	items_.erase(std::remove(items_.begin(), items_.end(), item));
 	update();
 }
@@ -57,7 +59,7 @@ void ItemSet::removeItem(Gear* item) {
 void ItemSet::update() {
 	size_t numOfSet = items_.size();
 	
-	{
+	/*{
 		std::vector<SetBonus*>::iterator i, end = setBonuses_.end();
 		for (i = setBonuses_.begin(); i != end; i++) {
 			if ((*i)->numOfSet() > numOfSet) {
@@ -81,10 +83,25 @@ void ItemSet::update() {
 			if (!find)
 				setBonuses_.push_back(new SetBonus(engine_, parent_, i->setBonusHash, setBonusHash_, i->numOfSet));
 		}
-	}
+	}*/
 }
 
 Environment ItemSet::environment() {
 	Entity* hero = this->getParent();
 	return Environment(this, hero, hero->getParent());
+}
+
+Attribute ItemSet::getAttribute(AttributeID attributeID, AttributeSubID attributeSubID) const {
+	int numOfSet = items_.size();
+	int discount = static_cast<int>(static_cast<Range>((*getParent())[AttributeAttributeSetItemDiscountID]).max);
+	Range value = 0;
+	for (auto bonus : setBonuses_) {
+		if (std::max(bonus->numOfSet() - discount, 2) <= numOfSet)
+			value = value + (*bonus)[attributeID][attributeSubID];
+	}
+	return Attribute(this, attributeID, attributeSubID, value);
+}
+
+Hash ItemSet::getSetBonusHashe() const {
+	return setBonusHash_;
 }

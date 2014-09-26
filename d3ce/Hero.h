@@ -29,79 +29,84 @@ namespace d3ce {
 		};
 
 		virtual ~Hero();
-		
-		Gear* addItem(Hash itemHash);
-		Gear* addItem(const std::string& nonNlsKey);
-		void removeItem(Gear* item);
+
+		//virtual Attribute getAttribute(AttributeID attributeID, AttributeSubID attributeSubID = AttributeNoneSubID) const;
+
+		std::shared_ptr<Gear> addItem(Hash itemHash);
+		std::shared_ptr<Gear> addItem(const std::string& nonNlsKey);
+		void removeItem(std::shared_ptr<Gear>);
 		
 		Skill* addSkill(const std::string& skillName);
 		void removeSkill(Skill* skill);
 
-		virtual ClassMask getClass() = 0;
+		virtual ClassMask getClass() const = 0;
 		
-		Gear* getItem(Item::Slot slot);
-		std::vector<Gear*> getItems();
+		std::shared_ptr<Gear> getItem(Item::Slot slot) const;
+		const std::vector<std::shared_ptr<Gear>>& getItems() const;
 		
-		bool slotIsEmpty(Item::Slot slot);
+		bool slotIsEmpty(Item::Slot slot) const;
 		
 		void setLevel(int level);
 		void setParagonLevel(int level);
-		int getLevel();
-		int getParagonLevel();
+		int getLevel() const;
+		int getParagonLevel() const;
 		
-		AttributeSubID getResourceTypePrimary();
-		AttributeSubID getResourceTypeSecondary();
+		AttributeSubID getResourceTypePrimary() const;
+		AttributeSubID getResourceTypeSecondary() const;
 		
 		//Stats
-		Range getStrength();
-		Range getDexterity();
-		Range getIntelligence();
-		Range getVitality();
+		Range getStrength() const;
+		Range getDexterity() const;
+		Range getIntelligence() const;
+		Range getVitality() const;
 		
-		Resistance getResistances();
-		Range getArmor();
-		Range getDamageReductionFromArmor(int againstMosterLevel = -1);
-		Resistance getDamageReductionFromResistances(int againstMosterLevel = -1);
-		Range getAverageDamageReduction(int againstMosterLevel = -1);
-		Range getBlockChance();
-		Range getBlockAmmountMin();
-		Range getBlockAmmountMax();
-		Range getDodgeChance();
+		Resistance getResistances() const;
+		Range getArmor() const;
+		Range getDamageReductionFromArmor(int againstMosterLevel = -1) const;
+		Resistance getDamageReductionFromResistances(int againstMosterLevel = -1) const;
+		Range getAverageDamageReduction(int againstMosterLevel = -1) const;
+		Range getBlockChance() const;
+		Range getBlockAmmountMin() const;
+		Range getBlockAmmountMax() const;
+		Range getDodgeChance() const;
 		
-		Range getHitPoints();
-		Range getEffectiveHitPoints();
-		Range getLifeRegen();
-		Range getLifePerHit();
-		Range getLifePerKill();
-		Range getLifeSteal();
+		Range getHitPoints() const;
+		Range getEffectiveHitPoints() const;
+		Range getLifeRegen() const;
+		Range getLifePerHit() const;
+		Range getLifePerKill() const;
+		Range getLifeSteal() const;
 		
-		Range getDPS();
-		Range getCritChance();
-		Range getCritDamage();
-		Range getAttackSpeed();
-		Range getMaxDamage();
-		Range getMinDamage();
+		Range getDPS() const;
+		Range getCritChance() const;
+		Range getCritDamage() const;
+		Range getAttackSpeed() const;
+		Range getMaxDamage() const;
+		Range getMinDamage() const;
 		
-		Range getMagicFind();
-		Range getGoldFind();
+		Range getMagicFind() const;
+		Range getGoldFind() const;
 		
-		Range getPrimaryResourceEffectiveMax();
-		Range getSecondaryResourceEffectiveMax();
+		Range getPrimaryResourceEffectiveMax() const;
+		Range getSecondaryResourceEffectiveMax() const;
 		
-		Range getPrimaryResourceRegen();
-		Range getSecondaryResourceRegen();
+		Range getPrimaryResourceRegen() const;
+		Range getSecondaryResourceRegen() const;
+
+		virtual Attribute getAttribute(AttributeID attributeID, AttributeSubID attributeSubID = AttributeNoneSubID) const;
+
 	protected:
 		virtual Environment environment();
 		Hero(const Hero& other, Party* party);
-		Hero(Engine* engine, Party* party);
+		Hero(std::shared_ptr<Engine> engine, Party* party);
 
 	private:
-		std::vector<Gear*> items_;
+		std::vector<std::shared_ptr<Gear>> items_;
 		std::vector<Skill*> skills_;
-		std::map<Hash, ItemSet*> setBonuses_;
+		std::vector<std::shared_ptr<ItemSet>> setBonuses_;
 		Follower* follower_;
 
-		Gear* addItem(Gear* item);
+		std::shared_ptr<Gear> addItem(std::shared_ptr<Gear> item);
 	};
 }
 

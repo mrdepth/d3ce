@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -10,9 +10,7 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <PropertyGroup Label="Globals">
-    <VCTargetsPath Condition="'$(VCTargetsPath11)' != '' and '$(VSVersion)' == '' and '$(VisualStudioVersion)' == ''">$(VCTargetsPath11)</VCTargetsPath>
-  </PropertyGroup>
+  <PropertyGroup Label="Globals" />
   <PropertyGroup Label="Globals">
     <ProjectGuid>{D1D75B70-FCDE-4D73-BEC7-9AE8A435243F}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
@@ -22,13 +20,13 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
-    <PlatformToolset>v110</PlatformToolset>
+    <PlatformToolset>v120</PlatformToolset>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
   </PropertyGroup>
@@ -80,8 +78,10 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="d3ce\Affix.cpp" />
+    <ClCompile Include="d3ce\Aggregator.cpp" />
     <ClCompile Include="d3ce\Armor.cpp" />
     <ClCompile Include="d3ce\Attribute.cpp" />
+    <ClCompile Include="d3ce\AttributeIDs.cpp" />
     <ClCompile Include="d3ce\Barbarian.cpp" />
     <ClCompile Include="d3ce\DemonHunter.cpp" />
     <ClCompile Include="d3ce\Engine.cpp" />
@@ -95,16 +95,6 @@
     <ClCompile Include="d3ce\Item.cpp" />
     <ClCompile Include="d3ce\ItemSet.cpp" />
     <ClCompile Include="d3ce\main.cpp" />
-    <ClCompile Include="d3ce\Modifier.cpp" />
-    <ClCompile Include="d3ce\ModifierAdd.cpp" />
-    <ClCompile Include="d3ce\ModifierPostAssign.cpp" />
-    <ClCompile Include="d3ce\ModifierPostBoost.cpp" />
-    <ClCompile Include="d3ce\ModifierPostDiv.cpp" />
-    <ClCompile Include="d3ce\ModifierPostMul.cpp" />
-    <ClCompile Include="d3ce\ModifierPostReduce.cpp" />
-    <ClCompile Include="d3ce\ModifierPreAssign.cpp" />
-    <ClCompile Include="d3ce\ModifierPreMul.cpp" />
-    <ClCompile Include="d3ce\ModifierSub.cpp" />
     <ClCompile Include="d3ce\Monk.cpp" />
     <ClCompile Include="d3ce\OffHand.cpp" />
     <ClCompile Include="d3ce\Party.cpp" />
@@ -118,6 +108,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3ce\Affix.h" />
+    <ClInclude Include="d3ce\Aggregator.h" />
     <ClInclude Include="d3ce\Armor.h" />
     <ClInclude Include="d3ce\Attribute.h" />
     <ClInclude Include="d3ce\AttributeIDs.h" />
@@ -133,16 +124,6 @@
     <ClInclude Include="d3ce\Hero.h" />
     <ClInclude Include="d3ce\Item.h" />
     <ClInclude Include="d3ce\ItemSet.h" />
-    <ClInclude Include="d3ce\Modifier.h" />
-    <ClInclude Include="d3ce\ModifierAdd.h" />
-    <ClInclude Include="d3ce\ModifierPostAssign.h" />
-    <ClInclude Include="d3ce\ModifierPostBoost.h" />
-    <ClInclude Include="d3ce\ModifierPostDiv.h" />
-    <ClInclude Include="d3ce\ModifierPostMul.h" />
-    <ClInclude Include="d3ce\ModifierPostReduce.h" />
-    <ClInclude Include="d3ce\ModifierPreAssign.h" />
-    <ClInclude Include="d3ce\ModifierPreMul.h" />
-    <ClInclude Include="d3ce\ModifierSub.h" />
     <ClInclude Include="d3ce\Monk.h" />
     <ClInclude Include="d3ce\OffHand.h" />
     <ClInclude Include="d3ce\Party.h" />

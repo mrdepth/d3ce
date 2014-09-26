@@ -12,6 +12,7 @@
 #include "Range.h"
 #include "Attribute.h"
 #include "Hero.h"
+#include <algorithm>
 
 namespace d3ce {
 	class Expression {

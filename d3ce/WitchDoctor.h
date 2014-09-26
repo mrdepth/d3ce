@@ -17,9 +17,9 @@ namespace d3ce {
 	
 	class WitchDoctor: public Hero {
 	public:
-		WitchDoctor(Engine* engine, Party* party);
+		WitchDoctor(std::shared_ptr<Engine> engine, Party* party);
 		virtual Entity* cloneIn(Entity* parent);
-		virtual ClassMask getClass();
+		virtual ClassMask getClass() const;
 	protected:
 		WitchDoctor(const WitchDoctor& other, Party* party);
 	};

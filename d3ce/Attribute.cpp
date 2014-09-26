@@ -7,67 +7,15 @@
 //
 
 #include "Attribute.h"
-#include "Hero.h"
-#include "Party.h"
-
-#include "ModifierPreAssign.h"
-#include "ModifierPostAssign.h"
-#include "ModifierAdd.h"
-#include "ModifierSub.h"
-#include "ModifierPostMul.h"
-#include "ModifierPostDiv.h"
-#include "ModifierPostBoost.h"
-#include "ModifierPostReduce.h"
-#include "ModifierPreMul.h"
-
-/*#include "ExpressionAttribute.h"
-#include "ExpressionAdd.h"
-#include "ExpressionSub.h"
-#include "ExpressionDiv.h"
-#include "ExpressionMul.h"
-#include "ExpressionConst.h"
-#include "ExpressionMax.h"
-#include "ExpressionMin.h"
-#include "ExpressionIf.h"
-#include "ExpressionEq.h"*/
-#include "Expression.h"
+#include "Entity.h"
 
 using namespace d3ce;
 
-Value<Range> V(double value) {
-	return Value<Range>(Range(value));
-}
-
-Value<Range> V(const Range& value) {
-	return Value<Range>(value);
-}
-
-Value<AttributeWrapper> V(Attribute& value) {
-	return Value<AttributeWrapper>(value);
-}
-
-template<typename T1, typename T2, typename T3> Value<ExpressionIf<T1, T2, T3> > If(const T1& condition, const T2& thenValue, const T3& elseValue) {
-	return Value<ExpressionIf<T1, T2, T3> >(ExpressionIf<T1, T2, T3>(condition, thenValue, elseValue));
-}
-
-template<typename T1, typename T2> Value<ExpressionMax<T1, T2> > max(const T1& arg1, const T2& arg2) {
-	return Value<ExpressionMax<T1, T2> >(ExpressionMax<T1, T2>(arg1, arg2));
-}
-
-template<typename T1, typename T2> Value<ExpressionMin<T1, T2> > min(const T1& arg1, const T2& arg2) {
-	return Value<ExpressionMin<T1, T2> >(ExpressionMin<T1, T2>(arg1, arg2));
-}
-
-template<typename T> Value<ExpressionSlotConformsTo<T> > conforms(Hero* hero, Item::Slot slot, const T& itemType) {
-	return Value<ExpressionSlotConformsTo<T> >(ExpressionSlotConformsTo<T>(hero, slot, itemType));
-}
-
-template<typename T> T* ptr(const T& arg) {
-	return new T(arg);
+Attribute::Attribute(const Entity* entity, AttributeID attributeID, AttributeSubID attributeSubID, const Range& value): entity_(entity), attributeID_(attributeID), attributeSubID_(attributeSubID), value_(value) {
 }
 
 
-Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, const Environment& environment, const Range& value) : attributeID_(attributeID), attributeSubID_(attributeSubID), environment_(environment), initialValue_(value) {
+/*Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, const Environment& environment, const Range& value) : attributeID_(attributeID), attributeSubID_(attributeSubID), environment_(environment), initialValue_(value) {
 	switch(attributeID_) {
 			
 		//Primary Attributes
@@ -209,7 +157,7 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 		case AttributeAltLevelID:
 			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeLevelTotalID, ptr(V(*this))));
 			modifiers_.push_back(new ModifierPostMul(environment.hero, AttributeGoldFindAltLevelsTotalID, ptr(V(*this))));
-			modifiers_.push_back(new ModifierPostMul(environment.hero, AttributeMagicFindAltLevelsTotalID, ptr(V(*this))));
+			//modifiers_.push_back(new ModifierPostMul(environment.hero, AttributeMagicFindAltLevelsTotalID, ptr(V(*this))));
 			break;
 		case AttributeLevelTotalID:
 			modifiers_.push_back(new ModifierPostMul(environment.hero, AttributeStrengthTotalFromLevelID, ptr(V(*this) - V(1))));
@@ -332,7 +280,7 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 																 V(*(*environment.hero)[AttributeIntelligenceTotalID])
 																 )
 															  ) / V(100))));*/
-			for (AttributeSubID i = AttributePhysicalSubID; i <= AttributeHolySubID; i++) {
+												 /* for (AttributeSubID i : {AttributePhysicalSubID, AttributeFireSubID, AttributeLightningSubID, AttributeColdSubID, AttributePoisonSubID, AttributeArcaneSubID, AttributeHolySubID}) {
 				modifiers_.push_back(new ModifierPostBoost(environment.hero, AttributeDamageMinTotalID, i,
 														   ptr(
 															   If(V(*this) == V(PrimaryDamageAttributeDexterity),
@@ -712,7 +660,7 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 		{
 			Entity& hero = *environment.hero;
 			
-			for (AttributeSubID i = AttributePhysicalSubID; i <= AttributeHolySubID; i++) {
+			/*for (AttributeSubID i = AttributePhysicalSubID; i <= AttributeHolySubID; i++) {
 				modifiers_.push_back(new ModifierPostAssign(environment.hero, AttributeResistanceTotalID, i,
 															ptr(
 																max(max(max(V(*hero[AttributeResistanceSubTotalID][AttributePhysicalSubID]), V(*hero[AttributeResistanceSubTotalID][AttributeFireSubID])),
@@ -720,8 +668,8 @@ Attribute::Attribute(AttributeID attributeID, AttributeSubID attributeSubID, con
 																	max(V(*hero[AttributeResistanceSubTotalID][AttributeHolySubID]),
 																		max(V(*hero[AttributeResistanceSubTotalID][AttributePoisonSubID]), V(*hero[AttributeResistanceSubTotalID][AttributeArcaneSubID]))))
 																)));
-			}
-
+			}*/
+/*
 		}
 		case AttributeHitpointsRegenPercentPerSecondID:
 			modifiers_.push_back(new ModifierAdd(environment.hero, AttributeHitpointsRegenPerSecondTotalID, ptr(V(*this) * V(*(*environment.hero)[AttributeHitpointsMaxTotalID]))));
@@ -773,4 +721,4 @@ void Attribute::removeModifiers() {
 	for (i = modifiers_.begin(); i != end; i++) {
 		(*i)->entity_->removeModifier(*i);
 	}
-}
+}*/

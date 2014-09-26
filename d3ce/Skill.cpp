@@ -49,10 +49,10 @@ const Hash SkillBloodRitualHash = hash("blood-ritual");
 const Hash SkillPierceTheVeilHash = hash("pierce-the-veil");
 
 
-Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Entity(engine, parent), skillname_(skillName) {
+Skill::Skill(std::shared_ptr<Engine> engine, Entity* parent, const std::string& skillName) : Entity(engine, parent), skillname_(skillName) {
 	Hash skillNameHash = hash(skillName);
 	//Wizard
-	if (skillNameHash == SkillEnergyArmorHash) {
+	/*if (skillNameHash == SkillEnergyArmorHash) {
 		getAttribute(AttributeArmorBonusSkillPercentID)->setValue(0.65);
 		getAttribute(AttributeResourceCapacityUsedID, AttributeArcanumSubID)->setValue(20);
 	}
@@ -168,7 +168,7 @@ Skill::Skill(Engine* engine, Entity* parent, const std::string& skillName) : Ent
 	}
 	else if (skillNameHash == SkillPierceTheVeilHash) {
 		getAttribute(AttributeDamageBonusSkillPercentID)->setValue(0.20);
-	}
+	}*/
 }
 
 Skill::Skill(const Skill& other, Entity* parent) : Entity(other, parent), skillname_(other.skillname_) {

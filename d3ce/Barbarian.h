@@ -17,9 +17,9 @@ namespace d3ce {
 	
 	class Barbarian: public Hero {
 	public:
-		Barbarian(Engine* engine, Party* party);
+		Barbarian(std::shared_ptr<Engine> engine, Party* party);
 		virtual Entity* cloneIn(Entity* parent);
-		virtual ClassMask getClass();
+		virtual ClassMask getClass() const;
 	protected:
 		Barbarian(const Barbarian& other, Party* party);
 	};

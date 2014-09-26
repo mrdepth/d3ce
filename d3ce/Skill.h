@@ -15,7 +15,7 @@ namespace d3ce {
 
 	class Skill: public Entity {
 	public:
-		Skill(Engine* engine, Entity* parent, const std::string& skillName);
+		Skill(std::shared_ptr<Engine> engine, Entity* parent, const std::string& skillName);
 		Skill(const Skill& other, Entity* parent);
 		virtual Entity* cloneIn(Entity* parent);
 		const std::string& skillName();

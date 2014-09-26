@@ -15,7 +15,7 @@ namespace d3ce {
 	
 	class Armor: public Gear {
 	public:
-		Armor(Engine* engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, const std::vector<Slot>& possibleSlots);
+		Armor(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, const std::vector<Slot>& possibleSlots);
 		virtual Entity* cloneIn(Entity* parent);
 	protected:
 		Armor(const Armor& other, Entity* parent);

@@ -17,7 +17,7 @@ namespace d3ce {
 		Range();
 		Range(double value);
 		Range(double min, double max);
-		Range operator+(const Range& other) const;
+		/*Range operator+(const Range& other) const;
 		Range operator-(const Range& other) const;
 		Range operator*(const Range& other) const;
 		Range operator/(const Range& other) const;
@@ -26,7 +26,7 @@ namespace d3ce {
 		bool operator>=(const Range& other) const;
 		bool operator<=(const Range& other) const;
 		bool operator==(const Range& other) const;
-		bool operator!=(const Range& other) const;
+		bool operator!=(const Range& other) const;*/
 
 		Range& operator+=(const Range& other);
 		Range& operator-=(const Range& other);
@@ -36,14 +36,24 @@ namespace d3ce {
 		double min;
 		double max;
 		
-		Range operator()(double from);
-
-		Range value() {
-			return *this;
-		};
+		//operator bool();
 		
 		std::string toString(int precision = 0);
 	};
+
+	Range operator+(const Range& arg1, const Range& arg2);
+	Range operator-(const Range& arg1, const Range& arg2);
+	Range operator*(const Range& arg1, const Range& arg2);
+	Range operator/(const Range& arg1, const Range& arg2);
+	bool operator>(const Range& arg1, const Range& arg2);
+	bool operator<(const Range& arg1, const Range& arg2);
+	bool operator>=(const Range& arg1, const Range& arg2);
+	bool operator<=(const Range& arg1, const Range& arg2);
+	bool operator==(const Range& arg1, const Range& arg2);
+	bool operator!=(const Range& arg1, const Range& arg2);
+
+	Range pin(const Range& value, const Range& min, const Range& max);
+	Range floor(const Range& value);
 }
 
 #endif /* defined(__d3ce__Range__) */

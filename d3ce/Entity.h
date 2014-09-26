@@ -14,61 +14,106 @@
 #include <string>
 #include "Engine.h"
 #include "Attribute.h"
-#include "Modifier.h"
 #include "Environment.h"
 #include "types.h"
 
+
 namespace d3ce {
-	
+
 	typedef std::pair<AttributeID, AttributeSubID> AttributeKey;
-	typedef std::map<AttributeKey, Attribute*> AttributesMap;
+	typedef std::map<AttributeKey, Range> AttributesMap;
 
 	class Entity {
 	public:
-		class AttributeContainer {
+		/*class AttributeWrapper {
 		public:
-			AttributeContainer(Entity* entity, AttributeID attributeID) : entity_(entity), attributeID_(attributeID) {}
+			AttributeWrapper(Entity* entity, const Attribute& attribute) : attribute_(attribute) {}
+			Attribute& operator=(const Range &value) { entity_->setAttribute(attribute_.getAttributeID(), attribute_.getAttributeSubID(), value);}
+			Attribute& operator=(const Attribute &other) { entity_->setAttribute(attribute_.getAttributeID(), attribute_.getAttributeSubID(), other.value()); }
+			operator Attribute() {return attribute_;}
+			operator Range() {return attribute_.value();}
+		private:
+			Attribute attribute_;
+			Entity* entity_;
+		};*/
+
+		class AttributeWrapper {
+		public:
+			AttributeWrapper(Entity* entity, AttributeID attributeID, AttributeSubID attributeSubID = AttributeNoneSubID) : entity_(entity), attributeID_(attributeID), attributeSubID_(attributeSubID) {}
 			
-			Attribute* operator[](AttributeSubID attributeSubID) {
-				return entity_->getAttribute(attributeID_, attributeSubID);
+			AttributeWrapper operator[](AttributeSubID attributeSubID) const {
+				return AttributeWrapper(entity_, attributeID_, attributeSubID);
 			}
-			
-			Attribute* operator->() {
-				return entity_->getAttribute(attributeID_);
+
+			operator Attribute() const {
+				return entity_->getAttribute(attributeID_, attributeSubID_);
 			}
-			
-			Attribute& operator*() {
-				return *entity_->getAttribute(attributeID_);
+
+			operator Range() const {
+				return entity_->getAttribute(attributeID_, attributeSubID_);
 			}
+
+			AttributeWrapper& operator=(const Range& value) {
+				entity_->setAttribute(attributeID_, attributeSubID_, value);
+				return *this;
+			}
+
+			AttributeWrapper& operator=(const AttributeWrapper& other) {
+				entity_->setAttribute(attributeID_, attributeSubID_, other);
+				return *this;
+			}
+
 		private:
 			Entity* entity_;
 			AttributeID attributeID_;
+			AttributeSubID attributeSubID_;
 		};
-		
-		virtual ~Entity();
-		virtual Entity* cloneIn(Entity* parent) = 0;
 
-		void addModifier(Modifier* modifier);
-		void removeModifier(Modifier* modifier);
-		Attribute* getAttribute(AttributeID attributeID, AttributeSubID attributeSubID = AttributeNoneSubID);
-		Attribute* getAttribute(const std::string& nonNlsKey);
-		std::vector<Modifier*> getAttributeModifiers(Attribute* attribute);
-		Entity* getParent();
+		class ConstAttributeWrapper {
+		public:
+			ConstAttributeWrapper(const Entity* entity, AttributeID attributeID, AttributeSubID attributeSubID = AttributeNoneSubID) : entity_(entity), attributeID_(attributeID), attributeSubID_(attributeSubID) {}
+
+			ConstAttributeWrapper operator[](AttributeSubID attributeSubID) const {
+				return ConstAttributeWrapper(entity_, attributeID_, attributeSubID);
+			}
+
+			operator Attribute() const {
+				return entity_->getAttribute(attributeID_, attributeSubID_);
+			}
+
+			operator Range() const {
+				return entity_->getAttribute(attributeID_, attributeSubID_);
+			}
+		private:
+			const Entity* entity_;
+			AttributeID attributeID_;
+			AttributeSubID attributeSubID_;
+		};
+
+		virtual ~Entity();
+
+		virtual Attribute getAttribute(AttributeID attributeID, AttributeSubID attributeSubID = AttributeNoneSubID) const;
+		Attribute getAttribute(const std::string& nonNlsKey) const;
+		Entity* getParent() const;
 		
-		Attribute* operator[](AttributeKey& key);
-		AttributeContainer operator[](AttributeID attributeID);
-		Attribute* operator[](const std::string& nonNlsKey);
+		AttributeWrapper operator[](AttributeKey& key);
+		AttributeWrapper operator[](AttributeID attributeID);
+		AttributeWrapper operator[](const std::string& nonNlsKey);
+
+		ConstAttributeWrapper operator[](AttributeKey& key) const;
+		ConstAttributeWrapper operator[](AttributeID attributeID) const;
+		ConstAttributeWrapper operator[](const std::string& nonNlsKey) const;
+
+		void setAttribute(AttributeID attributeID, AttributeSubID attributeSubID, const Range& value);
 	protected:
 		Entity(const Entity& other, Entity* parent);
-		Entity(Engine* engine, Entity* parent = NULL);
+		Entity(std::shared_ptr<Engine> engine, Entity* parent = NULL);
 		
-		Engine* engine_;
+		std::shared_ptr<Engine> engine_;
 		Entity* parent_;
 		AttributesMap attributes_;
-		std::vector<Modifier*> modifiers_;
+		AttributeKey getKey(const std::string& nonNlsKey) const;
 
-		virtual Environment environment() = 0;
-		void copyAttributes(const Entity& other);
 	};
 	
 }

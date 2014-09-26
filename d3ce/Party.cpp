@@ -16,33 +16,33 @@
 
 using namespace d3ce;
 
-Party::Party(Engine* engine) : Entity(engine) {
+Party::Party(std::shared_ptr<Engine> engine) : Entity(engine) {
 	
 }
 
 Party::Party(const Party& other) : Entity(other){
-	std::vector<Hero*>::const_iterator i, end = other.heroes_.end();
-	for (i = other.heroes_.begin(); i != end; i++)
-		heroes_.push_back(dynamic_cast<Hero*>((*i)->cloneIn(this)));
+	//std::vector<Hero*>::const_iterator i, end = other.heroes_.end();
+	//for (i = other.heroes_.begin(); i != end; i++)
+	//	heroes_.push_back(dynamic_cast<Hero*>((*i)->cloneIn(this)));
 }
 
-Hero* Party::addHero(ClassMask classMask) {
-	Hero* hero;
+std::shared_ptr<Hero> Party::addHero(ClassMask classMask) {
+	std::shared_ptr<Hero> hero;
 	switch (classMask) {
 		case ClassMaskBarbarian:
-			hero = new Barbarian(engine_, this);
+			hero.reset(new Barbarian(engine_, this));
 			break;
 		case ClassMaskDemonHunter:
-			hero = new DemonHunter(engine_, this);
+			hero.reset(new DemonHunter(engine_, this));
 			break;
 		case ClassMaskMonk:
-			hero = new Monk(engine_, this);
+			hero.reset(new Monk(engine_, this));
 			break;
 		case ClassMaskWitchDoctor:
-			hero = new WitchDoctor(engine_, this);
+			hero.reset(new WitchDoctor(engine_, this));
 			break;
 		case ClassMaskWizard:
-			hero = new Wizard(engine_, this);
+			hero.reset(new Wizard(engine_, this));
 			break;
 		default:
 			break;
@@ -52,9 +52,8 @@ Hero* Party::addHero(ClassMask classMask) {
 	return hero;
 }
 
-void Party::removeHero(Hero* hero) {
+void Party::removeHero(std::shared_ptr<Hero> hero) {
 	heroes_.erase(std::remove(heroes_.begin(), heroes_.end(), hero));
-	delete hero;
 }
 
 
@@ -62,14 +61,10 @@ Environment Party::environment() {
 	return Environment (this, NULL, this);
 }
 
-Party* Party::clone() {
-	return dynamic_cast<Party*>(cloneIn(NULL));
-}
-
 Entity* Party::cloneIn(Entity* parent) {
 	return new Party(*this);
 }
 
-const std::vector<Hero*>& Party::getHeroes() {
+const std::vector<std::shared_ptr<Hero>>& Party::getHeroes() {
 	return heroes_;
 }

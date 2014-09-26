@@ -16,6 +16,7 @@ namespace d3ce {
 	
 	class Environment {
 	public:
+		Environment() {};
 		Environment(Entity* self, Entity* hero, Entity* party) : self(self), hero(hero), party(party) {};
 		class Entity* self;
 		class Entity* hero;

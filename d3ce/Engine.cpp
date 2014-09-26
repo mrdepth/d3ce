@@ -11,6 +11,11 @@
 
 using namespace d3ce;
 
+std::shared_ptr<Engine> Engine::Create(const char* databasePath) {
+	std::shared_ptr<Engine> ptr(new Engine(databasePath));
+	return ptr;
+}
+
 bool d3ce::isValidHash(Hash hash) {
 	return hash != -1 && hash != 0;
 }

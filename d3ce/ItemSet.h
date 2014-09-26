@@ -17,11 +17,13 @@ namespace d3ce {
 	
 	class ItemSet: public Entity {
 	public:
-		ItemSet(Engine* engine, Entity* parent, Hash setBonusHash);
+		ItemSet(std::shared_ptr<Engine> engine, Entity* parent, Hash setBonusHash);
 		virtual ~ItemSet();
 		virtual Entity* cloneIn(Entity* parent);
-		void addItem(Gear* item);
-		void removeItem(Gear* item);
+		void addItem(std::shared_ptr<Gear> item);
+		void removeItem(std::shared_ptr<Gear> item);
+		virtual Attribute getAttribute(AttributeID attributeID, AttributeSubID attributeSubID = AttributeNoneSubID) const;
+		Hash getSetBonusHashe() const;
 	protected:
 		ItemSet(const ItemSet& other, Entity* parent);
 		virtual Environment environment();
@@ -34,7 +36,7 @@ namespace d3ce {
 		Hash setBonusHash_;
 		std::vector<SetBonus*> setBonuses_;
 		std::vector<Bonus> bonuses_;
-		std::vector<Gear*> items_;
+		std::vector<std::shared_ptr<Gear>> items_;
 		
 		void update();
 	};

@@ -12,30 +12,6 @@
     <ClCompile Include="d3ce\Range.cpp" />
     <ClCompile Include="d3ce\Skill.cpp" />
     <ClCompile Include="d3ce\ThirdParty\sqlite3.c" />
-    <ClCompile Include="d3ce\Modifier.cpp">
-      <Filter>Modifiers</Filter>
-    </ClCompile>
-    <ClCompile Include="d3ce\ModifierAdd.cpp">
-      <Filter>Modifiers</Filter>
-    </ClCompile>
-    <ClCompile Include="d3ce\ModifierPostBoost.cpp">
-      <Filter>Modifiers</Filter>
-    </ClCompile>
-    <ClCompile Include="d3ce\ModifierPostDiv.cpp">
-      <Filter>Modifiers</Filter>
-    </ClCompile>
-    <ClCompile Include="d3ce\ModifierPostMul.cpp">
-      <Filter>Modifiers</Filter>
-    </ClCompile>
-    <ClCompile Include="d3ce\ModifierPostReduce.cpp">
-      <Filter>Modifiers</Filter>
-    </ClCompile>
-    <ClCompile Include="d3ce\ModifierPreAssign.cpp">
-      <Filter>Modifiers</Filter>
-    </ClCompile>
-    <ClCompile Include="d3ce\ModifierPreMul.cpp">
-      <Filter>Modifiers</Filter>
-    </ClCompile>
     <ClCompile Include="d3ce\Expression.cpp">
       <Filter>Expressions</Filter>
     </ClCompile>
@@ -56,9 +32,6 @@
     </ClCompile>
     <ClCompile Include="d3ce\Wizard.cpp">
       <Filter>Heroes</Filter>
-    </ClCompile>
-    <ClCompile Include="d3ce\ModifierSub.cpp">
-      <Filter>Modifiers</Filter>
     </ClCompile>
     <ClCompile Include="d3ce\Item.cpp">
       <Filter>Items</Filter>
@@ -84,9 +57,8 @@
     <ClCompile Include="d3ce\SetBonus.cpp">
       <Filter>Set</Filter>
     </ClCompile>
-    <ClCompile Include="d3ce\ModifierPostAssign.cpp">
-      <Filter>Modifiers</Filter>
-    </ClCompile>
+    <ClCompile Include="d3ce\Aggregator.cpp" />
+    <ClCompile Include="d3ce\AttributeIDs.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="d3ce\Affix.h" />
@@ -101,30 +73,6 @@
     <ClInclude Include="d3ce\Skill.h" />
     <ClInclude Include="d3ce\ThirdParty\sqlite3.h" />
     <ClInclude Include="d3ce\ThirdParty\sqlite3ext.h" />
-    <ClInclude Include="d3ce\Modifier.h">
-      <Filter>Modifiers</Filter>
-    </ClInclude>
-    <ClInclude Include="d3ce\ModifierAdd.h">
-      <Filter>Modifiers</Filter>
-    </ClInclude>
-    <ClInclude Include="d3ce\ModifierPostBoost.h">
-      <Filter>Modifiers</Filter>
-    </ClInclude>
-    <ClInclude Include="d3ce\ModifierPostDiv.h">
-      <Filter>Modifiers</Filter>
-    </ClInclude>
-    <ClInclude Include="d3ce\ModifierPostMul.h">
-      <Filter>Modifiers</Filter>
-    </ClInclude>
-    <ClInclude Include="d3ce\ModifierPostReduce.h">
-      <Filter>Modifiers</Filter>
-    </ClInclude>
-    <ClInclude Include="d3ce\ModifierPreAssign.h">
-      <Filter>Modifiers</Filter>
-    </ClInclude>
-    <ClInclude Include="d3ce\ModifierPreMul.h">
-      <Filter>Modifiers</Filter>
-    </ClInclude>
     <ClInclude Include="d3ce\Expression.h">
       <Filter>Expressions</Filter>
     </ClInclude>
@@ -145,9 +93,6 @@
     </ClInclude>
     <ClInclude Include="d3ce\Wizard.h">
       <Filter>Heroes</Filter>
-    </ClInclude>
-    <ClInclude Include="d3ce\ModifierSub.h">
-      <Filter>Modifiers</Filter>
     </ClInclude>
     <ClInclude Include="d3ce\Item.h">
       <Filter>Items</Filter>
@@ -173,14 +118,9 @@
     <ClInclude Include="d3ce\SetBonus.h">
       <Filter>Set</Filter>
     </ClInclude>
-    <ClInclude Include="d3ce\ModifierPostAssign.h">
-      <Filter>Modifiers</Filter>
-    </ClInclude>
+    <ClInclude Include="d3ce\Aggregator.h" />
   </ItemGroup>
   <ItemGroup>
-    <Filter Include="Modifiers">
-      <UniqueIdentifier>{06d74905-fbb5-4a70-a1b6-cfb474781a5e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Heroes">
       <UniqueIdentifier>{a17ad9e4-64ab-4e06-b834-4636194545e0}</UniqueIdentifier>
     </Filter>

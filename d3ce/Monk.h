@@ -17,9 +17,9 @@ namespace d3ce {
 	
 	class Monk: public Hero {
 	public:
-		Monk(Engine* engine, Party* party);
+		Monk(std::shared_ptr<Engine> engine, Party* party);
 		virtual Entity* cloneIn(Entity* parent);
-		virtual ClassMask getClass();
+		virtual ClassMask getClass() const;
 	protected:
 		Monk(const Monk& other, Party* party);
 	};

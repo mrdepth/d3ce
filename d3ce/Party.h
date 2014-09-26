@@ -15,14 +15,13 @@ namespace d3ce {
 
 	class Party: public Entity {
 	public:
-		Party(Engine* engine);
-		Party* clone();
-		Hero* addHero(ClassMask classMask);
-		void removeHero(Hero* hero);
-		const std::vector<Hero*>& getHeroes();
+		Party(std::shared_ptr<Engine> engine);
+		std::shared_ptr<Hero> addHero(ClassMask classMask);
+		void removeHero(std::shared_ptr<Hero> hero);
+		const std::vector<std::shared_ptr<Hero>>& getHeroes();
 	protected:
 		virtual Environment environment();
-		std::vector<Hero*> heroes_;
+		std::vector<std::shared_ptr<Hero>> heroes_;
 
 		Party(const Party& other);
 	private:

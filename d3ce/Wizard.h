@@ -17,9 +17,9 @@ namespace d3ce {
 	
 	class Wizard: public Hero {
 	public:
-		Wizard(Engine* engine, Party* party);
+		Wizard(std::shared_ptr<Engine> engine, Party* party);
 		virtual Entity* cloneIn(Entity* parent);
-		virtual ClassMask getClass();
+		virtual ClassMask getClass() const;
 	protected:
 		Wizard(const Wizard& other, Party* party);
 	};
