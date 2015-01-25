@@ -31,6 +31,7 @@ namespace d3ce {
 		AttributeSpiritSubID = 3,
 		AttributeHatredSubID = 5,
 		AttributeDisciplineSubID = 6,
+		AttributeFaithSubID = 7,
 
 		AttributeUndeadSubID = 0,
 		AttributeDemonSubID = 1,
@@ -41,9 +42,11 @@ namespace d3ce {
 
 	extern std::vector<AttributeSubID> AttributeDamageTypeSubIDs;
 	
-	const int PrimaryDamageAttributeStrength = 0;
-	const int PrimaryDamageAttributeDexterity = 1;
-	const int PrimaryDamageAttributeIntelligence = 2;
+	typedef enum {
+		PrimaryDamageAttributeStrength = 0,
+		PrimaryDamageAttributeDexterity = 1,
+		PrimaryDamageAttributeIntelligence = 2,
+	} PrimaryDamageAttribute;
 
 	typedef enum {
 AttributeAxeBadDataID=0,
@@ -1434,6 +1437,9 @@ AttributeTieredLootRunRewardKeyValueID=1370,
 		AttributeIntelligenceTotalFromLevelID,
 		AttributeVitalityTotalFromLevelID,
 
+		AttributeCritPercentBonusTotalID,
+		AttributeCritDamagePercentTotalID,
+
 		AttributeDamageMinFullID,
 		AttributeDamageDeltaFullID,
 		AttributeDamageAverageFullID,
@@ -1464,7 +1470,9 @@ AttributeTieredLootRunRewardKeyValueID=1370,
 		AttributeDamageDeltaFullAllOffHandID,
 		AttributeDamageAverageFullAllOffHandID,
 
-		AttributeClassWizardID,
+		AttributeHitpointsFactorResourceID,
+
+/*		AttributeClassWizardID,
 		AttributeClassWitchDoctorID,
 		AttributeClassMonkID,
 		AttributeClassDemonHunterID,
@@ -1475,8 +1483,6 @@ AttributeTieredLootRunRewardKeyValueID=1370,
 		AttributeHeld2HandedWeaponID,
 		AttributeAttacksPerSecondSubTotalID,
 		
-		AttributeCritPercentBonusTotalID,
-		AttributeCritDamagePercentTotalID,
 		AttributeCritDamageFactorID,
 		
 //		AttributeHitpointsRegenPerSecondTotalID,
@@ -1523,7 +1529,7 @@ AttributeTieredLootRunRewardKeyValueID=1370,
 		AttributeAttackTotalID,
 		AttributePrecisionBonusID,
 		AttributeDefenseTotalID,
-		AttributeGoldFindCappedSubtotalID
+		AttributeGoldFindCappedSubtotalID*/
 
 	} AttributeID;
 

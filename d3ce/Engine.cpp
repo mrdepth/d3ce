@@ -41,3 +41,15 @@ Engine::~Engine(void) {
 sqlite3* Engine::getDb() {
 	return db_;
 }
+
+void Engine::exec(const std::string sql, std::function<bool (sqlite3_stmt* stmt)> callback) {
+	sqlite3_stmt* stmt = NULL;
+	sqlite3_prepare_v2(db_, sql.c_str(), -1, &stmt, NULL);
+	if (stmt) {
+		while (sqlite3_step(stmt) == SQLITE_ROW) {
+			if (callback && !callback(stmt))
+				break;
+		}
+		sqlite3_finalize(stmt);
+	}
+}

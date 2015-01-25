@@ -15,7 +15,7 @@ namespace d3ce {
 	
 	class OffHand: public Gear {
 	public:
-		OffHand(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, const std::vector<Slot>& possibleSlots);
+		OffHand(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, Slot possibleSlots);
 		virtual Entity* cloneIn(Entity* parent);
 	protected:
 		OffHand(const OffHand& other, Entity* parent);

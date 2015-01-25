@@ -40,3 +40,7 @@ Entity* Wizard::cloneIn(Entity* parent) {
 ClassMask Wizard::getClass() const {
 	return ClassMaskWizard;
 }
+
+std::string Wizard::getClassName() const {
+	return "Wizard";
+}

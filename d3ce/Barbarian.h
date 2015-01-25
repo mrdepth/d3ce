@@ -20,6 +20,8 @@ namespace d3ce {
 		Barbarian(std::shared_ptr<Engine> engine, Party* party);
 		virtual Entity* cloneIn(Entity* parent);
 		virtual ClassMask getClass() const;
+		virtual std::string getClassName() const;
+
 	protected:
 		Barbarian(const Barbarian& other, Party* party);
 	};

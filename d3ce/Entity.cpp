@@ -24,6 +24,10 @@ Entity::~Entity() {
 
 }
 
+std::shared_ptr<Engine> Entity::getEngine() const {
+	return engine_;
+}
+
 Attribute Entity::getAttribute(AttributeID attributeID, AttributeSubID attributeSubID) const {
 	AttributeKey key = std::make_pair(attributeID, attributeSubID);
 	AttributesMap::const_iterator i = attributes_.find(key);
@@ -113,8 +117,10 @@ AttributeKey Entity::getKey(const std::string& nonNlsKey) const {
 			attributeSubID = AttributeSpiritSubID;
 		else if (attributeSubKey == "Hatred")
 			attributeSubID = AttributeHatredSubID;
-		else if (attributeSubKey == "Discripline")
+		else if (attributeSubKey == "Discipline")
 			attributeSubID = AttributeDisciplineSubID;
+		else if (attributeSubKey == "Faith")
+			attributeSubID = AttributeFaithSubID;
 		else if (attributeSubKey == "Undead")
 			attributeSubID = AttributeUndeadSubID;
 		else if (attributeSubKey == "Demon")
@@ -124,6 +130,8 @@ AttributeKey Entity::getKey(const std::string& nonNlsKey) const {
 		else if (attributeSubKey == "Human")
 			attributeSubID = AttributeHumanSubID;
 		else {
+			attributeSubKey += "_name";
+			attributeSubID = static_cast<AttributeSubID>(hash(attributeSubKey));
 			//			std::cout<< "Unknown " << attributeSubKey;
 		}
 	}
@@ -136,7 +144,6 @@ AttributeKey Entity::getKey(const std::string& nonNlsKey) const {
 	sqlite3_prepare_v2(db, sql.str().c_str(), -1, &stmt, NULL);
 	int result = sqlite3_step(stmt);
 
-	Attribute* attribute = NULL;
 	if (result == SQLITE_ROW)
 	{
 		AttributeID attributeID = static_cast<AttributeID>(sqlite3_column_int(stmt, 0));

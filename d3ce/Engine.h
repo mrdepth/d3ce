@@ -18,6 +18,7 @@
 #include "types.h"
 #include <string>
 #include <memory>
+#include <functional>
 
 namespace d3ce {
 	class Party;
@@ -32,6 +33,8 @@ namespace d3ce {
 		~Engine(void);
 		
 		sqlite3* getDb();
+		
+		void exec(const std::string sql, std::function<bool (sqlite3_stmt* stmt)> callback);
 		
 	private:
 		sqlite3* db_;

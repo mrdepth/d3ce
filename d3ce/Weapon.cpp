@@ -10,7 +10,7 @@
 
 using namespace d3ce;
 
-Weapon::Weapon(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, const std::vector<Slot>& possibleSlots) : Gear(engine, parent, itemHash, itemTypesTree, itemSetBonusHash, flags, bitMask, possibleSlots) {
+Weapon::Weapon(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, Slot possibleSlots) : Gear(engine, parent, itemHash, itemTypesTree, itemSetBonusHash, flags, bitMask, possibleSlots) {
 	if (bitMask & Weapon2HandedMask)
 		setAttribute(AttributeWeapon2HID, AttributeNoneSubID, 1);
 	else
@@ -28,6 +28,6 @@ Entity* Weapon::cloneIn(Entity* parent) {
 	return new Weapon(*this, parent);
 }
 
-bool Weapon::twoHanded() {
+bool Weapon::twoHanded() const {
 	return (bitMask_ & Weapon2HandedMask) != 0;
 }

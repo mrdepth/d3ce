@@ -91,6 +91,7 @@ namespace d3ce {
 		};
 
 		virtual ~Entity();
+		std::shared_ptr<Engine> getEngine() const;
 
 		virtual Attribute getAttribute(AttributeID attributeID, AttributeSubID attributeSubID = AttributeNoneSubID) const;
 		Attribute getAttribute(const std::string& nonNlsKey) const;

@@ -15,7 +15,7 @@ namespace d3ce {
 	
 	class Gem: public Item {
 	public:
-		Gem(std::shared_ptr<Engine> engine, Item* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, const std::vector<Slot>& possibleSlots);
+		Gem(std::shared_ptr<Engine> engine, Item* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, Slot possibleSlots);
 		virtual Entity* cloneIn(Entity* parent);
 	protected:
 		virtual Environment environment();

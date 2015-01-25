@@ -15,9 +15,9 @@ namespace d3ce {
 	
 	class Weapon: public Gear {
 	public:
-		Weapon(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, const std::vector<Slot>& possibleSlots);
+		Weapon(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, Slot possibleSlots);
 		virtual Entity* cloneIn(Entity* parent);
-		bool twoHanded();
+		virtual bool twoHanded() const;
 		virtual bool isWeapon() const {
 			return true;
 		}

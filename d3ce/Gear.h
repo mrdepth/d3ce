@@ -16,7 +16,7 @@ namespace d3ce {
 	
 	class Gear: public Item {
 	public:
-		Gear(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, const std::vector<Slot>& possibleSlots);
+		Gear(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, Slot possibleSlots);
 		virtual ~Gear();
 		Gear(const Gear& other, Entity* parent);
 		std::shared_ptr<Gem> addGem(Hash itemHash);

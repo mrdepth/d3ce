@@ -11,7 +11,7 @@
 
 using namespace d3ce;
 
-Gem::Gem(std::shared_ptr<Engine> engine, Item* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, const std::vector<Slot>& possibleSlots) : Item(engine, parent, itemHash, itemTypesTree, flags, bitMask, possibleSlots) {
+Gem::Gem(std::shared_ptr<Engine> engine, Item* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, Slot possibleSlots) : Item(engine, parent, itemHash, itemTypesTree, flags, bitMask, possibleSlots) {
 	const std::vector<Hash>& parentItemTypesTree = parent->itemTypesTree();
 	std::vector<Hash>::const_iterator i, end = parentItemTypesTree.end();
 	

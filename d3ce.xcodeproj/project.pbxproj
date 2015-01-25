@@ -7,19 +7,38 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1247DEE1161DCE44002C4826 /* ModifierPostAssign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1247DEDF161DCE44002C4826 /* ModifierPostAssign.cpp */; };
-		126599B71614250D0036FC30 /* ModifierSub.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126599B51614250D0036FC30 /* ModifierSub.cpp */; };
-		127F42991611951C000BD508 /* Modifier.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42971611951C000BD508 /* Modifier.cpp */; };
+		123382471A5B0B3D00D2D94B /* Crusader.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 123382451A5B0B3D00D2D94B /* Crusader.cpp */; };
+		126FC5261A5734EB008ADF05 /* Aggregator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126FC5231A5734EB008ADF05 /* Aggregator.cpp */; };
+		126FC5271A5734EB008ADF05 /* AttributeIDs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126FC5251A5734EB008ADF05 /* AttributeIDs.cpp */; };
+		126FC5851A5737CD008ADF05 /* Expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F429E161198BB000BD508 /* Expression.cpp */; };
+		126FC5861A5737CD008ADF05 /* Aggregator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126FC5231A5734EB008ADF05 /* Aggregator.cpp */; };
+		126FC5871A5737CD008ADF05 /* Attribute.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFF816104D36005F23E3 /* Attribute.cpp */; };
+		126FC5881A5737CD008ADF05 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42C51611B72D000BD508 /* Environment.cpp */; };
+		126FC5891A5737CD008ADF05 /* Hero.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFEC16104BCD005F23E3 /* Hero.cpp */; };
+		126FC58A1A5737CD008ADF05 /* Wizard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42CC1611EE53000BD508 /* Wizard.cpp */; };
+		126FC58B1A5737CD008ADF05 /* Monk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42CF1611EE5C000BD508 /* Monk.cpp */; };
+		126FC58C1A5737CD008ADF05 /* Barbarian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42D21611EE67000BD508 /* Barbarian.cpp */; };
+		126FC58D1A5737CD008ADF05 /* DemonHunter.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42D51611EE72000BD508 /* DemonHunter.cpp */; };
+		126FC58E1A5737CD008ADF05 /* WitchDoctor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42D81611EE85000BD508 /* WitchDoctor.cpp */; };
+		126FC58F1A5737CD008ADF05 /* Item.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFEF16104C0B005F23E3 /* Item.cpp */; };
+		126FC5901A5737CD008ADF05 /* Gear.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12AE8DF71615994E00D4025E /* Gear.cpp */; };
+		126FC5911A5737CD008ADF05 /* Armor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12AE8DDD16157AA500D4025E /* Armor.cpp */; };
+		126FC5921A5737CD008ADF05 /* OffHand.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12AE8DF41615886700D4025E /* OffHand.cpp */; };
+		126FC5931A5737CD008ADF05 /* Weapon.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12AE8DE016157AAE00D4025E /* Weapon.cpp */; };
+		126FC5941A5737CD008ADF05 /* Gem.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12AE8DD716156E9400D4025E /* Gem.cpp */; };
+		126FC5951A5737CD008ADF05 /* Skill.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFF216104C8D005F23E3 /* Skill.cpp */; };
+		126FC5961A5737CD008ADF05 /* ItemSet.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71AA5B291618C85F0069EDB3 /* ItemSet.cpp */; };
+		126FC5971A5737CD008ADF05 /* SetBonus.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 71B66F0F1618A1D60098C895 /* SetBonus.cpp */; };
+		126FC5981A5737CD008ADF05 /* AttributeIDs.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 126FC5251A5734EB008ADF05 /* AttributeIDs.cpp */; };
+		126FC5991A5737CD008ADF05 /* Engine.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFE716104A5D005F23E3 /* Engine.cpp */; };
+		126FC59A1A5737CD008ADF05 /* Entity.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFFE16104EAA005F23E3 /* Entity.cpp */; };
+		126FC59B1A5737CD008ADF05 /* Party.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFFB16104E88005F23E3 /* Party.cpp */; };
+		126FC59C1A5737CD008ADF05 /* Follower.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 1282FFF516104CF3005F23E3 /* Follower.cpp */; };
+		126FC59D1A5737CD008ADF05 /* Affix.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 12FD7DC7161091FA00CFB179 /* Affix.cpp */; };
+		126FC59E1A5737CD008ADF05 /* Range.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F429A16119623000BD508 /* Range.cpp */; };
 		127F429C16119623000BD508 /* Range.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F429A16119623000BD508 /* Range.cpp */; };
 		127F42A0161198BB000BD508 /* Expression.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F429E161198BB000BD508 /* Expression.cpp */; };
-		127F42AD16119A6E000BD508 /* ModifierPreAssign.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42AB16119A6E000BD508 /* ModifierPreAssign.cpp */; };
-		127F42B316119ADB000BD508 /* ModifierAdd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42B116119ADA000BD508 /* ModifierAdd.cpp */; };
-		127F42B616119AF2000BD508 /* ModifierPostMul.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42B416119AF2000BD508 /* ModifierPostMul.cpp */; };
-		127F42B916119B09000BD508 /* ModifierPostDiv.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42B716119B09000BD508 /* ModifierPostDiv.cpp */; };
-		127F42BC16119B21000BD508 /* ModifierPostBoost.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42BA16119B20000BD508 /* ModifierPostBoost.cpp */; };
-		127F42BF16119B39000BD508 /* ModifierPostReduce.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42BD16119B39000BD508 /* ModifierPostReduce.cpp */; };
 		127F42C71611B72D000BD508 /* Environment.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42C51611B72D000BD508 /* Environment.cpp */; };
-		127F42CA1611C4B9000BD508 /* ModifierPreMul.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42C81611C4B7000BD508 /* ModifierPreMul.cpp */; };
 		127F42CE1611EE53000BD508 /* Wizard.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42CC1611EE53000BD508 /* Wizard.cpp */; };
 		127F42D11611EE5C000BD508 /* Monk.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42CF1611EE5C000BD508 /* Monk.cpp */; };
 		127F42D41611EE67000BD508 /* Barbarian.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 127F42D21611EE67000BD508 /* Barbarian.cpp */; };
@@ -47,6 +66,15 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		126FC56C1A5737B6008ADF05 /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "include/$(PRODUCT_NAME)";
+			dstSubfolderSpec = 16;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1282FFD416104A34005F23E3 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -61,34 +89,20 @@
 
 /* Begin PBXFileReference section */
 		122B5C6E161490CC006A63CC /* types.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = types.h; sourceTree = "<group>"; };
-		1247DEDF161DCE44002C4826 /* ModifierPostAssign.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPostAssign.cpp; sourceTree = "<group>"; };
-		1247DEE0161DCE44002C4826 /* ModifierPostAssign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPostAssign.h; sourceTree = "<group>"; };
+		123382451A5B0B3D00D2D94B /* Crusader.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Crusader.cpp; sourceTree = "<group>"; };
+		123382461A5B0B3D00D2D94B /* Crusader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Crusader.h; sourceTree = "<group>"; };
 		126599B116141F5E0036FC30 /* d3ce.script */ = {isa = PBXFileReference; lastKnownFileType = text; path = d3ce.script; sourceTree = SOURCE_ROOT; };
-		126599B51614250D0036FC30 /* ModifierSub.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierSub.cpp; sourceTree = "<group>"; };
-		126599B61614250D0036FC30 /* ModifierSub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierSub.h; sourceTree = "<group>"; };
-		127F42971611951C000BD508 /* Modifier.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Modifier.cpp; sourceTree = "<group>"; };
-		127F42981611951C000BD508 /* Modifier.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Modifier.h; sourceTree = "<group>"; };
+		126FC5231A5734EB008ADF05 /* Aggregator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Aggregator.cpp; sourceTree = "<group>"; };
+		126FC5241A5734EB008ADF05 /* Aggregator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Aggregator.h; sourceTree = "<group>"; };
+		126FC5251A5734EB008ADF05 /* AttributeIDs.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = AttributeIDs.cpp; sourceTree = "<group>"; };
+		126FC56E1A5737B6008ADF05 /* libd3ce.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libd3ce.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		127F429A16119623000BD508 /* Range.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Range.cpp; sourceTree = "<group>"; };
 		127F429B16119623000BD508 /* Range.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Range.h; sourceTree = "<group>"; };
 		127F429E161198BB000BD508 /* Expression.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Expression.cpp; sourceTree = "<group>"; };
 		127F429F161198BB000BD508 /* Expression.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Expression.h; sourceTree = "<group>"; };
-		127F42AB16119A6E000BD508 /* ModifierPreAssign.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPreAssign.cpp; sourceTree = "<group>"; };
-		127F42AC16119A6E000BD508 /* ModifierPreAssign.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPreAssign.h; sourceTree = "<group>"; };
-		127F42B116119ADA000BD508 /* ModifierAdd.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierAdd.cpp; sourceTree = "<group>"; };
-		127F42B216119ADA000BD508 /* ModifierAdd.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierAdd.h; sourceTree = "<group>"; };
-		127F42B416119AF2000BD508 /* ModifierPostMul.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPostMul.cpp; sourceTree = "<group>"; };
-		127F42B516119AF2000BD508 /* ModifierPostMul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPostMul.h; sourceTree = "<group>"; };
-		127F42B716119B09000BD508 /* ModifierPostDiv.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPostDiv.cpp; sourceTree = "<group>"; };
-		127F42B816119B09000BD508 /* ModifierPostDiv.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPostDiv.h; sourceTree = "<group>"; };
-		127F42BA16119B20000BD508 /* ModifierPostBoost.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPostBoost.cpp; sourceTree = "<group>"; };
-		127F42BB16119B20000BD508 /* ModifierPostBoost.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPostBoost.h; sourceTree = "<group>"; };
-		127F42BD16119B39000BD508 /* ModifierPostReduce.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPostReduce.cpp; sourceTree = "<group>"; };
-		127F42BE16119B39000BD508 /* ModifierPostReduce.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPostReduce.h; sourceTree = "<group>"; };
 		127F42C41611A668000BD508 /* AttributeIDs.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AttributeIDs.h; sourceTree = "<group>"; };
 		127F42C51611B72D000BD508 /* Environment.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Environment.cpp; sourceTree = "<group>"; };
 		127F42C61611B72D000BD508 /* Environment.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Environment.h; sourceTree = "<group>"; };
-		127F42C81611C4B7000BD508 /* ModifierPreMul.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = ModifierPreMul.cpp; sourceTree = "<group>"; };
-		127F42C91611C4B8000BD508 /* ModifierPreMul.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModifierPreMul.h; sourceTree = "<group>"; };
 		127F42CC1611EE53000BD508 /* Wizard.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Wizard.cpp; sourceTree = "<group>"; };
 		127F42CD1611EE53000BD508 /* Wizard.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Wizard.h; sourceTree = "<group>"; };
 		127F42CF1611EE5C000BD508 /* Monk.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Monk.cpp; sourceTree = "<group>"; };
@@ -99,7 +113,7 @@
 		127F42D61611EE72000BD508 /* DemonHunter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemonHunter.h; sourceTree = "<group>"; };
 		127F42D81611EE85000BD508 /* WitchDoctor.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WitchDoctor.cpp; sourceTree = "<group>"; };
 		127F42D91611EE85000BD508 /* WitchDoctor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WitchDoctor.h; sourceTree = "<group>"; };
-		1282FFD616104A34005F23E3 /* d3ce */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = d3ce; sourceTree = BUILT_PRODUCTS_DIR; };
+		1282FFD616104A34005F23E3 /* d3ceTest */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = d3ceTest; sourceTree = BUILT_PRODUCTS_DIR; };
 		1282FFDA16104A34005F23E3 /* main.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = main.cpp; sourceTree = "<group>"; };
 		1282FFDC16104A34005F23E3 /* d3ce.1 */ = {isa = PBXFileReference; lastKnownFileType = text.man; path = d3ce.1; sourceTree = "<group>"; };
 		1282FFE716104A5D005F23E3 /* Engine.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Engine.cpp; sourceTree = "<group>"; };
@@ -140,6 +154,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		126FC56B1A5737B6008ADF05 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1282FFD316104A34005F23E3 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -151,38 +172,13 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		127F429D16119867000BD508 /* Modifiers */ = {
-			isa = PBXGroup;
-			children = (
-				127F42971611951C000BD508 /* Modifier.cpp */,
-				127F42981611951C000BD508 /* Modifier.h */,
-				127F42AB16119A6E000BD508 /* ModifierPreAssign.cpp */,
-				127F42AC16119A6E000BD508 /* ModifierPreAssign.h */,
-				127F42B116119ADA000BD508 /* ModifierAdd.cpp */,
-				127F42B216119ADA000BD508 /* ModifierAdd.h */,
-				126599B51614250D0036FC30 /* ModifierSub.cpp */,
-				126599B61614250D0036FC30 /* ModifierSub.h */,
-				127F42B416119AF2000BD508 /* ModifierPostMul.cpp */,
-				127F42B516119AF2000BD508 /* ModifierPostMul.h */,
-				127F42B716119B09000BD508 /* ModifierPostDiv.cpp */,
-				127F42B816119B09000BD508 /* ModifierPostDiv.h */,
-				127F42C81611C4B7000BD508 /* ModifierPreMul.cpp */,
-				127F42C91611C4B8000BD508 /* ModifierPreMul.h */,
-				127F42BA16119B20000BD508 /* ModifierPostBoost.cpp */,
-				127F42BB16119B20000BD508 /* ModifierPostBoost.h */,
-				127F42BD16119B39000BD508 /* ModifierPostReduce.cpp */,
-				127F42BE16119B39000BD508 /* ModifierPostReduce.h */,
-				1247DEDF161DCE44002C4826 /* ModifierPostAssign.cpp */,
-				1247DEE0161DCE44002C4826 /* ModifierPostAssign.h */,
-			);
-			name = Modifiers;
-			sourceTree = "<group>";
-		};
 		127F42AA16119A55000BD508 /* Expressions */ = {
 			isa = PBXGroup;
 			children = (
 				127F429E161198BB000BD508 /* Expression.cpp */,
 				127F429F161198BB000BD508 /* Expression.h */,
+				126FC5231A5734EB008ADF05 /* Aggregator.cpp */,
+				126FC5241A5734EB008ADF05 /* Aggregator.h */,
 			);
 			name = Expressions;
 			sourceTree = "<group>";
@@ -192,7 +188,6 @@
 			children = (
 				1282FFF816104D36005F23E3 /* Attribute.cpp */,
 				1282FFF916104D36005F23E3 /* Attribute.h */,
-				127F42C41611A668000BD508 /* AttributeIDs.h */,
 				127F42C51611B72D000BD508 /* Environment.cpp */,
 				127F42C61611B72D000BD508 /* Environment.h */,
 			);
@@ -214,6 +209,8 @@
 				127F42D61611EE72000BD508 /* DemonHunter.h */,
 				127F42D81611EE85000BD508 /* WitchDoctor.cpp */,
 				127F42D91611EE85000BD508 /* WitchDoctor.h */,
+				123382451A5B0B3D00D2D94B /* Crusader.cpp */,
+				123382461A5B0B3D00D2D94B /* Crusader.h */,
 			);
 			name = Heroes;
 			sourceTree = "<group>";
@@ -230,7 +227,8 @@
 		1282FFD716104A34005F23E3 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1282FFD616104A34005F23E3 /* d3ce */,
+				1282FFD616104A34005F23E3 /* d3ceTest */,
+				126FC56E1A5737B6008ADF05 /* libd3ce.a */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -239,12 +237,13 @@
 			isa = PBXGroup;
 			children = (
 				127F42AA16119A55000BD508 /* Expressions */,
-				127F429D16119867000BD508 /* Modifiers */,
 				127F42C016119B54000BD508 /* Attributes */,
 				127F42CB1611EE39000BD508 /* Heroes */,
 				12AE8DDB16156ED200D4025E /* Items */,
 				12AE8F161615D9D000D4025E /* Skills */,
 				71AA5B271618C84E0069EDB3 /* SetBonus */,
+				126FC5251A5734EB008ADF05 /* AttributeIDs.cpp */,
+				127F42C41611A668000BD508 /* AttributeIDs.h */,
 				71B66F0B1618A18F0098C895 /* d3ce.h */,
 				122B5C6E161490CC006A63CC /* types.h */,
 				1282FFE716104A5D005F23E3 /* Engine.cpp */,
@@ -309,9 +308,26 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		1282FFD516104A34005F23E3 /* d3ce */ = {
+		126FC56D1A5737B6008ADF05 /* d3ce */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 1282FFE016104A34005F23E3 /* Build configuration list for PBXNativeTarget "d3ce" */;
+			buildConfigurationList = 126FC57F1A5737B6008ADF05 /* Build configuration list for PBXNativeTarget "d3ce" */;
+			buildPhases = (
+				126FC56A1A5737B6008ADF05 /* Sources */,
+				126FC56B1A5737B6008ADF05 /* Frameworks */,
+				126FC56C1A5737B6008ADF05 /* CopyFiles */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = d3ce;
+			productName = d3ce;
+			productReference = 126FC56E1A5737B6008ADF05 /* libd3ce.a */;
+			productType = "com.apple.product-type.library.static";
+		};
+		1282FFD516104A34005F23E3 /* d3ceTest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 1282FFE016104A34005F23E3 /* Build configuration list for PBXNativeTarget "d3ceTest" */;
 			buildPhases = (
 				1282FFD216104A34005F23E3 /* Sources */,
 				1282FFD316104A34005F23E3 /* Frameworks */,
@@ -321,9 +337,9 @@
 			);
 			dependencies = (
 			);
-			name = d3ce;
+			name = d3ceTest;
 			productName = d3ce;
-			productReference = 1282FFD616104A34005F23E3 /* d3ce */;
+			productReference = 1282FFD616104A34005F23E3 /* d3ceTest */;
 			productType = "com.apple.product-type.tool";
 		};
 /* End PBXNativeTarget section */
@@ -332,8 +348,13 @@
 		1282FFCD16104A34005F23E3 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0450;
+				LastUpgradeCheck = 0610;
 				ORGANIZATIONNAME = "Artem Shimanski";
+				TargetAttributes = {
+					126FC56D1A5737B6008ADF05 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
+				};
 			};
 			buildConfigurationList = 1282FFD016104A34005F23E3 /* Build configuration list for PBXProject "d3ce" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -347,12 +368,47 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				1282FFD516104A34005F23E3 /* d3ce */,
+				1282FFD516104A34005F23E3 /* d3ceTest */,
+				126FC56D1A5737B6008ADF05 /* d3ce */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXSourcesBuildPhase section */
+		126FC56A1A5737B6008ADF05 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				126FC58F1A5737CD008ADF05 /* Item.cpp in Sources */,
+				126FC58E1A5737CD008ADF05 /* WitchDoctor.cpp in Sources */,
+				126FC5941A5737CD008ADF05 /* Gem.cpp in Sources */,
+				126FC5901A5737CD008ADF05 /* Gear.cpp in Sources */,
+				126FC5851A5737CD008ADF05 /* Expression.cpp in Sources */,
+				126FC5931A5737CD008ADF05 /* Weapon.cpp in Sources */,
+				126FC5881A5737CD008ADF05 /* Environment.cpp in Sources */,
+				126FC58D1A5737CD008ADF05 /* DemonHunter.cpp in Sources */,
+				123382471A5B0B3D00D2D94B /* Crusader.cpp in Sources */,
+				126FC5891A5737CD008ADF05 /* Hero.cpp in Sources */,
+				126FC5871A5737CD008ADF05 /* Attribute.cpp in Sources */,
+				126FC5991A5737CD008ADF05 /* Engine.cpp in Sources */,
+				126FC5911A5737CD008ADF05 /* Armor.cpp in Sources */,
+				126FC5921A5737CD008ADF05 /* OffHand.cpp in Sources */,
+				126FC5861A5737CD008ADF05 /* Aggregator.cpp in Sources */,
+				126FC58B1A5737CD008ADF05 /* Monk.cpp in Sources */,
+				126FC58C1A5737CD008ADF05 /* Barbarian.cpp in Sources */,
+				126FC59E1A5737CD008ADF05 /* Range.cpp in Sources */,
+				126FC5971A5737CD008ADF05 /* SetBonus.cpp in Sources */,
+				126FC59B1A5737CD008ADF05 /* Party.cpp in Sources */,
+				126FC5961A5737CD008ADF05 /* ItemSet.cpp in Sources */,
+				126FC59A1A5737CD008ADF05 /* Entity.cpp in Sources */,
+				126FC59C1A5737CD008ADF05 /* Follower.cpp in Sources */,
+				126FC59D1A5737CD008ADF05 /* Affix.cpp in Sources */,
+				126FC5981A5737CD008ADF05 /* AttributeIDs.cpp in Sources */,
+				126FC58A1A5737CD008ADF05 /* Wizard.cpp in Sources */,
+				126FC5951A5737CD008ADF05 /* Skill.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		1282FFD216104A34005F23E3 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -366,43 +422,92 @@
 				1282FFFA16104D37005F23E3 /* Attribute.cpp in Sources */,
 				1282FFFD16104E88005F23E3 /* Party.cpp in Sources */,
 				1282000016104EAB005F23E3 /* Entity.cpp in Sources */,
+				126FC5271A5734EB008ADF05 /* AttributeIDs.cpp in Sources */,
 				12FD7DC9161091FA00CFB179 /* Affix.cpp in Sources */,
-				127F42991611951C000BD508 /* Modifier.cpp in Sources */,
 				127F429C16119623000BD508 /* Range.cpp in Sources */,
 				127F42A0161198BB000BD508 /* Expression.cpp in Sources */,
-				127F42AD16119A6E000BD508 /* ModifierPreAssign.cpp in Sources */,
-				127F42B316119ADB000BD508 /* ModifierAdd.cpp in Sources */,
-				127F42B616119AF2000BD508 /* ModifierPostMul.cpp in Sources */,
-				127F42B916119B09000BD508 /* ModifierPostDiv.cpp in Sources */,
-				127F42BC16119B21000BD508 /* ModifierPostBoost.cpp in Sources */,
-				127F42BF16119B39000BD508 /* ModifierPostReduce.cpp in Sources */,
 				127F42C71611B72D000BD508 /* Environment.cpp in Sources */,
-				127F42CA1611C4B9000BD508 /* ModifierPreMul.cpp in Sources */,
 				127F42CE1611EE53000BD508 /* Wizard.cpp in Sources */,
 				127F42D11611EE5C000BD508 /* Monk.cpp in Sources */,
 				127F42D41611EE67000BD508 /* Barbarian.cpp in Sources */,
 				127F42D71611EE72000BD508 /* DemonHunter.cpp in Sources */,
 				127F42DA1611EE85000BD508 /* WitchDoctor.cpp in Sources */,
-				126599B71614250D0036FC30 /* ModifierSub.cpp in Sources */,
 				12AE8DD916156E9400D4025E /* Gem.cpp in Sources */,
 				12AE8DDF16157AA500D4025E /* Armor.cpp in Sources */,
+				126FC5261A5734EB008ADF05 /* Aggregator.cpp in Sources */,
 				12AE8DE216157AAF00D4025E /* Weapon.cpp in Sources */,
 				12AE8DF61615886700D4025E /* OffHand.cpp in Sources */,
 				12AE8DF91615994F00D4025E /* Gear.cpp in Sources */,
 				71B66F111618A1D60098C895 /* SetBonus.cpp in Sources */,
 				71AA5B2B1618C85F0069EDB3 /* ItemSet.cpp in Sources */,
-				1247DEE1161DCE44002C4826 /* ModifierPostAssign.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin XCBuildConfiguration section */
+		126FC5801A5737B6008ADF05 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		126FC5811A5737B6008ADF05 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "-ObjC";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
 		1282FFDE16104A34005F23E3 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -431,7 +536,6 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -466,6 +570,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		126FC57F1A5737B6008ADF05 /* Build configuration list for PBXNativeTarget "d3ce" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				126FC5801A5737B6008ADF05 /* Debug */,
+				126FC5811A5737B6008ADF05 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		1282FFD016104A34005F23E3 /* Build configuration list for PBXProject "d3ce" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
@@ -475,7 +588,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		1282FFE016104A34005F23E3 /* Build configuration list for PBXNativeTarget "d3ce" */ = {
+		1282FFE016104A34005F23E3 /* Build configuration list for PBXNativeTarget "d3ceTest" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				1282FFE116104A34005F23E3 /* Debug */,

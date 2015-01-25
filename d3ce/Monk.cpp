@@ -27,6 +27,7 @@ Monk::Monk(std::shared_ptr<Engine> engine, Party* party) : Hero(engine, party) {
 
 	setAttribute(AttributeResourceTypePrimaryID, AttributeNoneSubID, AttributeSpiritSubID);
 	setAttribute(AttributeResourceMaxID, AttributeSpiritSubID, 125);
+	setAttribute(AttributeHitpointsFactorResourceID, AttributeSpiritSubID, 9);
 }
 
 Monk::Monk(const Monk& other, Party* party) : Hero(other, party) {
@@ -39,4 +40,8 @@ Entity* Monk::cloneIn(Entity* parent) {
 
 ClassMask Monk::getClass() const {
 	return ClassMaskMonk;
+}
+
+std::string Monk::getClassName() const {
+	return "Monk";
 }

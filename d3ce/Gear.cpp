@@ -14,14 +14,14 @@
 
 using namespace d3ce;
 
-Gear::Gear(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, const std::vector<Slot>& possibleSlots) : Item(engine, parent, itemHash, itemTypesTree, flags, bitMask, possibleSlots) {
+Gear::Gear(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, Hash itemSetBonusHash, int flags, int bitMask, Slot possibleSlots) : Item(engine, parent, itemHash, itemTypesTree, flags, bitMask, possibleSlots) {
 	itemSetBonusHash_ = itemSetBonusHash;
 }
 
 Gear::Gear(const Gear& other, Entity* parent) : Item(other, parent) {
 	//copyAttributes(other);
 	itemSetBonusHash_ = other.itemSetBonusHash_;
-	std::vector<std::shared_ptr<Gem>>::const_iterator i, end = other.gems_.end();
+	//std::vector<std::shared_ptr<Gem>>::const_iterator i, end = other.gems_.end();
 	//for (i = other.gems_.begin(); i != end; i++)
 		//gems_.push_back(dynamic_cast<Gem*>((*i)->cloneIn(this)));
 
@@ -148,7 +148,7 @@ Attribute Gear::getAttribute(AttributeID attributeID, AttributeSubID subID) cons
 		value = gear[AttributeDamageMinID][subID] + gear[AttributeDamageBonusMinID][subID] + gear[AttributeDamageWeaponMinTotalCurrentHandID][subID];
 		break;
 	case AttributeBlockChanceItemTotalID:
-		value = gear[AttributeBlockChanceTotalID][subID] + gear[AttributeBlockChanceBonusItemID][subID];
+		value = gear[AttributeBlockChanceItemID][subID] + gear[AttributeBlockChanceBonusItemID][subID];
 		break;
 	case AttributeAttacksPerSecondItemTotalOffHandID:
 		value = gear[AttributeAttacksPerSecondItemOffHandID][subID] + gear[AttributeAttacksPerSecondItemBonusID][subID];

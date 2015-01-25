@@ -12,6 +12,7 @@
 #include "Monk.h"
 #include "WitchDoctor.h"
 #include "Wizard.h"
+#include "Crusader.h"
 #include <algorithm>
 
 using namespace d3ce;
@@ -43,6 +44,9 @@ std::shared_ptr<Hero> Party::addHero(ClassMask classMask) {
 			break;
 		case ClassMaskWizard:
 			hero.reset(new Wizard(engine_, this));
+			break;
+		case ClassMaskCrusader:
+			hero.reset(new Crusader(engine_, this));
 			break;
 		default:
 			break;

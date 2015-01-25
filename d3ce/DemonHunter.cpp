@@ -43,3 +43,7 @@ Entity* DemonHunter::cloneIn(Entity* parent) {
 ClassMask DemonHunter::getClass() const {
 	return ClassMaskDemonHunter;
 }
+
+std::string DemonHunter::getClassName() const {
+	return "Demon Hunter";
+}

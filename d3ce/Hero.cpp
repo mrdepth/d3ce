@@ -14,11 +14,14 @@
 using namespace d3ce;
 
 Hero::Hero(std::shared_ptr<Engine> engine, Party* party) : Entity(engine, party) {
-	setAttribute(AttributeCritDamagePercentTotalID, AttributeNoneSubID, 0.5);
-	setAttribute(AttributeCritPercentBonusTotalID, AttributeNoneSubID, 0.05);
+	//setAttribute(AttributeCritDamagePercentTotalID, AttributeNoneSubID, 0.5);
+	//setAttribute(AttributeCritPercentBonusTotalID, AttributeNoneSubID, 0.05);
 	setAttribute(AttributeAttacksPerSecondID, AttributeNoneSubID, 1);
 	setAttribute(AttributeCoreAttributesFromItemBonusMultiplierID, AttributeNoneSubID, 1);
 	setAttribute(AttributeAttacksPerSecondPercentCapID, AttributeNoneSubID, 1);
+	setAttribute(AttributeHitpointsFactorLevelID, AttributeNoneSubID, 4);
+//	setAttribute(AttributeHitpointsFactorVitalityID, AttributeNoneSubID, 80);
+	setAttribute(AttributeHitpointsMaxID, AttributeNoneSubID, 40);
 }
 
 Hero::~Hero() {
@@ -53,71 +56,70 @@ std::shared_ptr<Gear> Hero::addItem(std::shared_ptr<Gear> item) {
 	
 	Hash quiverHash = hash("Quiver");
 	Hash offhandHash = hash("Offhand");
+	Hash shieldHash = hash("Shield");
 	if (item->twoHanded()) {
 		std::shared_ptr<Gear> offHand = getItem(Item::SlotOffHand);
-		if (offHand && !offHand->conforms(quiverHash)) {
+		if (offHand && !offHand->conforms(quiverHash) && !offHand->conforms(shieldHash)) {
 			throw SlotIsAlreadyFilledException(Item::SlotOffHand);
 		}
+		if (getItem(Item::SlotMainHand))
+			throw SlotIsAlreadyFilledException(Item::SlotMainHand);
 	}
-	else if (!item->conforms(quiverHash) && item->conforms(offhandHash) && !slotIsEmpty(Item::SlotOffHand)) {
+	else if (!item->conforms(quiverHash) && !item->conforms(shieldHash) && item->conforms(offhandHash) && !slotIsEmpty(Item::SlotOffHand)) {
 		throw SlotIsAlreadyFilledException(Item::SlotOffHand);
 	}
 	
-	std::vector<Item::Slot>::const_iterator i, end = item->possibleSlots().end();
-	
-	Item::Slot slot;
-	
-	for (i = item->possibleSlots().begin(); i != end; i++) {
-		slot = *i;
-		std::vector<std::shared_ptr<Gear>>::iterator j, endj = items_.end();
-		bool isEmpty = true;
-		for (j = items_.begin(); j != endj; j++) {
-			if ((*j)->getSlot() == slot) {
-				isEmpty = false;
-				break;
-			}
-		}
-		if (isEmpty) {
-			item->setSlot(slot);
-			items_.push_back(item);
+	static std::vector<Item::Slot> slots = {Item::SlotHead, Item::SlotTorso, Item::SlotMainHand, Item::SlotOffHand, Item::SlotHands, Item::SlotWaist, Item::SlotFeet, Item::SlotShoulders, Item::SlotLegs, Item::SlotBracers, Item::SlotRightFinger, Item::SlotLeftFinger, Item::SlotNeck};
+
+	Item::Slot firstSlot = Item::SlotUnknown;
+	for (auto slot: slots) {
+		if ((item->possibleSlots() & slot) == slot) {
+			if (firstSlot == Item::SlotUnknown)
+				firstSlot = slot;
 			
-			Hash itemSetBonusHash = item->itemSetBonusHash();
-			if (isValidHash(itemSetBonusHash)) {
-
-				auto itemSetIterator = std::find_if(setBonuses_.begin(), setBonuses_.end(), [=](std::shared_ptr<ItemSet> a)->bool {
-					return a->getSetBonusHashe() == itemSetBonusHash;
-				});
-
-				std::shared_ptr<ItemSet> itemSet;
-				if (itemSetIterator == setBonuses_.end()) {
-					itemSet = std::shared_ptr<ItemSet>(new ItemSet(engine_, this, itemSetBonusHash));
-					setBonuses_.push_back(itemSet);
+			if (!getItem(slot)) {
+				
+				item->setSlot(slot);
+				items_.push_back(item);
+				
+				Hash itemSetBonusHash = item->itemSetBonusHash();
+				if (isValidHash(itemSetBonusHash)) {
+					
+					auto itemSetIterator = std::find_if(setBonuses_.begin(), setBonuses_.end(), [=](std::shared_ptr<ItemSet> a)->bool {
+						return a->getSetBonusHashe() == itemSetBonusHash;
+					});
+					
+					std::shared_ptr<ItemSet> itemSet;
+					if (itemSetIterator == setBonuses_.end()) {
+						itemSet = std::shared_ptr<ItemSet>(new ItemSet(engine_, this, itemSetBonusHash));
+						setBonuses_.push_back(itemSet);
+					}
+					else
+						itemSet = *itemSetIterator;
+					itemSet->addItem(item);
 				}
-				else
-					itemSet = *itemSetIterator;
-				itemSet->addItem(item);
+				return item;
 			}
-			
-			return item;
-		}
-		else {
-			continue;
 		}
 	}
-	throw SlotIsAlreadyFilledException(slot);
+	
+	throw SlotIsAlreadyFilledException(firstSlot);
 }
 
 void Hero::removeItem(std::shared_ptr<Gear> item) {
-	items_.erase(std::remove(items_.begin(), items_.end(), item));
-	
-	Hash itemSetBonusHash = item->itemSetBonusHash();
-	if (isValidHash(itemSetBonusHash)) {
-		auto itemSetIterator = std::find_if(setBonuses_.begin(), setBonuses_.end(), [=](std::shared_ptr<ItemSet> a)->bool {
-			return a->getSetBonusHashe() == itemSetBonusHash;
-		});
-
-		if (itemSetIterator != setBonuses_.end())
-			(*itemSetIterator)->removeItem(item);
+	if (item) {
+		items_.erase(std::remove(items_.begin(), items_.end(), item));
+		
+		Hash itemSetBonusHash = item->itemSetBonusHash();
+		if (isValidHash(itemSetBonusHash)) {
+			auto itemSetIterator = std::find_if(setBonuses_.begin(), setBonuses_.end(), [=](std::shared_ptr<ItemSet> a)->bool {
+				return a->getSetBonusHashe() == itemSetBonusHash;
+			});
+			
+			if (itemSetIterator != setBonuses_.end())
+				(*itemSetIterator)->removeItem(item);
+		}
+		
 	}
 }
 
@@ -137,7 +139,7 @@ std::shared_ptr<Gear> Hero::getItem(Item::Slot slot) const {
 	std::vector<std::shared_ptr<Gear>>::const_iterator i, end = items_.end();
 	for (i = items_.begin(); i != end; i++) {
 		Item::Slot itemSlot = (*i)->getSlot();
-		if ((slot == itemSlot) || (slot == Item::SlotOffHand && itemSlot == Item::SlotMainHand && (*i)->twoHanded()))
+		if (slot == itemSlot)// || (slot == Item::SlotOffHand && itemSlot == Item::SlotMainHand && (*i)->twoHanded()))
 			return *i;
 	}
 	return NULL;
@@ -194,6 +196,10 @@ AttributeSubID Hero::getResourceTypeSecondary() const {
 		return static_cast<AttributeSubID>(static_cast<int>(i->second.min));
 	else
 		return AttributeNoneSubID;
+}
+
+PrimaryDamageAttribute Hero::getPrimaryDamageAttribute() const {
+	return static_cast<PrimaryDamageAttribute>(getAttribute(AttributePrimaryDamageAttributeID).value().max);
 }
 
 //Stats
@@ -269,12 +275,15 @@ Range Hero::getAverageDamageReduction(int againstMosterLevel) const {
 	Range damageReductionPoison = getAttribute(AttributeDamageReductionTotalID, AttributePoisonSubID).value();
 	Range damageReductionArcane = getAttribute(AttributeDamageReductionTotalID, AttributeArcaneSubID).value();
 	Range damageReductionAverageElemental = (damageReductionPhysical + damageReductionFire + damageReductionLightning + damageReductionCold + damageReductionPoison + damageReductionArcane) / 6;
+	Range dodgeChance = getDodgeChance();
 	
-	return Range(1) - ((Range(1) - damageReductionFromResistance) * (Range(1) - damageReductionFromArmor) * (Range(1)-classDamageReduction) * (Range(1) - damageReductionAverageElemental));
+	Range situationalDamageReduction = (getDamageReductionFromElites() + getDamageReductionFromMelee() + getDamageReductionFromRanged()) / 3.0;
+	
+	return Range(1) - ((Range(1) - damageReductionFromResistance) * (Range(1) - damageReductionFromArmor) * (Range(1)-classDamageReduction) * (Range(1) - damageReductionAverageElemental) * (Range(1) - situationalDamageReduction) * (Range(1) - dodgeChance));
 }
 
 Range Hero::getBlockChance() const {
-	return getAttribute(AttributeBlockChanceTotalID).value();
+	return getAttribute(AttributeBlockChanceCappedTotalID).value();
 }
 
 Range Hero::getBlockAmmountMin() const {
@@ -286,14 +295,30 @@ Range Hero::getBlockAmmountMax() const {
 }
 
 Range Hero::getDodgeChance() const {
-	return getAttribute(AttributeDodgeChanceTotalID).value();
+	return getAttribute(AttributeDodgeChanceBonusID).value();
+}
+
+Range Hero::getCrowdControlReduction() const {
+	return getAttribute(AttributeCrowdControlReductionID).value();
+}
+
+Range Hero::getDamageReductionFromMelee() const {
+	return getAttribute(AttributeDamagePercentReductionFromMeleeID).value();
+}
+
+Range Hero::getDamageReductionFromRanged() const {
+	return getAttribute(AttributeDamagePercentReductionFromRangedID).value();
+}
+
+Range Hero::getDamageReductionFromElites() const {
+	return getAttribute(AttributeDamagePercentReductionFromElitesID).value();
 }
 
 Range Hero::getHitPoints() const {
 	return getAttribute(AttributeHitpointsMaxTotalID).value();
 }
 
-Range Hero::getEffectiveHitPoints() const {
+Range Hero::getToughness() const {
 	Range hp = getHitPoints();
 	Range damageReduction = getAverageDamageReduction();
 	return hp / (Range(1) - damageReduction);
@@ -304,7 +329,7 @@ Range Hero::getLifeRegen() const {
 }
 
 Range Hero::getLifePerHit() const {
-	return getAttribute(AttributeHitpointsOnHitTotalID).value();
+	return getAttribute(AttributeHitpointsOnHitID).value();
 }
 
 Range Hero::getLifePerKill() const {
@@ -312,11 +337,57 @@ Range Hero::getLifePerKill() const {
 }
 
 Range Hero::getLifeSteal() const {
-	return getAttribute(AttributeStealHealthPercentTotalID).value();
+	return getAttribute(AttributeStealHealthPercentID).value();
+}
+
+Range Hero::getLifeBonus() const {
+	return getAttribute(AttributeHitpointsMaxPercentBonusID).value() + getAttribute(AttributeHitpointsMaxPercentBonusItemID).value();
+}
+
+Range Hero::getHealthGlobeBonus() const {
+	return getAttribute(AttributeHealthGlobeBonusHealthID).value();
+}
+
+Range Hero::getHealing() const {
+	Range lph = getLifePerHit();
+	Range regen = getLifeRegen();
+	Range lpk = getLifePerKill();
+	Range aps = getAttackSpeed();
+	AttributeSubID primaryResourceType = getResourceTypePrimary();
+	Range lpr = getAttribute(AttributeSpendingResourceHealsPercentID, primaryResourceType);
+	Range resourceRegen = getPrimaryResourceRegen();
+	Range factor = getAttribute(AttributeHitpointsFactorResourceID, primaryResourceType);
+	Range healing =  regen + lph * aps + lpk * 0.16;
+	if (factor > 0)
+		healing = healing + (aps + resourceRegen / factor) * lpr * factor;
+	return healing;
+}
+
+Range Hero::getRecovery() const {
+	return getHealing() / (Range(1) - getAverageDamageReduction());
+}
+
+Range Hero::getDamageBonusFromPrimaryDamageAttribute() const {
+	return getAttribute(AttributeDamageBonusFromPrimaryDamageAttributeID).value();
 }
 
 Range Hero::getDPS() const {
 	return getAttribute(AttributeDPSID).value();
+}
+
+Range Hero::getElementalDPS() const {
+	Range value = 0;
+	for (auto damageType: AttributeDamageTypeSubIDs)
+		value = std::max(value, getAttribute(AttributeDamageDealtPercentBonusID, damageType).value());
+	return getDPS() * (1 + value);
+}
+
+Range Hero::getEliteDPS() const {
+	return getDPS() * (1 + getDamageBonusVsElites());
+}
+
+Range Hero::getEliteElementalDPS() const {
+	return getElementalDPS() * (1 + getDamageBonusVsElites());
 }
 
 Range Hero::getCritChance() const {
@@ -331,12 +402,40 @@ Range Hero::getAttackSpeed() const {
 	return getAttribute(AttributeAttacksPerSecondTotalID).value();
 }
 
+Range Hero::getAttackSpeedBonus() const {
+	return getAttribute(AttributeAttacksPerSecondPercentID).value();
+}
+
 Range Hero::getMaxDamage() const {
 	return getAttribute(AttributeDamageMinTotalAllID).value() + getAttribute(AttributeDamageDeltaTotalAllID).value();
 }
 
 Range Hero::getMinDamage() const {
 	return getAttribute(AttributeDamageMinTotalAllID).value();
+}
+
+Range Hero::getDamageBonusVsElites() const {
+	return getAttribute(AttributeDamagePercentBonusVsElitesID).value();
+}
+
+Range Hero::getSplashDamage() const {
+	return getAttribute(AttributeSplashDamageEffectPercentID).value();
+}
+
+Range Hero::getPowerCooldownReduction() const {
+	return getAttribute(AttributePowerCooldownReductionPercentAllID).value();
+}
+
+Range Hero::getThorns() const {
+	Range value = 0;
+	for (auto i: AttributeDamageTypeSubIDs) {
+		value += getAttribute(AttributeThornsFixedID, i).value();
+	}
+	return value;
+}
+
+Range Hero::getMovementBonus() const {
+	return getAttribute(AttributeMovementBonusTotalID).value();
 }
 
 Range Hero::getMagicFind() const {
@@ -347,18 +446,30 @@ Range Hero::getGoldFind() const {
 	return getAttribute(AttributeGoldFindTotalID).value();
 }
 
-Range Hero::getPrimaryResourceEffectiveMax() const {
+Range Hero::getGoldPickUpRadius() const {
+	return getAttribute(AttributeGoldPickUpRadiusID).value();
+}
+
+Range Hero::getExperienceBonus() const {
+	return getAttribute(AttributeExperienceBonusPercentTotalID).value();
+}
+
+Range Hero::getExperiencePerKill() const {
+	return getAttribute(AttributeExperienceBonusID).value();
+}
+
+Range Hero::getPrimaryResourceMax() const {
 	AttributeSubID resourceType = getResourceTypePrimary();
 	if (resourceType != AttributeNoneSubID)
-		return getAttribute(AttributeResourceEffectiveMaxID, resourceType).value();
+		return getAttribute(AttributeResourceMaxTotalID, resourceType).value();
 	else
 		return 0;
 }
 
-Range Hero::getSecondaryResourceEffectiveMax() const {
+Range Hero::getSecondaryResourceMax() const {
 	AttributeSubID resourceType = getResourceTypeSecondary();
 	if (resourceType != AttributeNoneSubID)
-		return getAttribute(AttributeResourceEffectiveMaxID, resourceType).value();
+		return getAttribute(AttributeResourceMaxTotalID, resourceType).value();
 	else
 		return 0;
 }
@@ -375,6 +486,38 @@ Range Hero::getSecondaryResourceRegen() const {
 	AttributeSubID resourceType = getResourceTypeSecondary();
 	if (resourceType != AttributeNoneSubID)
 		return getAttribute(AttributeResourceRegenTotalID, resourceType).value();
+	else
+		return 0;
+}
+
+Range Hero::getPrimaryResourceCostReduction() const {
+	AttributeSubID resourceType = getResourceTypePrimary();
+	if (resourceType != AttributeNoneSubID)
+		return getAttribute(AttributeResourceCostReductionPercentTotalID, resourceType).value();
+	else
+		return 0;
+}
+
+Range Hero::getSecondaryResourceCostReduction() const {
+	AttributeSubID resourceType = getResourceTypeSecondary();
+	if (resourceType != AttributeNoneSubID)
+		return getAttribute(AttributeResourceCostReductionPercentTotalID, resourceType).value();
+	else
+		return 0;
+}
+
+Range Hero::getPrimaryResourceOnCrit() const {
+	AttributeSubID resourceType = getResourceTypePrimary();
+	if (resourceType != AttributeNoneSubID)
+		return getAttribute(AttributeResourceOnCritID, resourceType).value();
+	else
+		return 0;
+}
+
+Range Hero::getSecondaryResourceOnCrit() const {
+	AttributeSubID resourceType = getResourceTypeSecondary();
+	if (resourceType != AttributeNoneSubID)
+		return getAttribute(AttributeResourceOnCritID, resourceType).value();
 	else
 		return 0;
 }
@@ -491,7 +634,7 @@ Attribute Hero::getAttribute(AttributeID attributeID, AttributeSubID subID) cons
 		value = hero[AttributeIncreasedHealthFromGlobesPercentID][subID];
 		break;
 	case AttributeHitpointsOnKillTotalID:
-		value = hero[AttributeHitpointsOnKillID][subID] + pin(1 - hero[AttributeHitpointsOnKillReductionPercentID][subID], 0, 1);
+		value = hero[AttributeHitpointsOnKillID][subID] * pin(1 - hero[AttributeHitpointsOnKillReductionPercentID][subID], 0, 1);
 		break;
 	case AttributeGetHitRecoveryID:
 		value = hero[AttributeGetHitRecoveryBaseID][subID] + (hero[AttributeGetHitRecoveryPerLevelID][subID] * hero[AttributeLevelID][subID]);
@@ -631,6 +774,30 @@ Attribute Hero::getAttribute(AttributeID attributeID, AttributeSubID subID) cons
 		break;
 
 	//Calculations
+	case AttributeHitpointsFactorVitalityID: {
+		auto level = getLevel();
+		//63-47
+		//64-51
+		//65-55
+		//66-60
+		//67-70
+		if (level >= 66)
+			value = 60 + 10 * (level - 66);
+		else if (level >= 60)
+			value = 35 + 4 * (level - 60);
+		else if (level >= 35)
+			value = level - 25;
+		else
+			value = 10;
+
+/*		if (level >= 61)
+			value = 35 + 5 * (level - 61);
+		else if (level >= 35)
+			value = level - 25;
+		else
+			value = 10;*/
+		break;
+	}
 	case AttributeDualWieldHandID: {
 		auto mainHand = getItem(Item::SlotMainHand);
 		auto offHand = getItem(Item::SlotOffHand);
@@ -653,7 +820,7 @@ Attribute Hero::getAttribute(AttributeID attributeID, AttributeSubID subID) cons
 		break;
 	case AttributeDamageBonusFromPrimaryDamageAttributeID: {
 		Range primaryDamageAttribute = hero[AttributePrimaryDamageAttributeID];
-		switch (static_cast<int>(primaryDamageAttribute.max)) {
+		switch (static_cast<PrimaryDamageAttribute>(primaryDamageAttribute.max)) {
 			case PrimaryDamageAttributeIntelligence:
 				value = hero[AttributeIntelligenceTotalID] / 100;
 				break;
@@ -706,6 +873,11 @@ Attribute Hero::getAttribute(AttributeID attributeID, AttributeSubID subID) cons
 		break;
 	case AttributeDamageDeltaTotalOffHandID:
 		value = std::max(hero[AttributeDamageDeltaID][subID] - hero[AttributeDamageBonusMinID][subID] + hero[AttributeDamageWeaponDeltaTotalOffHandID][subID], Range(0));
+		break;
+	case AttributeDamageWeaponMinTotalMainHandID:
+		value = items[AttributeDamageWeaponMinTotalMainHandID][subID];
+		if (subID == AttributePhysicalSubID)
+			 value = std::max(value, Range(2.5));
 		break;
 	case AttributeDamageMinTotalOffHandID:
 		value = hero[AttributeDamageMinSubtotalOffHandID][subID];

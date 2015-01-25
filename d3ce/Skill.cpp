@@ -50,7 +50,7 @@ const Hash SkillPierceTheVeilHash = hash("pierce-the-veil");
 
 
 Skill::Skill(std::shared_ptr<Engine> engine, Entity* parent, const std::string& skillName) : Entity(engine, parent), skillname_(skillName) {
-	Hash skillNameHash = hash(skillName);
+	//Hash skillNameHash = hash(skillName);
 	//Wizard
 	/*if (skillNameHash == SkillEnergyArmorHash) {
 		getAttribute(AttributeArmorBonusSkillPercentID)->setValue(0.65);

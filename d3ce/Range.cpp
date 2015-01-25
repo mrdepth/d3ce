@@ -7,6 +7,7 @@
 //
 
 #include "Range.h"
+#include <math.h>
 
 using namespace d3ce;
 

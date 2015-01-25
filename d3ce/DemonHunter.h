@@ -20,6 +20,8 @@ namespace d3ce {
 		DemonHunter(std::shared_ptr<Engine> engine, Party* party);
 		virtual Entity* cloneIn(Entity* parent);
 		virtual ClassMask getClass() const;
+		virtual std::string getClassName() const;
+
 	protected:
 		DemonHunter(const DemonHunter& other, Party* party);
 	};

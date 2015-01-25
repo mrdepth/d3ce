@@ -41,3 +41,7 @@ Entity* WitchDoctor::cloneIn(Entity* parent) {
 ClassMask WitchDoctor::getClass() const {
 	return ClassMaskWitchDoctor;
 }
+
+std::string WitchDoctor::getClassName() const {
+	return "WitchDoctor";
+}

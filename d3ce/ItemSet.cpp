@@ -57,7 +57,7 @@ void ItemSet::removeItem(std::shared_ptr<Gear> item) {
 }
 
 void ItemSet::update() {
-	size_t numOfSet = items_.size();
+//	size_t numOfSet = items_.size();
 	
 	/*{
 		std::vector<SetBonus*>::iterator i, end = setBonuses_.end();
@@ -92,7 +92,7 @@ Environment ItemSet::environment() {
 }
 
 Attribute ItemSet::getAttribute(AttributeID attributeID, AttributeSubID attributeSubID) const {
-	int numOfSet = items_.size();
+	int numOfSet = static_cast<int>(items_.size());
 	int discount = static_cast<int>(static_cast<Range>((*getParent())[AttributeAttributeSetItemDiscountID]).max);
 	Range value = 0;
 	for (auto bonus : setBonuses_) {

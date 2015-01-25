@@ -20,6 +20,8 @@ namespace d3ce {
 		WitchDoctor(std::shared_ptr<Engine> engine, Party* party);
 		virtual Entity* cloneIn(Entity* parent);
 		virtual ClassMask getClass() const;
+		virtual std::string getClassName() const;
+
 	protected:
 		WitchDoctor(const WitchDoctor& other, Party* party);
 	};

@@ -34,12 +34,14 @@ namespace d3ce {
 
 		std::shared_ptr<Gear> addItem(Hash itemHash);
 		std::shared_ptr<Gear> addItem(const std::string& nonNlsKey);
+		std::shared_ptr<Gear> addItem(std::shared_ptr<Gear> item);
 		void removeItem(std::shared_ptr<Gear>);
 		
 		Skill* addSkill(const std::string& skillName);
 		void removeSkill(Skill* skill);
 
 		virtual ClassMask getClass() const = 0;
+		virtual std::string getClassName() const = 0;
 		
 		std::shared_ptr<Gear> getItem(Item::Slot slot) const;
 		const std::vector<std::shared_ptr<Gear>>& getItems() const;
@@ -53,6 +55,7 @@ namespace d3ce {
 		
 		AttributeSubID getResourceTypePrimary() const;
 		AttributeSubID getResourceTypeSecondary() const;
+		PrimaryDamageAttribute getPrimaryDamageAttribute() const;
 		
 		//Stats
 		Range getStrength() const;
@@ -69,29 +72,53 @@ namespace d3ce {
 		Range getBlockAmmountMin() const;
 		Range getBlockAmmountMax() const;
 		Range getDodgeChance() const;
+		Range getCrowdControlReduction() const;
+		Range getDamageReductionFromMelee() const;
+		Range getDamageReductionFromRanged() const;
+		Range getDamageReductionFromElites() const;
 		
 		Range getHitPoints() const;
-		Range getEffectiveHitPoints() const;
+		Range getToughness() const;
 		Range getLifeRegen() const;
 		Range getLifePerHit() const;
 		Range getLifePerKill() const;
 		Range getLifeSteal() const;
+		Range getLifeBonus() const;
+		Range getHealthGlobeBonus() const;
+		Range getHealing() const;
+		Range getRecovery() const;
 		
+		Range getDamageBonusFromPrimaryDamageAttribute() const;
 		Range getDPS() const;
+		Range getElementalDPS() const;
+		Range getEliteDPS() const;
+		Range getEliteElementalDPS() const;
 		Range getCritChance() const;
 		Range getCritDamage() const;
 		Range getAttackSpeed() const;
+		Range getAttackSpeedBonus() const;
 		Range getMaxDamage() const;
 		Range getMinDamage() const;
+		Range getDamageBonusVsElites() const;
+		Range getSplashDamage() const;
+		Range getPowerCooldownReduction() const;
+		Range getThorns() const;
 		
+		Range getMovementBonus() const;
 		Range getMagicFind() const;
 		Range getGoldFind() const;
+		Range getGoldPickUpRadius() const;
+		Range getExperienceBonus() const;
+		Range getExperiencePerKill() const;
 		
-		Range getPrimaryResourceEffectiveMax() const;
-		Range getSecondaryResourceEffectiveMax() const;
-		
+		Range getPrimaryResourceMax() const;
+		Range getSecondaryResourceMax() const;
 		Range getPrimaryResourceRegen() const;
 		Range getSecondaryResourceRegen() const;
+		Range getPrimaryResourceCostReduction() const;
+		Range getSecondaryResourceCostReduction() const;
+		Range getPrimaryResourceOnCrit() const;
+		Range getSecondaryResourceOnCrit() const;
 
 		virtual Attribute getAttribute(AttributeID attributeID, AttributeSubID attributeSubID = AttributeNoneSubID) const;
 
@@ -105,8 +132,6 @@ namespace d3ce {
 		std::vector<Skill*> skills_;
 		std::vector<std::shared_ptr<ItemSet>> setBonuses_;
 		Follower* follower_;
-
-		std::shared_ptr<Gear> addItem(std::shared_ptr<Gear> item);
 	};
 }
 

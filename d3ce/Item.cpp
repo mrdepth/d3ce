@@ -68,6 +68,7 @@ std::shared_ptr<Item> Item::CreateItemFromRequest(std::shared_ptr<Engine> engine
 			Hash parentItemTypeHash = sqlite3_column_int(stmt, 1);
 			int slots[] = {sqlite3_column_int(stmt, 3), sqlite3_column_int(stmt, 4), sqlite3_column_int(stmt, 5), sqlite3_column_int(stmt, 6)};
 			int bitMask = sqlite3_column_int(stmt, 7);
+			flags = sqlite3_column_int(stmt, 2);
 			
 			itemTypesTree.push_back(parentItemTypeHash);
 			
@@ -92,27 +93,90 @@ std::shared_ptr<Item> Item::CreateItemFromRequest(std::shared_ptr<Engine> engine
 				else
 					break;
 			}
-			
-			std::vector<Slot> possibleSlots;
+
+			int32_t possibleSlots = 0;
 			for (int i = 0; i < 4; i++) {
-				if (slots[i] > 0)
-					possibleSlots.push_back(static_cast<Slot>(slots[i]));
+				switch(static_cast<SlotIdentifier> (slots[i])) {
+					case SlotIdentifierHead:
+						possibleSlots |= SlotHead;
+						break;
+					case SlotIdentifierTorso:
+						possibleSlots |= SlotTorso;
+						break;
+					case SlotIdentifierOffHand:
+						possibleSlots |= SlotOffHand;
+						break;
+					case SlotIdentifierMainHand:
+						possibleSlots |= SlotMainHand;
+						break;
+					case SlotIdentifierHands:
+						possibleSlots |= SlotHands;
+						break;
+					case SlotIdentifierWaist:
+						possibleSlots |= SlotWaist;
+						break;
+					case SlotIdentifierFeet:
+						possibleSlots |= SlotFeet;
+						break;
+					case SlotIdentifierShoulders:
+						possibleSlots |= SlotShoulders;
+						break;
+					case SlotIdentifierLegs:
+						possibleSlots |= SlotLegs;
+						break;
+					case SlotIdentifierBracers:
+						possibleSlots |= SlotBracers;
+						break;
+					case SlotIdentifierRightFinger:
+						possibleSlots |= SlotRightFinger;
+						break;
+					case SlotIdentifierLeftFinger:
+						possibleSlots |= SlotLeftFinger;
+						break;
+					case SlotIdentifierNeck:
+						possibleSlots |= SlotNeck;
+						break;
+						
+					case SlotIdentifierFollowerOffHand:
+						possibleSlots |= SlotFollowerOffHand;
+						break;
+					case SlotIdentifierFollowerMainHand:
+						possibleSlots |= SlotFollowerMainHand;
+						break;
+					case SlotIdentifierFollowerSpecial:
+						possibleSlots |= SlotFollowerSpecial;
+						break;
+					case SlotIdentifierFollowerNeck:
+						possibleSlots |= SlotFollowerNeck;
+						break;
+					case SlotIdentifierFollowerRightFinger:
+						possibleSlots |= SlotFollowerRightFinger;
+						break;
+					case SlotIdentifierFollowerLeftFinger:
+						possibleSlots |= SlotFollowerLeftFinger;
+						break;
+					case SlotIdentifierSocket:
+						possibleSlots |= SlotFollowerNeck;
+						break;
+					default:
+						break;
+				}
 			}
 			
 			Item* item;
 			switch(parentItemTypeHash) {
 				case ItemTypeArmorHash:
 				case ItemTypeJewelryHash:
-					item = new Armor(engine, parent, itemHash, itemTypesTree, itemSetBonusHash, flags, bitMask, possibleSlots);
+					item = new Armor(engine, parent, itemHash, itemTypesTree, itemSetBonusHash, flags, bitMask, static_cast<Slot>(possibleSlots));
 					break;
 				case ItemTypeWeaponHash:
-					item = new Weapon(engine, parent, itemHash, itemTypesTree, itemSetBonusHash, flags, bitMask, possibleSlots);
+					item = new Weapon(engine, parent, itemHash, itemTypesTree, itemSetBonusHash, flags, bitMask, static_cast<Slot>(possibleSlots));
 					break;
 				case ItemTypeOffHandHash:
-					item = new OffHand(engine, parent, itemHash, itemTypesTree, itemSetBonusHash, flags, bitMask, possibleSlots);
+					item = new OffHand(engine, parent, itemHash, itemTypesTree, itemSetBonusHash, flags, bitMask, static_cast<Slot>(possibleSlots));
 					break;
 				case ItemTypeSocketableHash:
-					item = new Gem(engine, dynamic_cast<Item*>(parent), itemHash, itemTypesTree, flags, bitMask, possibleSlots);
+					item = new Gem(engine, dynamic_cast<Item*>(parent), itemHash, itemTypesTree, flags, bitMask, static_cast<Slot>(possibleSlots));
 					break;
 				default:
 					throw UnknownItemTypeHashException();
@@ -133,7 +197,7 @@ std::shared_ptr<Item> Item::CreateItemFromRequest(std::shared_ptr<Engine> engine
 	return NULL;
 }
 
-Item::Item(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, const std::vector<Slot>& possibleSlots) : Entity(engine, parent), itemTypesTree_(itemTypesTree), possibleSlots_(possibleSlots){
+Item::Item(std::shared_ptr<Engine> engine, Entity* parent, Hash itemHash, const std::vector<Hash>& itemTypesTree, int flags, int bitMask, Slot possibleSlots) : Entity(engine, parent), itemTypesTree_(itemTypesTree), possibleSlots_(possibleSlots){
 	itemHash_ = itemHash;
 	flags_ = flags;
 	bitMask_ = bitMask;
@@ -148,7 +212,7 @@ Item::Item(const Item& other, Entity* parent) : Entity(other, parent), itemTypes
 }
 
 
-Item::Slot Item::getSlot() {
+Item::Slot Item::getSlot() const{
 	return slot_;
 }
 
@@ -156,7 +220,11 @@ void Item::setSlot(Slot slot) {
 	slot_ = slot;
 }
 
-const std::vector<Item::Slot>&  Item::possibleSlots() {
+int32_t Item::getClassMask() const {
+	return flags_ & ClassMaskAnyClass;
+}
+
+const Item::Slot Item::possibleSlots() {
 	return possibleSlots_;
 }
 

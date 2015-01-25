@@ -27,7 +27,8 @@ Barbarian::Barbarian(std::shared_ptr<Engine> engine, Party* party) : Hero(engine
 
 	setAttribute(AttributeResourceTypePrimaryID, AttributeNoneSubID, AttributeFurySubID);
 	setAttribute(AttributeResourceMaxID, AttributeFurySubID, 100);
-	setAttribute(AttributeResourceRegenPerSecondID, AttributeFurySubID, -2);
+//	setAttribute(AttributeResourceRegenPerSecondID, AttributeFurySubID, 0);
+	setAttribute(AttributeHitpointsFactorResourceID, AttributeFurySubID, 4.5);
 }
 
 Barbarian::Barbarian(const Barbarian& other, Party* party) : Hero(other, party) {
@@ -40,4 +41,8 @@ Entity* Barbarian::cloneIn(Entity* parent) {
 
 ClassMask Barbarian::getClass() const {
 	return ClassMaskBarbarian;
+}
+
+std::string Barbarian::getClassName() const {
+	return "Barbarian";
 }
